@@ -1,0 +1,1904 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>RG_OS v49.0 — 18 Tabs</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+<style>
+    :root { --bg:#f4f5f7; --panel:#ffffff; --border:#e5e7eb; --text:#111111; --sub:#6b7280; --card:#f9fafb; }
+    html.dark { --bg:#0b0c0e; --panel:#131417; --border:#26282c; --text:#f3f4f6; --sub:#9ca3af; --card:#1a1c20; }
+    * { scrollbar-width: thin; }
+    ::-webkit-scrollbar { width:5px; height:5px; }
+    ::-webkit-scrollbar-thumb { background:var(--border); border-radius:99px; }
+    body { font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif; background:var(--bg); color:var(--text); height:100vh; display:flex; overflow:hidden; }
+    .surface { background:var(--panel); }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:24px; padding:20px; }
+    .field { background:var(--card); border:1px solid var(--border); color:var(--text); border-radius:14px; padding:12px 14px; outline:none; width:100%; font-size:14px; transition:border-color .15s; }
+    .field:focus { border-color:var(--text); }
+    .field::placeholder { color:var(--sub); }
+    .btn-p { background:var(--text); color:var(--bg); }
+    .chip { border:1px solid var(--border); border-radius:999px; padding:4px 12px; font-size:11px; font-weight:800; cursor:pointer; color:var(--sub); transition:.15s; background:transparent; }
+    .chip:hover { border-color:var(--text); color:var(--text); }
+    .chip.on { background:var(--text); color:var(--bg); border-color:var(--text); }
+    .icon-btn { width:32px; height:32px; border-radius:10px; display:flex; align-items:center; justify-content:center; border:1px solid var(--border); transition:.15s; }
+    .icon-btn:hover { border-color:var(--text); }
+    .tab { padding:10px 14px; margin:2px 12px; border-radius:12px; font-size:13px; cursor:pointer; color:var(--sub); transition:.2s; display:flex; align-items:center; gap:10px; font-weight:800; }
+    .tab:hover { color:var(--text); }
+    .tab.active { background:var(--text) !important; color:var(--bg) !important; }
+    .stab { padding:8px 14px; border-radius:10px; font-size:12px; font-weight:800; cursor:pointer; color:var(--sub); }
+    .stab.active { background:var(--text); color:var(--bg); }
+    .sec-label { padding:14px 24px 4px; font-size:9px; font-weight:900; letter-spacing:.15em; color:var(--sub); }
+    .tool-panel { display:none; height:100%; width:100%; flex-direction:column; overflow:hidden; animation:fadein .2s; }
+    .tool-panel.active { display:flex !important; }
+    @keyframes fadein { from { opacity:0; transform:translateY(4px);} to { opacity:1; } }
+    .cal-btn { height:52px; border-radius:14px; font-weight:900; font-size:17px; background:var(--card); border:1px solid var(--border); transition:transform .08s; user-select:none; }
+    .cal-btn:active { transform:scale(.92); }
+    .cal-btn.op { color:#f59e0b; }
+    .cal-btn.eq { background:var(--text); color:var(--bg); }
+    #chat-view p { margin:.3em 0; }
+    #chat-view ul,#chat-view ol { margin:.4em 0; padding-left:1.2em; }
+    #chat-view code { background:var(--card); border:1px solid var(--border); padding:1px 5px; border-radius:6px; font-size:.85em; }
+    #chat-view pre { background:#0d1117 !important; border-radius:12px; padding:14px; overflow-x:auto; font-size:12px; position:relative; margin:.6em 0; }
+    #chat-view pre code { background:transparent !important; border:none; padding:0; }
+    #chat-view blockquote { border-left:3px solid var(--border); padding-left:10px; margin:.4em 0; color:var(--sub); }
+    .code-copy { position:absolute; top:8px; right:8px; background:#21262d; color:#8b949e; border:1px solid #30363d; border-radius:6px; font-size:10px; padding:3px 8px; cursor:pointer; font-weight:700; }
+    .dots i { display:inline-block; width:5px; height:5px; border-radius:99px; background:currentColor; margin-right:3px; animation:blink 1.2s infinite; }
+    .dots i:nth-child(2){ animation-delay:.2s; } .dots i:nth-child(3){ animation-delay:.4s; }
+    @keyframes blink { 0%,80%,100%{ opacity:.2; } 40%{ opacity:1; } }
+    #toasts { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); z-index:300; display:flex; flex-direction:column; gap:8px; align-items:center; pointer-events:none; }
+    .toast { background:var(--text); color:var(--bg); padding:10px 18px; border-radius:999px; font-size:12px; font-weight:800; box-shadow:0 8px 30px rgba(0,0,0,.25); animation:fadein .25s; white-space:nowrap; }
+    .toast.out { opacity:0; transform:translateY(8px); transition:.3s; }
+    #sidebar { width:260px; background:var(--panel); border-right:1px solid var(--border); display:flex; flex-direction:column; z-index:50; }
+    @media (max-width:768px) {
+        #sidebar { position:fixed; top:0; bottom:0; left:0; transform:translateX(-100%); transition:transform .25s; box-shadow:10px 0 40px rgba(0,0,0,.2); }
+        #sidebar.open { transform:none; }
+    }
+    input[type=range] { accent-color:var(--text); width:100%; }
+    a { color:inherit; text-decoration:underline; }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+    <div class="p-6 pb-2 text-lg font-black italic tracking-tighter flex items-center gap-2">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        RG_OS v49
+    </div>
+    <div class="px-6 pb-2">
+        <div class="text-[10px] font-black px-3 py-1.5 rounded-full inline-flex items-center gap-2 cursor-pointer border" style="border-color:var(--border)" onclick="App.openSettings()">
+            <span id="led" class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
+            <span id="conn-text">未配置</span>
+        </div>
+    </div>
+    <nav class="flex-1 overflow-y-auto px-3 pb-2">
+        <div class="sec-label">对话</div>
+        <div onclick="App.openTool('chat')" id="tab-chat" class="tab active"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>阮峻对话</div>
+        <div class="sec-label">工具</div>
+        <div onclick="App.openTool('cal')" id="tab-cal" class="tab"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>乱算器</div>
+        <div onclick="App.openTool('dict')" id="tab-dict" class="tab"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>离谱词典</div>
+        <div onclick="App.openTool('grade')" id="tab-grade" class="tab"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>成绩审判</div>
+        <div onclick="App.openTool('weather')" id="tab-weather" class="tab"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>天气搜索</div>
+        <div onclick="App.openTool('news')" id="tab-news" class="tab"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="7" y1="8" x2="17" y2="8"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="7" y1="16" x2="13" y2="16"/></svg>新闻锐评</div>
+        <div class="sec-label">创作</div>
+        <div onclick="App.openTool('web')" id="tab-web" class="tab"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>AI网页工厂</div>
+        <div onclick="App.openTool('novel')" id="tab-novel" class="tab"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>阮峻Novel</div>
+        <div onclick="App.openTool('essay')" id="tab-essay" class="tab"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>小作文工厂</div>
+        <div onclick="App.openTool('mouth')" id="tab-mouth" class="tab"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>嘴替</div>
+        <div class="sec-label">整活</div>
+        <div onclick="App.openTool('soup')" id="tab-soup" class="tab"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4z"/></svg>毒鸡汤</div>
+        <div onclick="App.openTool('fortune')" id="tab-fortune" class="tab"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>运势抽签</div>
+        <div onclick="App.openTool('battle')" id="tab-battle" class="tab"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>骂战模拟器</div>
+        <div onclick="App.openTool('debate')" id="tab-debate" class="tab"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>杠精辩论</div>
+        <div onclick="App.openTool('train')" id="tab-train" class="tab"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="13" rx="3"/><path d="M4 10h16"/><circle cx="8.5" cy="19" r="1.5"/><circle cx="15.5" cy="19" r="1.5"/></svg>新干线图鉴</div>
+        <div onclick="App.openTool('dream')" id="tab-dream" class="tab"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>梦境解析</div>
+        <div class="sec-label">生活</div>
+        <div onclick="App.openTool('food')" id="tab-food" class="tab"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg>深夜食堂</div>
+        <div onclick="App.openTool('letter')" id="tab-letter" class="tab"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>时光慢递</div>
+    </nav>
+    <div class="p-4 border-t flex items-center gap-2" style="border-color:var(--border)">
+        <button id="theme-btn" onclick="App.toggleTheme()" class="icon-btn shrink-0" title="切换主题"></button>
+        <button onclick="App.openSettings(true)" class="flex-1 flex items-center gap-2.5 p-2 rounded-xl hover:opacity-70 transition min-w-0">
+            <div id="u-avatar" class="w-7 h-7 rounded-full btn-p flex items-center justify-center text-[10px] font-black shrink-0">R</div>
+            <div id="u-display" class="text-xs font-black truncate text-left">加载中...</div>
+        </button>
+    </div>
+</aside>
+
+<main id="main-stage" class="flex-1 surface relative flex flex-col overflow-hidden">
+
+    <!-- CHAT -->
+    <div id="panel-chat" class="tool-panel active">
+        <header class="h-14 border-b flex items-center gap-3 pl-16 md:pl-6 pr-4 md:pr-6" style="border-color:var(--border)">
+            <span class="font-black text-sm">阮峻对话</span>
+            <span id="chat-model" class="chip cursor-default">--</span>
+            <div class="flex-1"></div>
+            <button onclick="App.clearChat()" class="icon-btn" title="清空对话"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
+        </header>
+        <div id="scroller" class="flex-1 overflow-y-auto p-4 md:p-6">
+            <div id="chat-view" class="max-w-2xl mx-auto space-y-5"></div>
+        </div>
+        <div class="p-4 md:p-6 pt-2">
+            <div class="max-w-2xl mx-auto flex items-end rounded-2xl p-2 border" style="background:var(--card);border-color:var(--border)">
+                <textarea id="minp" rows="1" class="flex-1 bg-transparent border-none outline-none py-2.5 px-3 font-medium resize-none max-h-40 text-sm" placeholder="跟阮峻聊聊…（Enter 发送 / Shift+Enter 换行）"></textarea>
+                <button id="sbtn" onclick="App.send()" disabled class="w-10 h-10 btn-p rounded-full flex items-center justify-center font-bold shrink-0 transition disabled:opacity-40">↑</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CALCULATOR -->
+    <div id="panel-cal" class="tool-panel" style="background:var(--bg)">
+        <header class="p-6 pl-16 md:pl-6 font-black text-lg border-b flex items-center justify-between surface" style="border-color:var(--border)">
+            <span>乱算器</span>
+            <button id="chaos-btn" class="chip" onclick="App.toggleChaos()">🤪 乱算模式：关</button>
+        </header>
+        <div class="flex-1 flex items-center justify-center p-4 overflow-y-auto">
+            <div class="card w-full max-w-[340px] shadow-2xl" style="background:var(--panel)">
+                <div class="rounded-2xl p-5 mb-4 text-right border" style="background:var(--card);border-color:var(--border)">
+                    <div id="cal-expr" class="text-2xl font-black break-all min-h-[32px]">0</div>
+                    <div id="cal-prev" class="text-xs font-bold mt-1" style="color:var(--sub)">&nbsp;</div>
+                </div>
+                <div class="grid grid-cols-4 gap-2">
+                    <button onclick="App.calClear()" class="cal-btn" style="color:#ef4444">C</button>
+                    <button onclick="App.calInput('(')" class="cal-btn op">(</button>
+                    <button onclick="App.calInput(')')" class="cal-btn op">)</button>
+                    <button onclick="App.calInput('/')" class="cal-btn op">÷</button>
+                    <button onclick="App.calInput('7')" class="cal-btn">7</button>
+                    <button onclick="App.calInput('8')" class="cal-btn">8</button>
+                    <button onclick="App.calInput('9')" class="cal-btn">9</button>
+                    <button onclick="App.calInput('*')" class="cal-btn op">×</button>
+                    <button onclick="App.calInput('4')" class="cal-btn">4</button>
+                    <button onclick="App.calInput('5')" class="cal-btn">5</button>
+                    <button onclick="App.calInput('6')" class="cal-btn">6</button>
+                    <button onclick="App.calInput('-')" class="cal-btn op">−</button>
+                    <button onclick="App.calInput('1')" class="cal-btn">1</button>
+                    <button onclick="App.calInput('2')" class="cal-btn">2</button>
+                    <button onclick="App.calInput('3')" class="cal-btn">3</button>
+                    <button onclick="App.calInput('+')" class="cal-btn op">+</button>
+                    <button onclick="App.calInput('0')" class="cal-btn col-span-2">0</button>
+                    <button onclick="App.calInput('.')" class="cal-btn">.</button>
+                    <button onclick="App.calBack()" class="cal-btn op">⌫</button>
+                    <button onclick="App.calEval()" class="cal-btn eq col-span-4">＝</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DICTIONARY -->
+    <div id="panel-dict" class="tool-panel surface">
+        <header class="p-6 pl-16 md:pl-6 font-black text-lg border-b" style="border-color:var(--border)">阮峻离谱词典</header>
+        <div class="p-6 md:p-10 max-w-xl mx-auto w-full overflow-y-auto">
+            <div class="flex gap-2 mb-4">
+                <input id="dict-in" class="field flex-1" placeholder="输入单词或词条…">
+                <button onclick="App.lookup()" class="px-6 btn-p rounded-xl font-black text-sm shrink-0">翻译</button>
+            </div>
+            <div id="dict-hist-wrap" class="mb-6 hidden">
+                <div class="text-[10px] font-black mb-2" style="color:var(--sub)">最近查过</div>
+                <div id="dict-hist" class="flex flex-wrap gap-2"></div>
+            </div>
+            <div id="dict-out"></div>
+        </div>
+    </div>
+
+    <!-- GRADE -->
+    <div id="panel-grade" class="tool-panel surface">
+        <header class="p-6 pl-16 md:pl-6 font-black text-lg border-b" style="border-color:var(--border)">成绩审判</header>
+        <div class="flex-1 overflow-y-auto p-6 md:p-10">
+            <div class="max-w-md mx-auto space-y-4">
+                <div class="card space-y-3">
+                    <input id="gr-sub" class="field" placeholder="科目（如：数学）">
+                    <div class="flex gap-3">
+                        <input id="gr-score" type="number" class="field" placeholder="得分">
+                        <input id="gr-full" type="number" class="field" placeholder="满分">
+                    </div>
+                    <button onclick="App.rateGrade()" class="w-full py-4 btn-p rounded-2xl font-black">⚖️ 审判</button>
+                    <div id="gr-res" class="hidden rounded-2xl p-5 text-center" style="background:rgba(239,68,68,.08)"></div>
+                    <button id="gr-roast-btn" onclick="App.aiRoast()" class="hidden w-full py-3 border-2 rounded-2xl font-black text-xs" style="border-color:var(--text)">🔥 让阮峻锐评一句</button>
+                    <div id="gr-ai" class="hidden rounded-2xl p-4 text-sm leading-relaxed border" style="border-color:var(--border)"></div>
+                </div>
+                <div id="gr-history" class="card hidden"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WEATHER -->
+    <div id="panel-weather" class="tool-panel surface">
+        <header class="p-6 pl-16 md:pl-6 font-black text-lg border-b" style="border-color:var(--border)">天气搜索</header>
+        <div class="flex-1 overflow-y-auto p-6 md:p-10 max-w-md mx-auto w-full text-center">
+            <div class="flex gap-2 mb-4">
+                <input id="we-city" class="field flex-1" placeholder="城市（如 Tokyo / 上海）">
+                <button onclick="App.getWeather()" class="px-5 btn-p rounded-xl font-black shrink-0">🔍</button>
+            </div>
+            <div id="we-cities" class="flex flex-wrap gap-2 justify-center mb-8"></div>
+            <div id="we-load" class="hidden text-xs font-black py-10" style="color:var(--sub)">正在观测大气层…</div>
+            <div id="we-box" class="hidden">
+                <div id="we-city-name" class="font-black text-lg mb-2"></div>
+                <div id="we-icon" class="text-7xl mb-2">🌤️</div>
+                <div id="we-temp" class="text-6xl font-black tracking-tighter mb-1">--°C</div>
+                <div id="we-desc" class="text-sm font-black uppercase mb-6" style="color:var(--sub)">--</div>
+                <div class="grid grid-cols-3 gap-2 mb-3">
+                    <div class="rounded-2xl p-3 border" style="border-color:var(--border)"><div class="text-[10px] font-black" style="color:var(--sub)">体感</div><div id="we-feels" class="font-black text-sm mt-1">--</div></div>
+                    <div class="rounded-2xl p-3 border" style="border-color:var(--border)"><div class="text-[10px] font-black" style="color:var(--sub)">湿度</div><div id="we-hum" class="font-black text-sm mt-1">--</div></div>
+                    <div class="rounded-2xl p-3 border" style="border-color:var(--border)"><div class="text-[10px] font-black" style="color:var(--sub)">风速</div><div id="we-wind" class="font-black text-sm mt-1">--</div></div>
+                </div>
+                <div id="we-fc" class="grid grid-cols-3 gap-2 mb-6"></div>
+                <div id="we-comment" class="card text-sm font-black italic text-left"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEWS (NEW) -->
+    <div id="panel-news" class="tool-panel surface">
+        <header class="p-6 pl-16 md:pl-6 font-black text-lg border-b flex items-center justify-between" style="border-color:var(--border)">
+            <span>新闻锐评 <span class="chip cursor-default ml-2">Hacker News 热榜</span></span>
+            <button onclick="App.loadNews(true)" class="chip">⟳ 刷新</button>
+        </header>
+        <div class="flex-1 overflow-y-auto p-6 md:p-10">
+            <div id="nw-load" class="hidden text-xs font-black text-center py-10" style="color:var(--sub)">正在爬全球热榜…</div>
+            <div id="nw-list" class="max-w-2xl mx-auto"></div>
+        </div>
+    </div>
+
+    <!-- WEB BUILDER (NEW) -->
+    <div id="panel-web" class="tool-panel surface">
+        <header class="p-6 pl-16 md:pl-6 font-black text-lg border-b" style="border-color:var(--border)">AI 网页工厂 <span class="chip cursor-default ml-2">描述即所得</span></header>
+        <div class="flex-1 overflow-y-auto p-6 md:p-10">
+            <div class="max-w-3xl mx-auto">
+                <div class="card space-y-3">
+                    <textarea id="wb-prompt" rows="3" class="field resize-none" placeholder="描述你想要的网页，比如：阮峻主题的新干线时刻表主页，赛博朋克风（Ctrl+Enter 生成）"></textarea>
+                    <div id="wb-presets" class="flex flex-wrap gap-2"></div>
+                    <button onclick="App.webBuild()" class="w-full py-4 btn-p rounded-2xl font-black">⚡ 生成网页</button>
+                </div>
+                <div id="wb-view" class="hidden mt-5">
+                    <div class="flex items-center gap-2 mb-3 flex-wrap">
+                        <button id="wb-tab-prev" class="chip on" onclick="App.wbTab('prev')">👀 预览</button>
+                        <button id="wb-tab-code" class="chip" onclick="App.wbTab('code')">&lt;/&gt; 代码</button>
+                        <div class="flex-1"></div>
+                        <button onclick="App.wbCopy()" class="chip">📋 复制</button>
+                        <button onclick="App.wbDownload()" class="chip">⬇ 下载 HTML</button>
+                    </div>
+                    <iframe id="wb-frame" sandbox="allow-scripts" class="w-full rounded-2xl border bg-white" style="height:540px;border-color:var(--border);display:none"></iframe>
+                    <pre id="wb-code" class="rounded-2xl p-4 text-xs overflow-auto" style="background:#0d1117;color:#e6edf3;max-height:540px;display:none"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NOVEL -->
+    <div id="panel-novel" class="tool-panel surface">
+        <header class="p-6 pl-16 md:pl-6 border-b flex justify-between items-center" style="border-color:var(--border)">
+            <span class="font-black text-lg">阮峻Novel</span>
+            <button onclick="App.deleteNovel()" id="nv-new-btn" class="chip">🗑 删书重开</button>
+        </header>
+        <div id="nv-view" class="flex-1 overflow-y-auto p-6 md:p-10"></div>
+        <div class="p-4 md:p-6 border-t surface" style="border-color:var(--border)">
+            <button id="nv-btn" onclick="App.writeChapter()" disabled class="w-full py-4 btn-p rounded-2xl font-black shadow-lg disabled:opacity-40">✍️ 生成下一章</button>
+        </div>
+    </div>
+
+    <!-- ESSAY FACTORY -->
+    <div id="panel-essay" class="tool-panel surface">
+        <header class="p-6 pl-16 md:pl-6 font-black text-lg border-b" style="border-color:var(--border)">小作文工厂</header>
+        <div class="flex-1 overflow-y-auto p-6 md:p-10">
+            <div class="max-w-xl mx-auto card space-y-3">
+                <div id="es-types" class="flex flex-wrap gap-2"></div>
+                <input id="es-key" class="field" placeholder="">
+                <textarea id="es-extra" rows="2" class="field resize-none" placeholder="补充细节（可选）：对象是谁 / 多少字 / 什么语气…"></textarea>
+                <button onclick="App.essayGo()" class="w-full py-4 btn-p rounded-2xl font-black">🖊 开写</button>
+                <div id="es-out" class="hidden">
+                    <div class="rounded-2xl p-5 text-sm leading-relaxed whitespace-pre-wrap border" style="border-color:var(--border)" id="es-body"></div>
+                    <button onclick="App.copyText(document.getElementById('es-body').textContent)" class="chip mt-3">📋 复制全文</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MOUTH -->
+    <div id="panel-mouth" class="tool-panel surface">
+        <header class="p-6 pl-16 md:pl-6 font-black text-lg border-b" style="border-color:var(--border)">嘴替</header>
+        <div class="flex-1 overflow-y-auto p-6 md:p-10">
+            <div class="max-w-xl mx-auto card space-y-3">
+                <textarea id="mo-in" rows="3" class="field resize-none" placeholder="把你不敢说的那句打出来，阮峻替你说…"></textarea>
+                <div id="mo-levels" class="flex flex-wrap gap-2"></div>
+                <button onclick="App.mouthSay()" class="w-full py-4 btn-p rounded-2xl font-black">🗣 帮我说</button>
+                <div id="mo-out" class="hidden">
+                    <div class="rounded-2xl p-5 text-sm leading-relaxed font-black border" style="border-color:var(--border)" id="mo-body"></div>
+                    <button onclick="App.copyText(document.getElementById('mo-body').textContent)" class="chip mt-3">📋 复制</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SOUP -->
+    <div id="panel-soup" class="tool-panel surface">
+        <header class="p-6 pl-16 md:pl-6 font-black text-lg border-b flex items-center justify-between" style="border-color:var(--border)">
+            <span>毒鸡汤</span><span class="chip cursor-default">先干为敬</span>
+        </header>
+        <div class="flex-1 overflow-y-auto p-6 md:p-10">
+            <div class="max-w-xl mx-auto">
+                <button onclick="App.soup()" class="w-full py-4 btn-p rounded-2xl font-black mb-6">🍜 再来一碗</button>
+                <div id="soup-feed" class="space-y-3"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FORTUNE -->
+    <div id="panel-fortune" class="tool-panel surface">
+        <header class="p-6 pl-16 md:pl-6 font-black text-lg border-b" style="border-color:var(--border)">运势抽签</header>
+        <div class="flex-1 overflow-y-auto p-6 md:p-10 max-w-md mx-auto w-full text-center">
+            <input id="fo-name" class="field mb-3 text-center" placeholder="求签人（留空 = 你自己）">
+            <button onclick="App.drawFortune()" class="w-full py-4 btn-p rounded-2xl font-black">🎋 抽一签</button>
+            <div id="fo-out" class="mt-6"></div>
+            <div class="text-[10px] font-bold mt-6" style="color:var(--sub)">同一天同人只出一签 · 签不会骗人，曾俊伟会</div>
+        </div>
+    </div>
+
+    <!-- BATTLE -->
+    <div id="panel-battle" class="tool-panel surface">
+        <header class="p-6 pl-16 md:pl-6 font-black text-lg border-b" style="border-color:var(--border)">骂战模拟器 <span class="chip cursor-default ml-2">文明对线 · 禁脏字</span></header>
+        <div class="flex-1 overflow-y-auto p-6 md:p-10">
+            <div class="max-w-xl mx-auto">
+                <div id="bt-setup" class="card">
+                    <div class="text-[10px] font-black mb-2" style="color:var(--sub)">对手</div>
+                    <input id="bt-opp" class="field mb-4" placeholder="对手名字（默认：曾俊伟）">
+                    <button onclick="App.battleStart()" class="w-full py-4 btn-p rounded-2xl font-black">⚔️ 开战（3 回合定胜负）</button>
+                </div>
+                <div id="bt-arena" class="hidden">
+                    <div id="bt-log" class="space-y-3 mb-4"></div>
+                    <div class="flex gap-2 mb-3">
+                        <input id="bt-in" class="field flex-1" placeholder="放马过来…">
+                        <button id="bt-btn" onclick="App.battleAttack()" class="px-6 btn-p rounded-xl font-black shrink-0">出手</button>
+                    </div>
+                    <div class="flex gap-2 justify-center">
+                        <button id="bt-judge-btn" onclick="App.battleJudge()" class="chip hidden">⚖️ 叫裁判判胜负</button>
+                        <button onclick="App.battleReset()" class="chip">↺ 重开一局</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DEBATE (NEW) -->
+    <div id="panel-debate" class="tool-panel surface">
+        <header class="p-6 pl-16 md:pl-6 font-black text-lg border-b" style="border-color:var(--border)">杠精辩论 <span class="chip cursor-default ml-2">它永远不同意你</span></header>
+        <div class="flex-1 overflow-y-auto p-6 md:p-10">
+            <div class="max-w-xl mx-auto">
+                <div id="db-setup" class="card">
+                    <div class="text-[10px] font-black mb-2" style="color:var(--sub)">你的观点（杠精自动站反面）</div>
+                    <textarea id="db-in" rows="2" class="field mb-4 resize-none" placeholder="比如：新干线就是世界上最帅的火车"></textarea>
+                    <button onclick="App.debateStart()" class="w-full py-4 btn-p rounded-2xl font-black">🔪 开始抬杠</button>
+                </div>
+                <div id="db-arena" class="hidden">
+                    <div class="card mb-4 text-[10px] font-black" style="color:var(--sub)">辩题：<span id="db-topic" class="text-sm" style="color:var(--text)"></span></div>
+                    <div id="db-log" class="space-y-3 mb-4"></div>
+                    <div class="flex gap-2 mb-3">
+                        <input id="db-reply" class="field flex-1" placeholder="不服？继续辩…">
+                        <button id="db-btn" onclick="App.dbSend()" class="px-6 btn-p rounded-xl font-black shrink-0">反驳</button>
+                    </div>
+                    <div class="flex gap-2 justify-center">
+                        <button id="db-concede-btn" class="chip" onclick="App.dbConcede()">🏳️ 好吧你赢了</button>
+                        <button onclick="App.dbReset()" class="chip">↺ 换个观点</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TRAIN DEX -->
+    <div id="panel-train" class="tool-panel surface">
+        <header class="p-6 pl-16 md:pl-6 font-black text-lg border-b" style="border-color:var(--border)">新干线图鉴</header>
+        <div class="flex-1 overflow-y-auto p-6 md:p-10 max-w-md mx-auto w-full text-center">
+            <button onclick="App.drawTrain()" class="w-full py-4 btn-p rounded-2xl font-black">🚄 抽一辆</button>
+            <div id="tr-out" class="mt-6"></div>
+            <div class="text-[10px] font-black mt-8 mb-2" style="color:var(--sub)">已收集 <span id="tr-count">0</span> 辆</div>
+            <div id="tr-collection" class="flex flex-wrap gap-2 justify-center"></div>
+        </div>
+    </div>
+
+    <!-- DREAM (NEW) -->
+    <div id="panel-dream" class="tool-panel surface">
+        <header class="p-6 pl-16 md:pl-6 font-black text-lg border-b" style="border-color:var(--border)">梦境解析</header>
+        <div class="flex-1 overflow-y-auto p-6 md:p-10 max-w-md mx-auto w-full">
+            <textarea id="dm-in" rows="3" class="field resize-none mb-3" placeholder="昨晚梦到啥了？（比如：梦到曾俊伟开新干线）"></textarea>
+            <button onclick="App.dreamGo()" class="w-full py-4 btn-p rounded-2xl font-black mb-6">🔮 解梦</button>
+            <div id="dm-out"></div>
+        </div>
+    </div>
+
+    <!-- FOOD (NEW) -->
+    <div id="panel-food" class="tool-panel surface">
+        <header class="p-6 pl-16 md:pl-6 font-black text-lg border-b" style="border-color:var(--border)">深夜食堂</header>
+        <div class="flex-1 overflow-y-auto p-6 md:p-10 max-w-md mx-auto w-full">
+            <input id="fd-in" class="field mb-3" placeholder="冰箱里有什么？（鸡蛋、隔夜饭…）">
+            <div class="flex gap-2 mb-6">
+                <button onclick="App.foodGo()" class="flex-1 py-4 btn-p rounded-2xl font-black">🍳 决定今晚吃啥</button>
+                <button onclick="App.foodGo(true)" class="px-5 py-4 rounded-2xl font-black text-xs border-2 shrink-0" style="border-color:var(--text)">🎲 随便喂我</button>
+            </div>
+            <div id="fd-out"></div>
+        </div>
+    </div>
+
+    <!-- LETTER (NEW) -->
+    <div id="panel-letter" class="tool-panel surface">
+        <header class="p-6 pl-16 md:pl-6 font-black text-lg border-b flex items-center justify-between" style="border-color:var(--border)">
+            <span>时光慢递</span><span class="chip cursor-default">写给未来的自己</span>
+        </header>
+        <div class="flex-1 overflow-y-auto p-6 md:p-10 max-w-xl mx-auto w-full">
+            <div class="card space-y-3 mb-6">
+                <input id="lt-title" class="field" placeholder="信的名字（如：给明年脱单的我）">
+                <textarea id="lt-body" rows="4" class="field resize-none" placeholder="想对未来自己说点什么…"></textarea>
+                <div class="flex gap-3 items-end">
+                    <div class="flex-1">
+                        <div class="text-[10px] font-black mb-1" style="color:var(--sub)">解封日期</div>
+                        <input id="lt-date" type="date" class="field">
+                    </div>
+                    <button onclick="App.ltPreface()" class="chip h-12 px-4">✨ 阮峻代笔序言</button>
+                </div>
+                <div id="lt-hint" class="hidden rounded-xl p-3 text-xs italic border" style="border-color:var(--border)"></div>
+                <button onclick="App.ltSeal()" class="w-full py-4 btn-p rounded-2xl font-black">✉️ 封存</button>
+            </div>
+            <div id="lt-list" class="space-y-3"></div>
+        </div>
+    </div>
+</main>
+
+<button id="menu-btn" onclick="App.toggleSidebar()" class="fixed top-3.5 left-3 z-40 md:hidden w-9 h-9 rounded-xl border flex items-center justify-center" style="border-color:var(--border);background:var(--panel)">☰</button>
+<div id="overlay" onclick="App.toggleSidebar(false)" class="fixed inset-0 bg-black/50 z-[45] hidden md:hidden"></div>
+
+<!-- SETTINGS -->
+<div id="settings-modal" style="display:none" class="fixed inset-0 bg-black/60 backdrop-blur-md z-[100] items-center justify-center p-4">
+    <div class="w-full max-w-md rounded-3xl border p-6 max-h-[92vh] overflow-y-auto" style="background:var(--panel);border-color:var(--border)">
+        <div class="flex items-center justify-between mb-5">
+            <div class="font-black text-lg">设置</div>
+            <button onclick="App.closeSettings()" class="icon-btn">✕</button>
+        </div>
+        <div class="flex gap-2 mb-5">
+            <button id="stab-conn" class="stab active" onclick="App.setTab('conn')">🔌 连接</button>
+            <button id="stab-persona" class="stab" onclick="App.setTab('persona')">🎭 人设</button>
+            <button id="stab-params" class="stab" onclick="App.setTab('params')">⚡ 参数</button>
+        </div>
+        <div id="set-conn">
+            <div class="text-[10px] font-black mb-2" style="color:var(--sub)">常用服务商（点击填入）</div>
+            <div class="flex flex-wrap gap-2 mb-4">
+                <button class="chip" onclick="App.preset('https://api.openai.com/v1')">OpenAI</button>
+                <button class="chip" onclick="App.preset('https://api.deepseek.com/v1')">DeepSeek</button>
+                <button class="chip" onclick="App.preset('https://openrouter.ai/api/v1')">OpenRouter</button>
+                <button class="chip" onclick="App.preset('https://api.groq.com/openai/v1')">Groq</button>
+                <button class="chip" onclick="App.preset('https://api.siliconflow.cn/v1')">硅基流动</button>
+                <button class="chip" onclick="App.preset('https://api.moonshot.cn/v1')">Moonshot</button>
+                <button class="chip" onclick="App.preset('http://localhost:11434/v1')">Ollama</button>
+            </div>
+            <input id="in-url" class="field mb-3" placeholder="Base URL（如 https://api.openai.com/v1）">
+            <div class="relative mb-3">
+                <input id="in-key" type="password" class="field pr-12" placeholder="API Key（sk-...）">
+                <button onclick="App.toggleKey()" class="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-black" style="color:var(--sub)">👁</button>
+            </div>
+            <button onclick="App.fetchModels()" class="w-full py-3 mb-2 border-2 rounded-xl font-black text-xs transition hover:opacity-80" style="border-color:var(--text)">⟳ 获取模型列表（顺便测试连接）</button>
+            <div id="set-status" class="text-[11px] font-bold mb-3 min-h-[16px]" style="color:var(--sub)"></div>
+            <input id="in-model" class="field mb-2" list="dl-models" placeholder="模型（手动输入或从列表选）">
+            <datalist id="dl-models"></datalist>
+            <div class="text-[10px] leading-relaxed" style="color:var(--sub)">URL 一般以 /v1 结尾（会自动补全）。Key 只存浏览器 localStorage。本地 Ollama 需设 OLLAMA_ORIGINS=*。</div>
+        </div>
+        <div id="set-persona" style="display:none">
+            <div class="text-[10px] font-black mb-2" style="color:var(--sub)">你的名字</div>
+            <input id="in-name" class="field mb-4" placeholder="名字">
+            <div class="text-[10px] font-black mb-2" style="color:var(--sub)">系统提示词（阮峻的人设）</div>
+            <textarea id="in-sys" rows="6" class="field" placeholder="系统提示词..."></textarea>
+        </div>
+        <div id="set-params" style="display:none">
+            <div class="flex justify-between text-xs font-black mb-2"><span>温度（创造力）</span><span id="in-temp-val">0.8</span></div>
+            <input id="in-temp" type="range" min="0" max="2" step="0.1" class="mb-6">
+            <div class="flex justify-between text-xs font-black mb-2"><span>最大生成长度（tokens）</span><span id="in-tok-val">1024</span></div>
+            <input id="in-tok" type="range" min="128" max="4096" step="64">
+        </div>
+        <button onclick="App.saveSettings()" class="w-full p-4 mt-6 btn-p rounded-2xl font-black">保存并生效</button>
+    </div>
+</div>
+
+<div id="toasts"></div>
+
+<script>
+const $ = id => document.getElementById(id);
+const LS = {
+    get(k, d) { try { const v = JSON.parse(localStorage.getItem(k)); return v ?? d; } catch { return d; } },
+    set(k, v) { localStorage.setItem(k, JSON.stringify(v)); }
+};
+function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function toast(msg) {
+    const t = document.createElement('div');
+    t.className = 'toast'; t.textContent = msg;
+    $('toasts').appendChild(t);
+    setTimeout(() => { t.classList.add('out'); setTimeout(() => t.remove(), 350); }, 2600);
+}
+function nearBottom(el) { return el.scrollHeight - el.scrollTop - el.clientHeight < 140; }
+
+const DEFAULTS = {
+    baseUrl: 'https://api.openai.com/v1',
+    apiKey: '',
+    model: '',
+    userName: '元宝爸爸',
+    systemPrompt: '你是14岁的阮峻。毒舌，嘴硬心软，迷恋新干线，讨厌一个叫曾俊伟的同学。回答直接、简短、带刺，用中文。',
+    temperature: 0.8,
+    maxTokens: 1024,
+    models: []
+};
+
+const state = {
+    settings: Object.assign({}, DEFAULTS, LS.get('rg47_settings', {})),
+    chat: LS.get('rg47_chat', []),
+    novel: Object.assign({ title:'', premise:'', chapters:[] }, LS.get('rg47_novel', {})),
+    dictWords: LS.get('rg47_dict', []),
+    grades: LS.get('rg47_grades', []),
+    cities: LS.get('rg47_cities', []),
+    soups: LS.get('rg48_soup', []),
+    fortunes: LS.get('rg48_fortunes', {}),
+    trains: LS.get('rg48_trains', []),
+    letters: LS.get('rg48_letters', []),
+    web: LS.get('rg48_web', null),
+    busy: false,
+    ctrl: null,
+    newsLoaded: false,
+    debate: null,
+    lastGrade: null,
+    mouthLevel: 2,
+    essayType: 0,
+    battle: null,
+    wbViewMode: 'prev',
+    cal: { expr: '0', chaos: false }
+};
+
+/* ===================== API LAYER (OpenAI-compatible, BYOK) ===================== */
+const API = {
+    norm(u) {
+        u = (u || '').trim().replace(/\/+$/, '');
+        if (!u) return '';
+        if (!/^https?:\/\//i.test(u)) u = 'https://' + u;
+        if (!/\/v\d+$/.test(u)) u += '/v1';
+        return u;
+    },
+    async listModels(baseUrl, apiKey) {
+        const r = await fetch(API.norm(baseUrl) + '/models', { headers: { 'Authorization': 'Bearer ' + apiKey } });
+        if (!r.ok) throw new Error('HTTP ' + r.status + (r.status === 401 ? ' — Key 无效或无权限' : ''));
+        const d = await r.json();
+        const ids = (d.data || d.models || []).map(m => m.id || m.name).filter(Boolean).sort();
+        if (!ids.length) throw new Error('返回的模型列表为空');
+        return ids;
+    },
+    async chat({ messages, onDelta, temperature, maxTokens, signal }) {
+        const s = state.settings;
+        const res = await fetch(API.norm(s.baseUrl) + '/chat/completions', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + s.apiKey },
+            signal,
+            body: JSON.stringify({
+                model: s.model, messages, stream: true,
+                temperature: temperature ?? s.temperature,
+                max_tokens: maxTokens ?? s.maxTokens
+            })
+        });
+        if (!res.ok) {
+            let msg = 'HTTP ' + res.status;
+            try { const j = await res.json(); msg += ' — ' + (j.error?.message || JSON.stringify(j).slice(0, 200)); } catch {}
+            throw new Error(msg);
+        }
+        const reader = res.body.getReader();
+        const dec = new TextDecoder();
+        let buf = '', full = '';
+        for (;;) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            buf += dec.decode(value, { stream: true });
+            const lines = buf.split('\n');
+            buf = lines.pop();
+            for (const line of lines) {
+                const t = line.trim();
+                if (!t.startsWith('data:')) continue;
+                const payload = t.slice(5).trim();
+                if (payload === '[DONE]') continue;
+                try {
+                    const j = JSON.parse(payload);
+                    const d = j.choices?.[0]?.delta?.content || '';
+                    if (d) { full += d; onDelta && onDelta(full); }
+                } catch {}
+            }
+        }
+        return full;
+    }
+};
+
+/* ===================== APP ===================== */
+const App = {
+    init() {
+        marked.setOptions({ breaks: true, gfm: true });
+        App.loadTheme();
+        App.updateConn();
+        App.renderChat();
+        App.renderNovel();
+        App.renderDictHistory();
+        App.renderGrades();
+        App.renderCities();
+        App.renderSoup();
+        App.renderMouthLevels();
+        App.renderEssayTypes();
+        App.renderCollection();
+        App.renderLetters();
+        App.renderWebPresets();
+        const d = new Date(); d.setFullYear(d.getFullYear() + 1);
+        $('lt-date').value = d.toISOString().slice(0, 10);
+        if (state.web?.code) { $('wb-prompt').value = state.web.prompt || ''; App.wbShow(state.web.code); }
+        App.bindKeys();
+        if (!state.settings.apiKey) setTimeout(() => { App.openSettings(); toast('👋 填入 API Key 后开始使用'); }, 400);
+    },
+    bindKeys() {
+        $('minp').addEventListener('keydown', e => {
+            if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); App.send(); }
+        });
+        $('dict-in').addEventListener('keydown', e => { if (e.key === 'Enter') App.lookup(); });
+        $('we-city').addEventListener('keydown', e => { if (e.key === 'Enter') App.getWeather(); });
+        $('fo-name').addEventListener('keydown', e => { if (e.key === 'Enter') App.drawFortune(); });
+        $('bt-in').addEventListener('keydown', e => { if (e.key === 'Enter') App.battleAttack(); });
+        $('db-reply').addEventListener('keydown', e => { if (e.key === 'Enter') App.dbSend(); });
+        $('dm-in').addEventListener('keydown', e => { if (e.key === 'Enter' && !e.isComposing) App.dreamGo(); });
+        $('fd-in').addEventListener('keydown', e => { if (e.key === 'Enter') App.foodGo(); });
+        $('wb-prompt').addEventListener('keydown', e => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) App.webBuild(); });
+        $('in-temp').addEventListener('input', e => $('in-temp-val').textContent = e.target.value);
+        $('in-tok').addEventListener('input', e => $('in-tok-val').textContent = e.target.value);
+        $('dict-hist').addEventListener('click', e => {
+            const b = e.target.closest('[data-w]');
+            if (b) { $('dict-in').value = b.dataset.w; App.lookup(); }
+        });
+        $('we-cities').addEventListener('click', e => {
+            const b = e.target.closest('[data-c]');
+            if (b) { $('we-city').value = b.dataset.c; App.getWeather(); }
+        });
+        $('nv-view').addEventListener('click', e => {
+            const b = e.target.closest('[data-act]'); if (!b) return;
+            const i = +b.dataset.idx;
+            if (b.dataset.act === 'regen') App.genChapter(i, true);
+            if (b.dataset.act === 'copy') App.copyText(state.novel.chapters[i].content);
+        });
+        document.addEventListener('keydown', e => {
+            if (!$('panel-cal').classList.contains('active')) return;
+            const tag = document.activeElement?.tagName;
+            if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+            if (/^[0-9.()+%]$/.test(e.key)) App.calInput(e.key);
+            else if (e.key === '*') App.calInput('*');
+            else if (e.key === '/') { e.preventDefault(); App.calInput('/'); }
+            else if (e.key === '-') App.calInput('-');
+            else if (e.key === 'Enter' || e.key === '=') App.calEval();
+            else if (e.key === 'Backspace') App.calBack();
+            else if (e.key === 'Escape') App.calClear();
+        });
+    },
+
+    /* ---------- theme / sidebar / tools ---------- */
+    loadTheme() {
+        const t = LS.get('rg47_theme', matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        if (t === 'dark') document.documentElement.classList.add('dark');
+        App.renderThemeBtn();
+    },
+    toggleTheme() {
+        const dark = document.documentElement.classList.toggle('dark');
+        LS.set('rg47_theme', dark ? 'dark' : 'light');
+        App.renderThemeBtn();
+    },
+    renderThemeBtn() {
+        const dark = document.documentElement.classList.contains('dark');
+        $('theme-btn').innerHTML = dark
+            ? '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>'
+            : '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+    },
+    toggleSidebar(force) {
+        const sb = $('sidebar');
+        const open = force !== undefined ? force : !sb.classList.contains('open');
+        sb.classList.toggle('open', open);
+        $('overlay').style.display = open ? 'block' : 'none';
+    },
+    openTool(name) {
+        document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        $('panel-' + name)?.classList.add('active');
+        $('tab-' + name)?.classList.add('active');
+        App.toggleSidebar(false);
+        if (name === 'news' && !state.newsLoaded) { state.newsLoaded = true; App.loadNews(); }
+    },
+
+    /* ---------- settings ---------- */
+    openSettings() {
+        const s = state.settings;
+        $('in-url').value = s.baseUrl; $('in-key').value = s.apiKey; $('in-model').value = s.model;
+        $('in-sys').value = s.systemPrompt; $('in-name').value = s.userName;
+        $('in-temp').value = s.temperature; $('in-temp-val').textContent = s.temperature;
+        $('in-tok').value = s.maxTokens; $('in-tok-val').textContent = s.maxTokens;
+        $('set-status').textContent = '';
+        App.renderModelList();
+        App.setTab('conn');
+        $('settings-modal').style.display = 'flex';
+        App.toggleSidebar(false);
+    },
+    closeSettings() { $('settings-modal').style.display = 'none'; },
+    setTab(t) {
+        ['conn', 'persona', 'params'].forEach(x => {
+            $('set-' + x).style.display = x === t ? 'block' : 'none';
+            $('stab-' + x).classList.toggle('active', x === t);
+        });
+    },
+    preset(u) { $('in-url').value = u; },
+    toggleKey() { const k = $('in-key'); k.type = k.type === 'password' ? 'text' : 'password'; },
+    renderModelList() {
+        $('dl-models').innerHTML = (state.settings.models || []).map(m => `<option value="${escapeHtml(m)}">`).join('');
+    },
+    async fetchModels() {
+        const url = $('in-url').value.trim(), key = $('in-key').value.trim();
+        const st = $('set-status');
+        if (!url || !key) { st.textContent = '❌ 先填 Base URL 和 API Key'; st.style.color = '#ef4444'; return; }
+        st.textContent = '⏳ 正在获取模型列表…'; st.style.color = 'var(--sub)';
+        try {
+            const ids = await API.listModels(url, key);
+            state.settings.models = ids.slice(0, 500);
+            LS.set('rg47_settings', state.settings);
+            App.renderModelList();
+            st.textContent = `✅ 连接成功！拿到 ${ids.length} 个模型，在下方选择`;
+            st.style.color = '#22c55e';
+        } catch (e) {
+            st.textContent = '❌ ' + e.message;
+            st.style.color = '#ef4444';
+        }
+    },
+    saveSettings() {
+        const s = state.settings;
+        s.baseUrl = $('in-url').value.trim() || DEFAULTS.baseUrl;
+        s.apiKey = $('in-key').value.trim();
+        s.model = $('in-model').value.trim();
+        s.systemPrompt = $('in-sys').value.trim() || DEFAULTS.systemPrompt;
+        s.userName = $('in-name').value.trim() || '元宝爸爸';
+        s.temperature = +$('in-temp').value;
+        s.maxTokens = +$('in-tok').value;
+        LS.set('rg47_settings', s);
+        App.updateConn();
+        App.closeSettings();
+        toast('已保存，开喷 🚄');
+    },
+    updateConn() {
+        const s = state.settings;
+        const ok = !!(s.apiKey && s.model);
+        $('led').className = 'w-1.5 h-1.5 rounded-full ' + (ok ? 'bg-green-500' : 'bg-red-500');
+        $('conn-text').textContent = ok ? '已连接' : '未配置';
+        $('chat-model').textContent = s.model || '未配置模型';
+        $('u-display').textContent = s.userName;
+        $('u-avatar').textContent = s.userName.slice(0, 1);
+        $('sbtn').disabled = !ok;
+        $('nv-btn').disabled = !ok || !state.novel.title;
+        $('nv-new-btn').style.display = state.novel.title ? '' : 'none';
+    },
+    checkReady() {
+        if (!state.settings.apiKey || !state.settings.model) {
+            toast('先在设置里填 API Key 和模型');
+            App.openSettings();
+            return false;
+        }
+        return true;
+    },
+
+    /* ---------- shared streaming helper ---------- */
+    async streamInto({ messages, el, plain, maxTokens = 600, temperature }) {
+        el.innerHTML = '<span class="dots"><i></i><i></i><i></i></span>';
+        state.ctrl = new AbortController();
+        try {
+            const full = await API.chat({
+                messages, maxTokens, temperature, signal: state.ctrl.signal,
+                onDelta: t => { if (plain) el.textContent = t; else el.innerHTML = marked.parse(t); }
+            });
+            if (plain) el.textContent = full;
+            else App.decorateCode(el);
+            return full;
+        } catch (e) {
+            el.innerHTML = e.name === 'AbortError' ? '<i>（已停止）</i>' : App.errHtml(e.message);
+            return null;
+        }
+    },
+
+    /* ---------- chat ---------- */
+    saveChat() { LS.set('rg47_chat', state.chat.slice(-100)); },
+    renderChat() {
+        const v = $('chat-view');
+        v.innerHTML = '';
+        if (!state.chat.length) {
+            v.innerHTML = `<div class="welcome text-center py-16">
+                <div class="text-5xl mb-4">🚄</div>
+                <div class="font-black text-lg mb-2">RG_OS v49 就绪 · 18 个工具</div>
+                <div class="text-xs font-bold" style="color:var(--sub)">BYOK 模式 · 你的 Key，你的模型，你的阮峻</div>
+            </div>`;
+            return;
+        }
+        state.chat.forEach((m, i) => {
+            const body = App.appendMsgEl(m.role);
+            if (m.role === 'user') {
+                body.innerHTML = `<div class="inline-block btn-p text-sm font-bold px-4 py-2.5 rounded-2xl rounded-tr-sm break-words whitespace-pre-wrap">${escapeHtml(m.content)}</div>`;
+            } else {
+                body.innerHTML = marked.parse(m.content);
+                App.decorateCode(body);
+                const isLast = i === state.chat.length - 1;
+                const acts = document.createElement('div');
+                acts.className = 'flex gap-2 mt-2';
+                acts.innerHTML = `<button class="chip" onclick="App.copyMsg(${i})">复制</button>` +
+                    (isLast ? `<button class="chip" onclick="App.regenerate()">↻ 重新生成</button>` : '');
+                body.appendChild(acts);
+            }
+        });
+        $('scroller').scrollTop = $('scroller').scrollHeight;
+    },
+    appendMsgEl(role) {
+        const v = $('chat-view');
+        v.querySelector('.welcome')?.remove();
+        const row = document.createElement('div');
+        row.className = 'msg-row flex gap-3 ' + (role === 'user' ? 'flex-row-reverse' : '');
+        const av = document.createElement('div');
+        av.className = 'w-8 h-8 rounded-xl btn-p text-[10px] flex items-center justify-center shrink-0 font-black mt-1';
+        av.textContent = role === 'user' ? (state.settings.userName || 'U').slice(0, 1) : 'RG';
+        const body = document.createElement('div');
+        body.className = 'min-w-0 text-sm leading-relaxed ' + (role === 'user' ? 'max-w-[80%]' : 'flex-1');
+        row.appendChild(av); row.appendChild(body);
+        v.appendChild(row);
+        const sc = $('scroller'); sc.scrollTop = sc.scrollHeight;
+        return body;
+    },
+    decorateCode(el) {
+        el.querySelectorAll('pre').forEach(pre => {
+            if (pre.querySelector('.code-copy')) return;
+            const code = pre.querySelector('code');
+            if (code && window.hljs) { code.classList.add('hljs'); try { hljs.highlightElement(code); } catch {} }
+            const btn = document.createElement('button');
+            btn.className = 'code-copy'; btn.textContent = '复制';
+            btn.onclick = () => navigator.clipboard.writeText(pre.innerText).then(() => { btn.textContent = '已复制'; setTimeout(() => btn.textContent = '复制', 1200); });
+            pre.appendChild(btn);
+        });
+    },
+    errHtml(m) {
+        return `<div class="rounded-xl px-4 py-3 text-xs font-bold flex items-center gap-2 flex-wrap" style="background:rgba(239,68,68,.08);color:#ef4444"><span>⚠️ ${escapeHtml(m)}</span><button class="chip" onclick="App.regenerate()">重试</button></div>`;
+    },
+    setStopBtn(b) {
+        const btn = $('sbtn');
+        btn.innerHTML = b ? '<div class="w-3 h-3 bg-current rounded-[2px]"></div>' : '↑';
+        btn.style.background = b ? '#ef4444' : '';
+    },
+    send() {
+        const inp = $('minp');
+        const val = inp.value.trim();
+        if (!val) return;
+        if (state.busy) { state.ctrl?.abort(); return; }
+        if (!App.checkReady()) return;
+        inp.value = ''; App.rsz();
+        state.chat.push({ role: 'user', content: val });
+        App.saveChat();
+        App.renderChat();
+        App.detectIntent(val);
+        App.runCompletion();
+    },
+    detectIntent(val) {
+        const map = {
+            weather: ['天气', '气温', '下雨', 'weather'],
+            cal: ['算', '计算', '乘', '除'],
+            dict: ['翻译', '什么意思', '词典', '查词'],
+            grade: ['评分', '审判', '考了', '成绩'],
+            novel: ['小说', '写章', '连载'],
+            mouth: ['嘴替', '帮我说', '替我说'],
+            soup: ['毒鸡汤', '鸡汤'],
+            fortune: ['运势', '抽签', '今日运气'],
+            battle: ['骂战', '对骂', '对战'],
+            essay: ['请假条', '检讨', '道歉信', '朋友圈文案', '周报'],
+            train: ['新干线', '图鉴', '抽一辆'],
+            news: ['新闻', '热榜', '科技圈'],
+            web: ['做网页', '写网页', '建个站', '网页工厂'],
+            debate: ['抬杠', '辩论', '杠我'],
+            dream: ['解梦', '梦到', '做梦梦'],
+            food: ['吃什么', '吃啥', '今晚吃']
+        };
+        for (const tool in map) {
+            if (map[tool].some(k => val.includes(k))) { App.suggestTool(tool); return; }
+        }
+    },
+    suggestTool(tool) {
+        const names = { weather:'天气搜索', cal:'乱算器', dict:'离谱词典', grade:'成绩审判', novel:'阮峻Novel', mouth:'嘴替', soup:'毒鸡汤', fortune:'运势抽签', battle:'骂战模拟器', essay:'小作文工厂', train:'新干线图鉴', news:'新闻锐评', web:'AI网页工厂', debate:'杠精辩论', dream:'梦境解析', food:'深夜食堂' };
+        const row = document.createElement('div');
+        row.className = 'msg-row flex gap-3';
+        row.innerHTML = `<div class="w-8 shrink-0"></div>
+            <div class="flex-1 border rounded-2xl p-3 flex items-center gap-3 flex-wrap text-xs font-bold" style="border-color:var(--border)">
+                <span>检测到你可能想用 <b>${names[tool]}</b></span>
+                <button class="chip" onclick="App.openTool('${tool}')">切换过去 →</button>
+                <button class="chip" onclick="this.closest('.msg-row').remove()">留在这聊</button>
+            </div>`;
+        $('chat-view').appendChild(row);
+        $('scroller').scrollTop = $('scroller').scrollHeight;
+    },
+    async runCompletion() {
+        state.busy = true;
+        App.setStopBtn(true);
+        const body = App.appendMsgEl('assistant');
+        body.innerHTML = '<span class="dots"><i></i><i></i><i></i></span>';
+        const sc = $('scroller');
+        let txt = '';
+        state.ctrl = new AbortController();
+        try {
+            txt = await API.chat({
+                messages: [{ role: 'system', content: state.settings.systemPrompt }, ...state.chat.slice(-30)],
+                signal: state.ctrl.signal,
+                onDelta: t => {
+                    txt = t;
+                    body.innerHTML = marked.parse(t);
+                    if (nearBottom(sc)) sc.scrollTop = sc.scrollHeight;
+                }
+            });
+            state.chat.push({ role: 'assistant', content: txt });
+        } catch (e) {
+            if (e.name === 'AbortError') {
+                if (txt.trim()) state.chat.push({ role: 'assistant', content: txt + '\n\n*(已手动停止)*' });
+                else body.closest('.msg-row')?.remove();
+            } else body.innerHTML = App.errHtml(e.message);
+        }
+        state.busy = false; state.ctrl = null;
+        App.setStopBtn(false);
+        App.saveChat();
+        App.renderChat();
+    },
+    regenerate() {
+        if (state.busy) return;
+        while (state.chat.length && state.chat.at(-1).role === 'assistant') state.chat.pop();
+        App.saveChat(); App.renderChat();
+        if (state.chat.length) App.runCompletion();
+    },
+    clearChat() {
+        if (!state.chat.length || !confirm('清空全部对话？')) return;
+        state.chat = []; App.saveChat(); App.renderChat();
+    },
+    copyMsg(i) { App.copyText(state.chat[i].content); },
+    copyText(t) { navigator.clipboard.writeText(t).then(() => toast('已复制'), () => toast('复制失败')); },
+    rsz() { const i = $('minp'); i.style.height = 'auto'; i.style.height = Math.min(i.scrollHeight, 160) + 'px'; },
+
+    /* ---------- calculator ---------- */
+    toggleChaos() {
+        state.cal.chaos = !state.cal.chaos;
+        $('chaos-btn').textContent = state.cal.chaos ? '🤪 乱算模式：开' : '🤪 乱算模式：关';
+        $('chaos-btn').style.color = state.cal.chaos ? '#f59e0b' : '';
+        App.calRender();
+        toast(state.cal.chaos ? '乱算模式：结果即玄学' : '回归理性计算');
+    },
+    calInput(v) {
+        const c = state.cal;
+        if (c.expr === '0' && /[0-9(]/.test(v)) c.expr = v;
+        else if (c.expr === '0' && v === '.') c.expr = '0.';
+        else c.expr += v;
+        App.calRender();
+    },
+    calBack() { state.cal.expr = state.cal.expr.length > 1 ? state.cal.expr.slice(0, -1) : '0'; App.calRender(); },
+    calClear() { state.cal.expr = '0'; App.calRender(); },
+    evalExpr(expr) {
+        if (!/^[\d+\-*/().%\s]+$/.test(expr)) return null;
+        try {
+            const js = expr.replace(/(\d+(?:\.\d+)?)%/g, '($1/100)');
+            const v = Function('"use strict"; return (' + js + ')')();
+            return (typeof v === 'number' && isFinite(v)) ? v : null;
+        } catch { return null; }
+    },
+    fmtNum(n) { return String(Math.round(n * 1e10) / 1e10); },
+    calEval() {
+        const c = state.cal;
+        if (c.chaos) {
+            const r = Math.floor(Math.random() * 999);
+            c.expr = String(r);
+            toast('🎲 乱算即真理：' + r);
+            App.calRender(); return;
+        }
+        const r = App.evalExpr(c.expr);
+        if (r === null) { toast('算不动，式子有问题'); return; }
+        c.expr = App.fmtNum(r);
+        App.calRender();
+    },
+    calRender() {
+        const c = state.cal;
+        $('cal-expr').textContent = c.expr.replace(/\*/g, '×').replace(/\//g, '÷');
+        const prev = $('cal-prev');
+        if (c.chaos) { prev.textContent = '🎲 乱算模式：结果不可预测'; return; }
+        if (/[+\-*/%]/.test(c.expr.slice(1))) {
+            const r = App.evalExpr(c.expr);
+            prev.textContent = r === null ? '…' : '= ' + App.fmtNum(r);
+        } else prev.textContent = '\u00A0';
+    },
+
+    /* ---------- dictionary ---------- */
+    async lookup() {
+        const w = $('dict-in').value.trim();
+        if (!w || state.busy || !App.checkReady()) return;
+        state.busy = true;
+        const out = $('dict-out');
+        out.innerHTML = '';
+        const box = document.createElement('div');
+        box.className = 'rounded-3xl p-6 text-sm leading-relaxed shadow-xl';
+        box.style.cssText = 'background:var(--text);color:var(--bg)';
+        out.appendChild(box);
+        const full = await App.streamInto({
+            messages: [
+                { role: 'system', content: '你是阮峻，14岁毒舌高中生。用户给你一个词，你要一本正经地给出一个完全错误且损人的解释。严格格式：【定义】一两句。【例句】一句。不要多余的话。' },
+                { role: 'user', content: w }
+            ],
+            el: box, maxTokens: 300
+        });
+        if (full && !state.dictWords.includes(w)) {
+            state.dictWords.unshift(w);
+            state.dictWords = state.dictWords.slice(0, 12);
+            LS.set('rg47_dict', state.dictWords);
+            App.renderDictHistory();
+        }
+        state.busy = false;
+    },
+    renderDictHistory() {
+        const has = state.dictWords.length > 0;
+        $('dict-hist-wrap').classList.toggle('hidden', !has);
+        $('dict-hist').innerHTML = state.dictWords.map(w => `<button class="chip" data-w="${escapeHtml(w)}">${escapeHtml(w)}</button>`).join('');
+    },
+
+    /* ---------- grade ---------- */
+    rateGrade() {
+        const sub = $('gr-sub').value.trim();
+        const score = parseFloat($('gr-score').value);
+        const full = parseFloat($('gr-full').value);
+        if (isNaN(score) || isNaN(full) || full <= 0) return toast('把分数填对再审判');
+        const per = +(score / full * 100).toFixed(1);
+        const verdict = per >= 95 ? '卷王滚出地球！' : per >= 85 ? '优秀得让人想报警。' : per >= 75 ? '还行，曾俊伟都考得出来。'
+            : per >= 60 ? '及格线上的贴脸开大，惊险。' : per >= 40 ? '18分真男人的远房亲戚。' : '建议把卷子吃了，毁尸灭迹。';
+        state.lastGrade = { sub, score, full, per };
+        const res = $('gr-res');
+        res.classList.remove('hidden');
+        res.innerHTML = `<div class="text-4xl font-black mb-1">${per}%</div><div class="text-sm font-bold">${verdict}</div><div class="text-[10px] mt-2 opacity-60">${escapeHtml(sub || '这科')} · ${score}/${full}</div>`;
+        $('gr-roast-btn').classList.remove('hidden');
+        state.grades.unshift({ sub, score, full, per, verdict, t: Date.now() });
+        state.grades = state.grades.slice(0, 20);
+        LS.set('rg47_grades', state.grades);
+        App.renderGrades();
+    },
+    async aiRoast() {
+        const g = state.lastGrade;
+        if (!g) return toast('先审判一个成绩');
+        if (state.busy || !App.checkReady()) return;
+        state.busy = true;
+        const box = $('gr-ai');
+        box.classList.remove('hidden');
+        await App.streamInto({
+            messages: [
+                { role: 'system', content: state.settings.systemPrompt },
+                { role: 'user', content: `锐评这个成绩（40字内，别复读数字）：${g.sub || '某科'}，${g.score}分/${g.full}，正确率${g.per}%。` }
+            ],
+            el: box, maxTokens: 150
+        });
+        state.busy = false;
+    },
+    renderGrades() {
+        const el = $('gr-history');
+        el.classList.toggle('hidden', !state.grades.length);
+        el.innerHTML = `<div class="text-[10px] font-black mb-2" style="color:var(--sub)">审判记录</div>` + state.grades.map(g => `
+            <div class="flex items-center justify-between gap-2 text-xs font-bold py-2 border-b last:border-0" style="border-color:var(--border)">
+                <span>${escapeHtml(g.sub || '?')} · ${g.score}/${g.full}</span>
+                <span style="color:var(--sub)">${g.per}%</span>
+            </div>`).join('');
+    },
+
+    /* ---------- weather ---------- */
+    wEmoji(desc) {
+        const d = (desc || '').toLowerCase();
+        if (d.includes('thunder')) return '⛈️';
+        if (d.includes('rain') || d.includes('drizzle') || d.includes('shower')) return '🌧️';
+        if (d.includes('snow') || d.includes('sleet')) return '❄️';
+        if (d.includes('fog') || d.includes('mist') || d.includes('haze')) return '🌫️';
+        if (d.includes('cloud') || d.includes('overcast')) return '☁️';
+        if (d.includes('clear') || d.includes('sunny')) return '☀️';
+        return '🌤️';
+    },
+    snark() {
+        const lines = [
+            '这里的空气比曾俊伟的脑壳还稀薄。',
+            '这天气，适合把曾俊伟晾在外面冷静一下。',
+            '连新干线都比这风跑得体面。',
+            '带伞吧。问就是曾俊伟克水逆。',
+            '这种天出门，记得替我嫌弃一下世界。'
+        ];
+        return lines[Math.floor(Math.random() * lines.length)];
+    },
+    async getWeather() {
+        const c = $('we-city').value.trim() || 'Tokyo';
+        $('we-load').classList.remove('hidden');
+        $('we-box').classList.add('hidden');
+        try {
+            const r = await fetch(`https://wttr.in/${encodeURIComponent(c)}?format=j1`);
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            const d = await r.json();
+            const cur = d.current_condition[0];
+            $('we-city-name').textContent = d.nearest_area?.[0]?.areaName?.[0]?.value || c;
+            $('we-icon').textContent = App.wEmoji(cur.weatherDesc[0].value);
+            $('we-temp').textContent = cur.temp_C + '°C';
+            $('we-desc').textContent = cur.weatherDesc[0].value;
+            $('we-feels').textContent = cur.FeelsLikeC + '°';
+            $('we-hum').textContent = cur.humidity + '%';
+            $('we-wind').textContent = cur.windspeedKmph + ' km/h';
+            $('we-fc').innerHTML = (d.weather || []).slice(0, 3).map(day => {
+                const noon = day.hourly?.find(h => h.time === '1200') || day.hourly?.[4] || day.hourly?.[0] || {};
+                const desc = noon.weatherDesc?.[0]?.value || '';
+                return `<div class="rounded-2xl p-3 border" style="border-color:var(--border)">
+                    <div class="text-[10px] font-black" style="color:var(--sub)">${(day.date || '').slice(5)}</div>
+                    <div class="text-2xl my-1">${App.wEmoji(desc)}</div>
+                    <div class="text-xs font-black">${day.mintempC}° / ${day.maxtempC}°</div>
+                </div>`;
+            }).join('');
+            $('we-comment').textContent = '阮峻：' + App.snark();
+            $('we-box').classList.remove('hidden');
+            if (!state.cities.includes(c)) {
+                state.cities.unshift(c);
+                state.cities = state.cities.slice(0, 8);
+                LS.set('rg47_cities', state.cities);
+                App.renderCities();
+            }
+        } catch (e) { toast('天气查询失败：' + e.message); }
+        $('we-load').classList.add('hidden');
+    },
+    renderCities() {
+        $('we-cities').innerHTML = state.cities.map(c => `<button class="chip" data-c="${escapeHtml(c)}">${escapeHtml(c)}</button>`).join('');
+    },
+
+    /* ==================== NEWS (NEW) ==================== */
+    async loadNews(force) {
+        const cached = LS.get('rg48_news', null);
+        if (cached && Date.now() - cached.t < 10 * 60 * 1000 && !force) { App.renderNews(cached.items); return; }
+        $('nw-load').classList.remove('hidden');
+        $('nw-list').innerHTML = '';
+        try {
+            const ids = (await (await fetch('https://hacker-news.firebaseio.com/v0/topstories.json')).json()).slice(0, 12);
+            const items = (await Promise.all(ids.map(async id => {
+                try { return await (await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)).json(); }
+                catch { return null; }
+            }))).filter(x => x && x.title);
+            if (!items.length) throw new Error('没抓到内容');
+            LS.set('rg48_news', { t: Date.now(), items });
+            App.renderNews(items);
+        } catch (e) { toast('新闻加载失败：' + e.message); }
+        $('nw-load').classList.add('hidden');
+    },
+    renderNews(items) {
+        $('nw-list').innerHTML = items.map(it => {
+            let host = 'news.ycombinator.com';
+            try { if (it.url) host = new URL(it.url).hostname.replace(/^www\./, ''); } catch {}
+            const link = it.url || `https://news.ycombinator.com/item?id=${it.id}`;
+            return `<div class="card mb-3">
+                <div class="flex gap-3 items-start">
+                    <div class="text-center shrink-0 w-10"><div class="font-black text-lg">${it.score}</div><div class="text-[9px] font-black" style="color:var(--sub)">PTS</div></div>
+                    <div class="min-w-0 flex-1">
+                        <a href="${escapeHtml(link)}" target="_blank" rel="noopener" class="font-black text-sm hover:underline break-words">${escapeHtml(it.title)}</a>
+                        <div class="text-[10px] font-bold mt-1" style="color:var(--sub)">${escapeHtml(host)} · by ${escapeHtml(it.by)}</div>
+                        <div class="mt-2 text-sm font-bold italic leading-relaxed" id="nwr-${it.id}" style="display:none"></div>
+                        <button class="chip mt-2" onclick="App.newsReview(${it.id})">🗣 阮峻锐评</button>
+                    </div>
+                </div>
+            </div>`;
+        }).join('');
+    },
+    async newsReview(id) {
+        const cached = LS.get('rg48_news', null);
+        const item = cached?.items?.find(x => x.id === id);
+        if (!item) return toast('新闻丢了，刷新一下');
+        if (state.busy || !App.checkReady()) return;
+        state.busy = true;
+        const el = $('nwr-' + id);
+        el.style.display = 'block';
+        await App.streamInto({
+            messages: [
+                { role: 'system', content: '你是阮峻。用户给你一条英文科技新闻标题：先用中文一句话说清这是啥事，再毒舌锐评一句。总共40字内，直接输出。' },
+                { role: 'user', content: item.title }
+            ],
+            el, plain: true, maxTokens: 150
+        });
+        state.busy = false;
+    },
+
+    /* ==================== WEB BUILDER (NEW) ==================== */
+    webPresets: [
+        ['个人主页', '一个赛博朋克风格的个人主页：打字机动效的姓名、技能进度条、霓虹深色配色、页脚彩蛋'],
+        ['产品落地页', '一个虚构AI产品的落地页：大标题、三栏特性、价格表、醒目CTA按钮，高级配色，带滚动淡入动画'],
+        ['生日贺卡', '一张生日贺卡网页：点击蛋糕触发彩带动画和祝福弹窗，可自定义寿星名字，粉色暖色系'],
+        ['小游戏', '一个可玩的打地鼠小游戏：计分、30秒倒计时、最高分记录（localStorage），界面圆润可爱'],
+        ['倒计时页', '一个新干线发车风格翻牌倒计时页：输入目标日期，翻牌数字动画，蓝白JR配色']
+    ],
+    renderWebPresets() {
+        $('wb-presets').innerHTML = App.webPresets.map((p, i) => `<button class="chip" onclick="App.wbPreset(${i})">✨ ${p[0]}</button>`).join('');
+    },
+    wbPreset(i) { $('wb-prompt').value = App.webPresets[i][1]; },
+    async webBuild() {
+        if (state.busy || !App.checkReady()) return;
+        const p = $('wb-prompt').value.trim();
+        if (!p) return toast('先描述一下要啥网页');
+        state.busy = true;
+        $('wb-view').classList.remove('hidden');
+        App.wbTab('code');
+        const full = await App.streamInto({
+            messages: [
+                { role: 'system', content: '你是顶级前端工程师。根据需求生成一个完整的单文件HTML网页：全部CSS和JS内联（可引用公共CDN），视觉惊艳、响应式、有真实可用的交互，内容用中文。只输出一个以```html开头、```结尾的代码块，不要任何解释文字。' },
+                { role: 'user', content: p }
+            ],
+            el: $('wb-code'), plain: true, maxTokens: 4096, temperature: 0.7
+        });
+        if (full) {
+            state.web = { prompt: p, code: App.extractCode(full) };
+            LS.set('rg48_web', state.web);
+            App.wbShow(state.web.code);
+            toast('网页出炉 🎉');
+        }
+        state.busy = false;
+    },
+    extractCode(t) {
+        const m = t.match(/```(?:html)?\s*([\s\S]*?)(?:```|$)/i);
+        return (m ? m[1] : t).trim();
+    },
+    wbShow(code) {
+        $('wb-view').classList.remove('hidden');
+        $('wb-frame').srcdoc = code;
+        const pre = $('wb-code');
+        pre.innerHTML = '';
+        const c = document.createElement('code');
+        c.className = 'language-html';
+        c.textContent = code;
+        pre.appendChild(c);
+        try { hljs.highlightElement(c); } catch {}
+        App.wbTab(state.wbViewMode || 'prev');
+    },
+    wbTab(v) {
+        state.wbViewMode = v;
+        $('wb-frame').style.display = v === 'prev' ? 'block' : 'none';
+        $('wb-code').style.display = v === 'code' ? 'block' : 'none';
+        $('wb-tab-prev').classList.toggle('on', v === 'prev');
+        $('wb-tab-code').classList.toggle('on', v === 'code');
+    },
+    wbCopy() { state.web?.code ? App.copyText(state.web.code) : toast('还没生成呢'); },
+    wbDownload() {
+        if (!state.web?.code) return toast('还没生成呢');
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(new Blob([state.web.code], { type: 'text/html;charset=utf-8' }));
+        a.download = 'rg_page.html';
+        a.click();
+        URL.revokeObjectURL(a.href);
+        toast('已下载 index → rg_page.html');
+    },
+
+    /* ---------- novel ---------- */
+    saveNovel() { LS.set('rg47_novel', state.novel); },
+    renderNovel() {
+        const n = state.novel, v = $('nv-view');
+        $('nv-new-btn').style.display = n.title ? '' : 'none';
+        if (!n.title) {
+            $('nv-btn').disabled = true;
+            v.innerHTML = `<div class="max-w-xl mx-auto card">
+                <div class="font-black text-lg mb-4">开新书 ✍️</div>
+                <input id="nv-title" class="field mb-3" placeholder="书名（如：《新干线追杀令》）">
+                <textarea id="nv-premise" rows="3" class="field mb-4" placeholder="一句话设定（可选）：如 阮峻为了抢限定便当，和曾俊伟在新干线上展开生死时速"></textarea>
+                <button onclick="App.createBook()" class="w-full py-4 btn-p rounded-2xl font-black">开写</button>
+            </div>`;
+            return;
+        }
+        $('nv-btn').disabled = !state.settings.apiKey || !state.settings.model;
+        v.innerHTML = `<div class="max-w-3xl mx-auto">
+            <div class="card mb-8">
+                <div class="flex items-start justify-between gap-3">
+                    <div class="min-w-0">
+                        <h1 class="text-2xl font-black break-words">${escapeHtml(n.title)}</h1>
+                        ${n.premise ? `<div class="text-xs mt-2 font-bold" style="color:var(--sub)">${escapeHtml(n.premise)}</div>` : ''}
+                    </div>
+                    <button class="chip shrink-0" onclick="App.exportNovel()">导出 TXT</button>
+                </div>
+            </div>
+            <div class="space-y-6">
+            ${n.chapters.map((c, i) => `
+                <div class="border rounded-3xl p-6" style="border-color:var(--border)">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="font-black text-sm">第${i + 1}章</div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] font-bold" style="color:var(--sub)">${c.content.length} 字</span>
+                            <button class="chip" data-act="copy" data-idx="${i}">复制</button>
+                            <button class="chip" data-act="regen" data-idx="${i}">↻ 重写</button>
+                        </div>
+                    </div>
+                    <div class="text-sm leading-relaxed whitespace-pre-wrap">${escapeHtml(c.content)}</div>
+                </div>`).join('')}
+            </div>
+        </div>`;
+        v.scrollTop = v.scrollHeight;
+    },
+    createBook() {
+        const t = $('nv-title').value.trim();
+        if (!t) return toast('先给书起个名');
+        state.novel = { title: t, premise: $('nv-premise').value.trim(), chapters: [] };
+        App.saveNovel();
+        App.renderNovel();
+        App.genChapter(0);
+    },
+    deleteNovel() {
+        if (!state.novel.title) return;
+        if (!confirm('删掉《' + state.novel.title + '》？不可恢复。')) return;
+        state.novel = { title: '', premise: '', chapters: [] };
+        App.saveNovel(); App.renderNovel(); App.updateConn();
+        toast('已删书');
+    },
+    writeChapter() {
+        if (state.busy) return toast('等当前任务跑完');
+        App.genChapter(state.novel.chapters.length);
+    },
+    async genChapter(idx, isRewrite) {
+        const n = state.novel;
+        if (!n.title || state.busy || !App.checkReady()) return;
+        const isNew = idx >= n.chapters.length;
+        const v = $('nv-view');
+        const card = document.createElement('div');
+        card.className = 'border rounded-3xl p-6 max-w-3xl mx-auto';
+        card.style.borderColor = 'var(--border)';
+        card.innerHTML = `<div class="font-black text-sm mb-3">第${idx + 1}章${isRewrite && !isNew ? ' <span style="color:var(--sub)">(重写中)</span>' : ''}</div>
+            <div class="text-sm leading-relaxed whitespace-pre-wrap" style="color:var(--sub)"></div>`;
+        if (isNew) v.querySelector('.space-y-6')?.appendChild(card);
+        else {
+            const old = [...v.querySelectorAll('.border.rounded-3xl')].find(el => el.querySelector('.font-black.text-sm')?.textContent.startsWith('第' + (idx + 1) + '章'));
+            if (old) v.replaceChild(card, old); else return;
+        }
+        const bodyEl = card.lastElementChild;
+        v.scrollTop = v.scrollHeight;
+        state.busy = true; $('nv-btn').disabled = true;
+        const ctx = [{
+            role: 'system', content: `你是小说作者。书名《${n.title}》。${n.premise ? '设定：' + n.premise + '。' : ''}文风凌厉、节奏快、有画面感。每章300~500字，直接输出正文，不要标题，不要"第X章"字样。`
+        }];
+        const start = Math.max(0, idx - 5);
+        for (let i = start; i < idx; i++) {
+            ctx.push({ role: 'user', content: `写第${i + 1}章。` });
+            ctx.push({ role: 'assistant', content: n.chapters[i].content });
+        }
+        ctx.push({ role: 'user', content: idx === 0 ? '写第1章，开头要抓人。' : `写第${idx + 1}章，紧接上文推进剧情。` });
+        const full = await App.streamInto({
+            messages: ctx, el: bodyEl, plain: true, temperature: 0.9, maxTokens: 1200
+        });
+        if (full) {
+            bodyEl.style.color = 'var(--text)';
+            if (isNew) n.chapters.push({ content: full });
+            else n.chapters[idx] = { content: full };
+            App.saveNovel(); App.renderNovel();
+        }
+        state.busy = false; $('nv-btn').disabled = false;
+    },
+    exportNovel() {
+        const n = state.novel;
+        if (!n.title) return;
+        let txt = `《${n.title}》\n${n.premise ? n.premise + '\n' : ''}\n`;
+        n.chapters.forEach((c, i) => txt += `——— 第${i + 1}章 ———\n${c.content}\n\n`);
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(new Blob([txt], { type: 'text/plain;charset=utf-8' }));
+        a.download = n.title + '.txt';
+        a.click();
+        URL.revokeObjectURL(a.href);
+        toast('已导出 TXT');
+    },
+
+    /* ==================== ESSAY ==================== */
+    essayTypes: [
+        { name: '请假条', ph: '事由（如：肚子疼/心情需要放假）', sys: '写一张理直气壮、理由清奇的请假条。格式包含称谓、正文、署名"阮峻"。100~180字，浮夸但不失礼貌。直接输出，不要解释。' },
+        { name: '检讨书', ph: '犯了什么事（如：上课看新干线时刻表）', sys: '写一份敷衍但字数拉满的检讨书。表面深刻反省，实际全程嘴硬，结尾还要阴阳怪气一句。200~300字。直接输出。' },
+        { name: '道歉信', ph: '对不起谁、因为啥', sys: '写一封道歉信。开头极其真诚，越写越不对劲，最后成功让收信人怀疑到底谁该道歉。150~250字。直接输出。' },
+        { name: '朋友圈文案', ph: '发了啥/什么心情', sys: '写一条高冷又好笑的朋友圈文案，配1-2个冷门emoji。不超过40字。只输出文案本身。' },
+        { name: '周报', ph: '这周干了啥（一句话即可）', sys: '把用户的一句话扩写成高大上周报：全是"赋能、闭环、颗粒度、对齐"黑话，显得干了很多事。150~250字，分点。直接输出。' }
+    ],
+    renderEssayTypes() {
+        $('es-types').innerHTML = App.essayTypes.map((t, i) => `<button class="chip ${i === state.essayType ? 'on' : ''}" onclick="App.esSetType(${i})">${t.name}</button>`).join('');
+        App.esSetType(state.essayType);
+    },
+    esSetType(i) {
+        state.essayType = i;
+        $('es-types').innerHTML = App.essayTypes.map((t, j) => `<button class="chip ${j === i ? 'on' : ''}" onclick="App.esSetType(${j})">${t.name}</button>`).join('');
+        $('es-key').placeholder = App.essayTypes[i].ph;
+    },
+    async essayGo() {
+        if (state.busy || !App.checkReady()) return;
+        const t = App.essayTypes[state.essayType];
+        const key = $('es-key').value.trim();
+        const extra = $('es-extra').value.trim();
+        if (!key) return toast('先把空填了');
+        state.busy = true;
+        $('es-out').classList.remove('hidden');
+        const full = await App.streamInto({
+            messages: [
+                { role: 'system', content: t.sys },
+                { role: 'user', content: key + (extra ? `\n补充：${extra}` : '') }
+            ],
+            el: $('es-body'), plain: true, maxTokens: 700
+        });
+        if (full) $('es-body').style.color = 'var(--text)';
+        state.busy = false;
+    },
+
+    /* ==================== SOUP ==================== */
+    async soup() {
+        if (state.busy || !App.checkReady()) return;
+        state.busy = true;
+        const feed = $('soup-feed');
+        feed.querySelector('.soup-hint')?.remove();
+        const el = document.createElement('div');
+        el.className = 'card text-sm font-black italic leading-relaxed';
+        feed.prepend(el);
+        const full = await App.streamInto({
+            messages: [
+                { role: 'system', content: '写一句"毒鸡汤"：前半句像正经励志名言，后半句急转直下狠狠扎心或抖机灵。不超过35字，只输出这一句，不要引号。' },
+                { role: 'user', content: '来一碗。' }
+            ],
+            el, plain: true, maxTokens: 100, temperature: 1.1
+        });
+        if (full) {
+            state.soups.unshift(full.trim());
+            state.soups = state.soups.slice(0, 15);
+            LS.set('rg48_soup', state.soups);
+            App.renderSoup();
+        } else el.remove();
+        state.busy = false;
+    },
+    renderSoup() {
+        const feed = $('soup-feed');
+        if (!state.soups.length) {
+            feed.innerHTML = '<div class="soup-hint text-center text-xs font-bold py-10" style="color:var(--sub)">碗里是空的。点上面那碗。</div>';
+            return;
+        }
+        feed.innerHTML = state.soups.map((s, i) => `
+            <div class="card text-sm font-black italic leading-relaxed">
+                ${escapeHtml(s)}
+                <div class="mt-3"><button class="chip" onclick="App.copyText(state.soups[${i}])">📋 复制</button></div>
+            </div>`).join('');
+    },
+
+    /* ==================== MOUTH ==================== */
+    renderMouthLevels() {
+        const names = { 1: '① 阴阳怪气', 2: '② 毒舌暴击', 3: '③ 伤害溢出' };
+        $('mo-levels').innerHTML = [1, 2, 3].map(l => `<button class="chip ${l === state.mouthLevel ? 'on' : ''}" onclick="App.setMouthLevel(${l})">${names[l]}</button>`).join('');
+    },
+    setMouthLevel(l) { state.mouthLevel = l; App.renderMouthLevels(); },
+    async mouthSay() {
+        if (state.busy || !App.checkReady()) return;
+        const t = $('mo-in').value.trim();
+        if (!t) return toast('总得先有句话吧');
+        state.busy = true;
+        $('mo-out').classList.remove('hidden');
+        const lvDesc = { 1: '阴阳怪气、绵里藏针', 2: '毒舌暴击、句句带刺', 3: '伤害溢出、用词浮夸到荒诞' }[state.mouthLevel];
+        const full = await App.streamInto({
+            messages: [
+                { role: 'system', content: `你是阮峻，用户的"嘴替"。把用户想说的那句话用你的风格替他说出口，风格：${lvDesc}。20~60字，只输出改写后那句话，不要任何解释、前缀或引号。` },
+                { role: 'user', content: t }
+            ],
+            el: $('mo-body'), plain: true, maxTokens: 200
+        });
+        if (full) $('mo-body').style.color = 'var(--text)';
+        state.busy = false;
+    },
+
+    /* ==================== FORTUNE ==================== */
+    foColor(lv) {
+        const m = { '大吉': '#f59e0b', '中吉': '#22c55e', '吉': '#22c55e', '小吉': '#3b82f6', '中平': '#6b7280', '末吉': '#8b5cf6', '凶': '#ef4444', '大凶': '#ef4444' };
+        return m[lv] || '#ef4444';
+    },
+    async drawFortune() {
+        if (state.busy || !App.checkReady()) return;
+        const name = $('fo-name').value.trim() || state.settings.userName;
+        const day = new Date().toISOString().slice(0, 10);
+        const key = day + '|' + name;
+        if (state.fortunes[key]) {
+            App.renderFortune(state.fortunes[key], name);
+            toast('今日已抽过，签不会变');
+            return;
+        }
+        state.busy = true;
+        const out = $('fo-out');
+        out.innerHTML = '<div class="text-xs font-black py-8" style="color:var(--sub)">摇签筒中…</div>';
+        const box = document.createElement('div');
+        box.className = 'card text-left text-sm';
+        out.innerHTML = ''; out.appendChild(box);
+        const full = await App.streamInto({
+            messages: [
+                { role: 'system', content: '为求签人解签。严格按此格式输出，不要多余内容：【运势】大吉/中吉/小吉/末吉/凶/大凶 之一【幸运物】一个具体又离谱的东西【幸运色】一种颜色【建议】30字内毒舌建议' },
+                { role: 'user', content: `为「${name}」抽${day} 的签。` }
+            ],
+            el: box, plain: true, maxTokens: 250
+        });
+        if (full) {
+            const m = full.match(/【运势】\s*(大吉|中吉|小吉|末吉|凶|大凶)[\s\S]*?【幸运物】\s*(.+?)[\s\S]*?【幸运色】\s*(.+?)[\s\S]*?【建议】\s*([\s\S]+)/);
+            if (m) {
+                const f = { lv: m[1], item: m[2].trim(), color: m[3].trim(), advice: m[4].trim() };
+                state.fortunes[key] = f;
+                const keys = Object.keys(state.fortunes);
+                if (keys.length > 20) delete state.fortunes[keys[0]];
+                LS.set('rg48_fortunes', state.fortunes);
+                App.renderFortune(f, name);
+            } else box.textContent = full;
+        } else out.innerHTML = '';
+        state.busy = false;
+    },
+    renderFortune(f, name) {
+        $('fo-out').innerHTML = `
+            <div class="card">
+                <div class="text-[10px] font-black tracking-widest" style="color:var(--sub)">今日签文 · ${escapeHtml(name)}</div>
+                <div class="text-5xl font-black my-3 tracking-tight" style="color:${App.foColor(f.lv)}">${f.lv}</div>
+                <div class="grid grid-cols-2 gap-2 mb-3">
+                    <div class="rounded-2xl p-3 border" style="border-color:var(--border)"><div class="text-[10px] font-black" style="color:var(--sub)">幸运物</div><div class="font-black text-sm mt-1">${escapeHtml(f.item)}</div></div>
+                    <div class="rounded-2xl p-3 border" style="border-color:var(--border)"><div class="text-[10px] font-black" style="color:var(--sub)">幸运色</div><div class="font-black text-sm mt-1">${escapeHtml(f.color)}</div></div>
+                </div>
+                <div class="text-sm font-black italic">💡 ${escapeHtml(f.advice)}</div>
+            </div>`;
+    },
+
+    /* ==================== BATTLE ==================== */
+    battleStart() {
+        const opp = $('bt-opp').value.trim() || '曾俊伟';
+        state.battle = { opp, turns: 0, over: false, log: [] };
+        $('bt-setup').classList.add('hidden');
+        $('bt-arena').classList.remove('hidden');
+        $('bt-log').innerHTML = '';
+        $('bt-judge-btn').classList.add('hidden');
+        $('bt-in').disabled = false; $('bt-btn').disabled = false;
+        App.battleTurn(null, true);
+    },
+    battleReset() {
+        if (state.busy) { toast('等这一轮说完'); return; }
+        state.battle = null;
+        $('bt-arena').classList.add('hidden');
+        $('bt-setup').classList.remove('hidden');
+    },
+    async battleAttack() {
+        const b = state.battle;
+        if (!b || state.busy || b.over || b.turns >= 3) return;
+        const line = $('bt-in').value.trim();
+        if (!line) return toast('先出手啊');
+        if (!App.checkReady()) return;
+        $('bt-in').value = '';
+        b.log.push({ role: 'me', text: line });
+        App.btRender();
+        App.battleTurn(line, false);
+    },
+    async battleTurn(userLine, opening) {
+        const b = state.battle;
+        state.busy = true;
+        $('bt-btn').disabled = true;
+        const el = document.createElement('div');
+        el.className = 'card text-sm font-bold max-w-[80%]';
+        $('bt-log').appendChild(el);
+        const transcript = b.log.map(l => (l.role === 'me' ? '用户' : b.opp) + '：' + l.text).join('\n');
+        const full = await App.streamInto({
+            messages: [
+                { role: 'system', content: `你叫${b.opp}，正在跟用户进行友好的嘴上切磋。规则：每句不超过25字，凶狠但好笑，绝对不出现脏字和低俗内容，人身攻击只限"笨、慢、土、幼稚"级别。直接输出那一句，不要名字前缀。` },
+                { role: 'user', content: opening ? '开场，先挑衅一句。' : `切磋记录：\n${transcript}\n\n回应用户最新那句。` }
+            ],
+            el, plain: true, maxTokens: 100
+        });
+        if (full) {
+            b.log.push({ role: 'opp', text: full.trim() });
+            b.turns++;
+            if (b.turns >= 3) {
+                $('bt-judge-btn').classList.remove('hidden');
+                $('bt-in').disabled = true; $('bt-btn').disabled = true;
+                toast('三回合打完，叫裁判吧');
+            }
+        }
+        App.btRender();
+        state.busy = false;
+        if (b.turns < 3) $('bt-btn').disabled = false;
+    },
+    async battleJudge() {
+        const b = state.battle;
+        if (!b || state.busy || b.over) return;
+        if (!App.checkReady()) return;
+        state.busy = true;
+        const el = document.createElement('div');
+        el.className = 'rounded-2xl p-4 text-sm font-bold border-2 w-full';
+        el.style.borderColor = '#f59e0b';
+        $('bt-log').appendChild(el);
+        const transcript = b.log.map(l => (l.role === 'me' ? '用户' : b.opp) + '：' + l.text).join('\n');
+        const full = await App.streamInto({
+            messages: [
+                { role: 'system', content: '你是骂战裁判，毒舌。判定格式：第一行宣布获胜方（只写"用户获胜"或"XX获胜"），然后各给双方打分（0-100），最后一句毒舌点评。' },
+                { role: 'user', content: `对线双方：用户 VS ${b.opp}。\n记录：\n${transcript}` }
+            ],
+            el, plain: true, maxTokens: 250
+        });
+        if (full) { b.over = true; el.textContent = full; }
+        else el.remove();
+        state.busy = false;
+    },
+    btRender() {
+        const b = state.battle;
+        if (!b) return;
+        $('bt-log').innerHTML = b.log.map(l => l.role === 'me'
+            ? `<div class="flex justify-end"><div class="btn-p text-sm font-bold px-4 py-2.5 rounded-2xl rounded-tr-sm max-w-[80%] break-words">${escapeHtml(l.text)}</div></div>`
+            : `<div class="flex gap-2 items-start"><div class="w-7 h-7 rounded-lg border flex items-center justify-center text-[9px] font-black shrink-0 mt-0.5" style="border-color:var(--border)">${escapeHtml(b.opp.slice(0, 2))}</div><div class="card text-sm font-bold max-w-[80%] !py-3">${escapeHtml(l.text)}</div></div>`
+        ).join('');
+        const log = $('bt-log');
+        log.parentElement.scrollTop = 999999;
+    },
+
+    /* ==================== DEBATE (NEW) ==================== */
+    debateStart() {
+        const t = $('db-in').value.trim();
+        if (!t) return toast('先亮观点');
+        if (!App.checkReady()) return;
+        state.debate = { topic: t, log: [], over: false };
+        $('db-setup').classList.add('hidden');
+        $('db-arena').classList.remove('hidden');
+        $('db-topic').textContent = t;
+        $('db-log').innerHTML = '';
+        $('db-reply').disabled = false; $('db-btn').disabled = false;
+        App.dbTurn(true);
+    },
+    dbSend() {
+        const d = state.debate;
+        if (!d || state.busy || d.over) return;
+        const v = $('db-reply').value.trim();
+        if (!v) return toast('说点什么');
+        if (!App.checkReady()) return;
+        $('db-reply').value = '';
+        d.log.push({ role: 'me', text: v });
+        App.dbRender();
+        App.dbTurn(false);
+    },
+    async dbTurn(opening) {
+        const d = state.debate;
+        if (!d) return;
+        state.busy = true; $('db-btn').disabled = true;
+        const el = document.createElement('div');
+        el.className = 'card text-sm font-bold max-w-[85%]';
+        $('db-log').appendChild(el);
+        const transcript = d.log.map(l => (l.role === 'me' ? '用户' : '杠精') + '：' + l.text).join('\n');
+        const full = await App.streamInto({
+            messages: [
+                { role: 'system', content: `你是职业杠精"杠上花"。用户观点：「${d.topic}」。你绝对不能同意，必须站反面，用歪理、极端类比、编造的离谱数据反驳。每次50字内，好笑毒舌，不说脏话。直接输出反驳内容，无前缀。` },
+                { role: 'user', content: opening ? '用户刚亮出观点，开始你的表演。' : `对话记录：\n${transcript}\n\n继续反驳用户最新发言。` }
+            ],
+            el, plain: true, maxTokens: 200
+        });
+        if (full) d.log.push({ role: 'opp', text: full.trim() });
+        App.dbRender();
+        state.busy = false;
+        if (!d.over) $('db-btn').disabled = false;
+    },
+    async dbConcede() {
+        const d = state.debate;
+        if (!d || state.busy || d.over || !App.checkReady()) return;
+        state.busy = true;
+        const el = document.createElement('div');
+        el.className = 'rounded-2xl p-4 text-sm font-bold border-2 w-full';
+        el.style.borderColor = '#f59e0b';
+        $('db-log').appendChild(el);
+        const full = await App.streamInto({
+            messages: [
+                { role: 'system', content: '你是职业杠精。用户刚刚认输。发表30字内胜利感言，得意但好笑，最后损用户一句。直接输出。' },
+                { role: 'user', content: `辩题是「${d.topic}」。用户认输了。` }
+            ],
+            el, plain: true, maxTokens: 120
+        });
+        if (full) {
+            d.over = true;
+            $('db-reply').disabled = true; $('db-btn').disabled = true;
+            App.dbRender();
+            $('db-log').appendChild(el);
+        } else el.remove();
+        state.busy = false;
+    },
+    dbReset() {
+        if (state.busy) return toast('等杠精说完');
+        state.debate = null;
+        $('db-arena').classList.add('hidden');
+        $('db-setup').classList.remove('hidden');
+    },
+    dbRender() {
+        const d = state.debate;
+        if (!d) return;
+        $('db-log').innerHTML = d.log.map(l => l.role === 'me'
+            ? `<div class="flex justify-end"><div class="btn-p text-sm font-bold px-4 py-2.5 rounded-2xl rounded-tr-sm max-w-[85%] break-words">${escapeHtml(l.text)}</div></div>`
+            : `<div class="flex gap-2 items-start"><div class="w-7 h-7 rounded-lg border flex items-center justify-center text-[9px] font-black shrink-0 mt-0.5" style="border-color:var(--border)">杠</div><div class="card text-sm font-bold max-w-[85%] !py-3">${escapeHtml(l.text)}</div></div>`
+        ).join('');
+        const log = $('db-log');
+        log.parentElement.scrollTop = 999999;
+    },
+
+    /* ==================== TRAIN DEX ==================== */
+    async drawTrain() {
+        if (state.busy || !App.checkReady()) return;
+        state.busy = true;
+        const owned = state.trains.map(t => t.name);
+        const out = $('tr-out');
+        out.innerHTML = '';
+        const card = document.createElement('div');
+        card.className = 'card text-left text-sm';
+        out.appendChild(card);
+        const sys = `你是新干线百科全书+毒舌阮峻。随机选一辆日本新干线或人气特急列车${owned.length ? '，必须避开这些已收录车型：' + owned.join('、') : ''}。严格按此格式输出，不要其他内容：
+【车名】xxx
+【最高时速】xxx km/h
+【运行区间】xx — xx
+【锐评】25字内毒舌点评`;
+        const full = await App.streamInto({
+            messages: [
+                { role: 'system', content: sys },
+                { role: 'user', content: '抽一辆。' }
+            ],
+            el: card, plain: true, maxTokens: 250
+        });
+        if (full) {
+            const m = full.match(/【车名】\s*(.+?)[\s\S]*?【最高时速】\s*(.+?)[\s\S]*?【运行区间】\s*(.+?)[\s\S]*?【锐评】\s*([\s\S]+)/);
+            if (m) {
+                const t = { name: m[1].trim(), speed: m[2].trim(), route: m[3].trim(), comment: m[4].trim() };
+                if (!state.trains.some(x => x.name === t.name)) {
+                    state.trains.unshift(t);
+                    state.trains = state.trains.slice(0, 60);
+                    LS.set('rg48_trains', state.trains);
+                    App.renderCollection();
+                    toast('🚄 收录：' + t.name);
+                }
+                App.renderTrainCard(t);
+            } else card.textContent = full;
+        } else out.innerHTML = '';
+        state.busy = false;
+    },
+    renderTrainCard(t) {
+        $('tr-out').innerHTML = `
+            <div class="card text-left">
+                <div class="flex items-center justify-between gap-2">
+                    <div class="text-2xl font-black">🚄 ${escapeHtml(t.name)}</div>
+                    <span class="chip on shrink-0">${escapeHtml(t.speed)}</span>
+                </div>
+                <div class="text-xs font-bold mt-1" style="color:var(--sub)">${escapeHtml(t.route)}</div>
+                <div class="text-sm font-black italic mt-3">「${escapeHtml(t.comment)}」</div>
+            </div>`;
+    },
+    renderCollection() {
+        $('tr-count').textContent = state.trains.length;
+        $('tr-collection').innerHTML = state.trains.map((t, i) => `<button class="chip" onclick="App.renderTrainCard(state.trains[${i}])">${escapeHtml(t.name)}</button>`).join('');
+    },
+
+    /* ==================== DREAM (NEW) ==================== */
+    async dreamGo() {
+        const t = $('dm-in').value.trim();
+        if (!t || state.busy || !App.checkReady()) return;
+        state.busy = true;
+        const out = $('dm-out');
+        out.innerHTML = '';
+        const box = document.createElement('div');
+        box.className = 'card text-left text-sm';
+        out.appendChild(box);
+        const full = await App.streamInto({
+            messages: [
+                { role: 'system', content: '你是玄学解梦大师兼毒舌高中生。严格按格式输出，不要多余内容：【吉凶】大吉/吉/中平/凶/大凶 之一【真相】30字内一本正经的胡说八道【今日宜】一件具体小事【今日忌】一件具体小事【锐评】20字内毒舌一句' },
+                { role: 'user', content: '梦境：' + t }
+            ],
+            el: box, plain: true, maxTokens: 250
+        });
+        if (full) {
+            const m = full.match(/【吉凶】\s*(大吉|吉|中平|凶|大凶)[\s\S]*?【真相】\s*(.+?)[\s\S]*?【今日宜】\s*(.+?)[\s\S]*?【今日忌】\s*(.+?)[\s\S]*?【锐评】\s*([\s\S]+)/);
+            if (m) {
+                out.innerHTML = `<div class="card text-left">
+                    <div class="text-4xl font-black mb-3 tracking-tight" style="color:${App.foColor(m[1])}">${m[1]}</div>
+                    <div class="text-sm font-bold mb-3">${escapeHtml(m[2].trim())}</div>
+                    <div class="grid grid-cols-2 gap-2 mb-3">
+                        <div class="rounded-2xl p-3 border" style="border-color:var(--border)"><div class="text-[10px] font-black" style="color:var(--sub)">今日宜</div><div class="font-black text-xs mt-1">${escapeHtml(m[3].trim())}</div></div>
+                        <div class="rounded-2xl p-3 border" style="border-color:var(--border)"><div class="text-[10px] font-black" style="color:var(--sub)">今日忌</div><div class="font-black text-xs mt-1">${escapeHtml(m[4].trim())}</div></div>
+                    </div>
+                    <div class="text-sm font-black italic">🔮 ${escapeHtml(m[5].trim())}</div>
+                </div>`;
+            } else box.textContent = full;
+        } else out.innerHTML = '';
+        state.busy = false;
+    },
+
+    /* ==================== FOOD (NEW) ==================== */
+    async foodGo(random) {
+        if (state.busy || !App.checkReady()) return;
+        const ing = random ? '' : $('fd-in').value.trim();
+        if (!random && !ing) return toast('报上你的存货');
+        state.busy = true;
+        const out = $('fd-out');
+        out.innerHTML = '';
+        const box = document.createElement('div');
+        box.className = 'card text-left text-sm';
+        out.appendChild(box);
+        const full = await App.streamInto({
+            messages: [
+                { role: 'system', content: '你是深夜食堂主厨兼毒舌阮峻。严格按格式输出：【今晚吃】一道具体菜名【为什么】一句话【灵魂做法】2-3步，每步一行，简短且带毒舌【热量警告】一句扎心的话' },
+                { role: 'user', content: random ? '我什么都不说，直接决定我今晚吃什么，要离谱但能吃。' : '冰箱里有：' + ing }
+            ],
+            el: box, plain: true, maxTokens: 300
+        });
+        if (full) {
+            const m = full.match(/【今晚吃】\s*(.+?)[\s\S]*?【为什么】\s*(.+?)[\s\S]*?【灵魂做法】\s*([\s\S]*?)【热量警告】\s*([\s\S]+)/);
+            if (m) {
+                const steps = m[3].split('\n').map(s => s.replace(/^[\s\d.、①②③-]+/, '')).filter(s => s.trim());
+                out.innerHTML = `<div class="card text-left">
+                    <div class="text-2xl font-black mb-1">🍳 ${escapeHtml(m[1].trim())}</div>
+                    <div class="text-xs font-bold mb-3" style="color:var(--sub)">${escapeHtml(m[2].trim())}</div>
+                    <div class="space-y-1.5 mb-3">${steps.map(s => `<div class="text-sm font-bold flex gap-2"><span style="color:var(--sub)">▸</span><span>${escapeHtml(s.trim())}</span></div>`).join('')}</div>
+                    <div class="text-xs font-black italic" style="color:#ef4444">⚠️ ${escapeHtml(m[4].trim())}</div>
+                </div>`;
+            } else box.textContent = full;
+        } else out.innerHTML = '';
+        state.busy = false;
+    },
+
+    /* ==================== LETTER (NEW) ==================== */
+    ltSeal() {
+        const title = $('lt-title').value.trim(), body = $('lt-body').value.trim(), date = $('lt-date').value;
+        if (!title || !body) return toast('名字和内容都要有');
+        if (!date) return toast('选个解封日期');
+        state.letters.unshift({ id: Date.now(), title, body, date });
+        LS.set('rg48_letters', state.letters);
+        $('lt-title').value = ''; $('lt-body').value = '';
+        App.renderLetters();
+        toast('已封存 🔒 ' + date + ' 解封');
+    },
+    async ltPreface() {
+        if (state.busy || !App.checkReady()) return;
+        state.busy = true;
+        const hint = $('lt-hint');
+        hint.classList.remove('hidden');
+        const full = await App.streamInto({
+            messages: [
+                { role: 'system', content: '给一封写给未来自己的信代笔一段毒舌序言，30~50字，嘴硬心软。只输出序言本身。' },
+                { role: 'user', content: '信的主题：' + ($('lt-title').value.trim() || '寄给未来') }
+            ],
+            el: hint, plain: true, maxTokens: 120
+        });
+        hint.classList.add('hidden');
+        if (full) {
+            const ta = $('lt-body');
+            ta.value = full.trim() + (ta.value ? '\n\n' + ta.value : '');
+            toast('序言已塞进信里');
+        }
+        state.busy = false;
+    },
+    renderLetters() {
+        const list = $('lt-list');
+        if (!state.letters.length) {
+            list.innerHTML = '<div class="text-center text-xs font-bold py-8" style="color:var(--sub)">还没有信。第一封写给谁？</div>';
+            return;
+        }
+        const now = Date.now();
+        list.innerHTML = state.letters.map(l => {
+            const unlock = new Date(l.date + 'T00:00:00').getTime();
+            const open = now >= unlock;
+            const days = Math.max(0, Math.ceil((unlock - now) / 86400000));
+            return `<div class="card" data-lid="${l.id}">
+                <div class="flex items-center justify-between gap-2">
+                    <div class="font-black text-sm break-words">${open ? '📬' : '🔒'} ${escapeHtml(l.title)}</div>
+                    <span class="chip shrink-0">${open ? '已解封' : l.date + ' · 还要' + days + '天'}</span>
+                </div>
+                ${open
+                    ? `<div class="lt-body text-sm leading-relaxed whitespace-pre-wrap mt-3 border-t pt-3" style="border-color:var(--border);display:none">${escapeHtml(l.body)}</div>
+                       <div class="flex gap-2 mt-3">
+                           <button class="chip" onclick="App.ltToggle(${l.id})">📖 展开/收起</button>
+                           <button class="chip" onclick="App.ltDel(${l.id})">🗑 销毁</button>
+                       </div>`
+                    : `<div class="text-[10px] font-bold mt-2" style="color:var(--sub)">时间没到，谁都不许看（包括阮峻）</div>`}
+            </div>`;
+        }).join('');
+    },
+    ltToggle(id) {
+        const card = document.querySelector(`[data-lid="${id}"]`);
+        const b = card?.querySelector('.lt-body');
+        if (!b) return;
+        b.style.display = b.style.display === 'none' ? 'block' : 'none';
+    },
+    ltDel(id) {
+        if (!confirm('销毁这封信？不可恢复。')) return;
+        state.letters = state.letters.filter(l => l.id !== id);
+        LS.set('rg48_letters', state.letters);
+        App.renderLetters();
+        toast('已销毁');
+    }
+};
+
+window.App = App;
+App.init();
+</script>
+</body>
+</html>
