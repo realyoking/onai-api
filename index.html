@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-<title>RG_OS v51.6 — Liquid Glass</title>
+<title>RG_OS v51.7 — Liquid Glass</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
@@ -114,8 +114,16 @@ html.dark .marquee{background:rgba(255,255,255,.03)}
 .tcard:hover{transform:translateY(-3px);border-color:rgba(232,118,58,.4)}
 .eyebrow{font-size:10px;font-weight:900;letter-spacing:.22em;color:var(--acc);text-transform:uppercase}
 .cta-dark{background:rgba(32,28,25,.78);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.14);box-shadow:0 16px 48px rgba(40,30,20,.3)}
-#site-feat,#site-talk,#site-faq{scroll-margin-top:80px}
-/* thinking timeline */
+#site-feat,#site-talk,#site-faq,#site-how{scroll-margin-top:80px}
+/* ---- phone mockup ---- */
+.phone-wrap{position:relative;display:flex;justify-content:center;margin:52px auto 12px;width:100%;pointer-events:none;user-select:none}
+.phone-glow{position:absolute;bottom:-38px;width:68%;height:135px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(255,166,120,.55),rgba(232,118,58,.20) 55%,transparent 75%);filter:blur(44px);animation:phg 7s ease-in-out infinite alternate;z-index:0}
+@keyframes phg{from{transform:translateX(-26px) scale(.9);opacity:.6}to{transform:translateX(26px) scale(1.1);opacity:1}}
+.phone-img{position:relative;z-index:1;width:min(300px,78vw);border-radius:52px;box-shadow:0 34px 90px rgba(0,0,0,.45),0 0 80px rgba(232,118,58,.28)}
+.float-chip{position:absolute;z-index:2;border:1px solid var(--gborder);border-radius:999px;padding:8px 16px;font-size:11px;font-weight:900;background:var(--glass);backdrop-filter:blur(14px);box-shadow:var(--shadow);animation:fc 5s ease-in-out infinite alternate;white-space:nowrap}
+@keyframes fc{from{transform:translateY(-8px)}to{transform:translateY(10px)}}
+.how-num{width:40px;height:40px;border-radius:14px;background:var(--acc-soft);color:var(--acc);border:1px solid rgba(232,118,58,.35);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;flex-shrink:0}
+/* ---- thinking timeline ---- */
 .thinkbox{border:1px solid var(--gborder2);border-radius:16px;background:var(--glass2);backdrop-filter:blur(10px);margin-bottom:8px;overflow:hidden}
 .think-head{display:flex;align-items:center;gap:8px;padding:10px 14px;cursor:pointer;font-weight:900;font-size:13px;color:var(--sub);user-select:none}
 .think-head .tt{color:var(--text)}
@@ -130,7 +138,7 @@ html.dark .marquee{background:rgba(255,255,255,.03)}
 .tdot{width:9px;height:9px;border-radius:99px;background:var(--sub);opacity:.45;margin-top:5px;flex-shrink:0;position:relative;z-index:1;transition:.3s}
 .tstep.live .tdot{background:var(--acc);opacity:1;animation:pd 1s infinite}
 @keyframes pd{50%{box-shadow:0 0 0 6px rgba(232,118,58,.14)}}
-/* grok chatbox */
+/* ---- grok chatbox ---- */
 .grok{display:flex;flex-direction:column;gap:2px;width:100%;max-width:36rem;margin:0 auto;padding:14px 14px 10px;border-radius:28px;background:var(--glass);backdrop-filter:blur(24px) saturate(1.5);border:1px solid var(--gborder);box-shadow:var(--shadow)}
 #minp{width:100%;background:none;border:none;outline:none;resize:none;font-size:15px;font-weight:600;color:var(--text);min-height:44px;max-height:160px;font-family:inherit}
 #minp::placeholder{color:var(--sub)}
@@ -150,12 +158,12 @@ html.dark .gat:hover{background:rgba(255,255,255,.08)}
 .sendc.stop{background:#e05252;color:#fff}
 #att-row{display:flex;gap:8px;flex-wrap:wrap}
 #att-row.hidden{display:none}
-/* idea chips */
+/* ---- idea chips ---- */
 .ideas{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:640px}
 .idea{border:1px solid var(--gborder2);background:var(--glass2);backdrop-filter:blur(10px);border-radius:999px;padding:8px 16px;font-size:12.5px;font-weight:800;color:var(--sub);cursor:pointer;transition:.15s;font-family:inherit;text-align:left}
 .idea:hover{color:var(--acc);border-color:rgba(232,118,58,.5);transform:translateY(-1px)}
 .idea b{color:var(--text);margin-right:6px}
-/* question card */
+/* ---- question card ---- */
 .qcard{border:1px solid var(--gborder2);border-radius:18px;background:var(--glass);backdrop-filter:blur(14px);overflow:hidden;margin:4px 0 8px}
 .qhead{display:flex;align-items:center;gap:8px;padding:11px 16px;font-weight:900;font-size:13px;background:rgba(232,118,58,.08);border-bottom:1px solid var(--gborder2)}
 .qhead .qc{margin-left:auto;color:var(--sub);font-size:11px}
@@ -182,7 +190,7 @@ html.dark .gat:hover{background:rgba(255,255,255,.08)}
 .pomo-num.run{color:var(--acc)}
 .user-av{background:linear-gradient(180deg,#454340,#16140f);color:#fff;border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.25)}
 html.dark .user-av{background:linear-gradient(180deg,#f7f5f1,#d8d4cd);color:#23211d;border-color:rgba(255,255,255,.5)}
-@media(prefers-reduced-motion:reduce){.marquee-track,.hero-glow,.mic.rec{animation:none}.rv{transition:none;opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.marquee-track,.hero-glow,.phone-glow,.float-chip,.mic.rec{animation:none}.rv{transition:none;opacity:1;transform:none}}
 </style>
 </head>
 <body class="landing">
@@ -236,10 +244,17 @@ html.dark .user-av{background:linear-gradient(180deg,#f7f5f1,#d8d4cd);color:#232
 <div id="panel-site" class="tool-panel active"><div class="flex-1 overflow-y-auto">
 <div class="sticky top-0 z-10 phead border-b" style="border-color:var(--gborder2)"><div class="max-w-5xl mx-auto flex items-center gap-4 px-6 py-4 flex-wrap"><span class="font-black italic tracking-tighter">RG_OS</span><span class="flex-1"></span><button class="chip" onclick="App.siteTo('feat')">功能</button><button class="chip" onclick="App.siteTo('talk')">好評</button><button class="chip" onclick="App.siteTo('faq')">FAQ</button><button class="glow-btn btn-p !rounded-full !px-5 !py-2 !text-xs" onclick="App.enterApp('chat')">即刻用 →</button></div></div>
 <div class="dotgrid"><div class="hero-glow"></div><div class="max-w-5xl mx-auto px-6 pt-20 pb-24 text-center relative">
-<div class="rv eyebrow">v51.6 · 香港仔版 · BYOK</div>
+<div class="rv eyebrow">v51.7 · 香港仔版 · BYOK</div>
 <h1 class="rv hero-title mt-5">問阮峻<br><span class="grad-text">任何嘢</span>。</h1>
 <p class="rv max-w-xl mx-auto mt-6 text-sm font-bold leading-relaxed" style="color:var(--sub)">廿四個工具、識睇相、識思考、會反問你嘅香港中三學生。零伺服器，你嘅 Key 你話事。</p>
-<div class="rv flex gap-3 justify-center mt-8 flex-wrap"><button class="glow-btn btn-p !rounded-full !px-8 !py-3.5 !text-sm" onclick="App.enterApp('chat')">開始傾偈 →</button><button class="rounded-full px-8 py-3.5 text-sm font-black border bg-transparent transition hover:scale-[1.03]" style="border-color:var(--gborder2);background:var(--glass2);backdrop-filter:blur(10px)" onclick="App.siteTo('feat')">睇下有咩</button></div>
+<div class="rv phone-wrap">
+<div class="float-chip" style="left:5%;top:20%;animation-delay:-2s">📷 識睇相</div>
+<div class="float-chip" style="right:4%;top:44%;animation-delay:-4s">💭 Reasoning</div>
+<div class="float-chip" style="left:8%;bottom:16%;animation-delay:-1s">🧠 記得你</div>
+<div class="phone-glow"></div>
+<img class="phone-img" src="IMG_5689.png" alt="RG_OS 手機版預覽" onerror="this.style.display='none'">
+</div>
+<div class="rv flex gap-3 justify-center mt-10 flex-wrap"><button class="glow-btn btn-p !rounded-full !px-8 !py-3.5 !text-sm" onclick="App.enterApp('chat')">開始傾偈 →</button><button class="rounded-full px-8 py-3.5 text-sm font-black border bg-transparent transition hover:scale-[1.03]" style="border-color:var(--gborder2);background:var(--glass2);backdrop-filter:blur(10px)" onclick="App.siteTo('feat')">睇下有咩</button></div>
 </div></div>
 <div class="marquee"><div class="marquee-track"><span>🚄 E5系 320KM/H</span><span>📎 識睇相</span><span>💭 Reasoning 時間軸</span><span>❓ 會反問你</span><span>🎤 語音輸入</span><span>曾俊偉唔准用</span><span>🚄 E5系 320KM/H</span><span>📎 識睇相</span><span>💭 Reasoning 時間軸</span><span>❓ 會反問你</span><span>🎤 語音輸入</span><span>曾俊偉唔准用</span></div></div>
 <div class="max-w-5xl mx-auto px-6 py-16 grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -247,6 +262,15 @@ html.dark .user-av{background:linear-gradient(180deg,#f7f5f1,#d8d4cd);color:#232
 <div class="rv text-center"><div class="text-4xl font-black"><span data-count="0">0</span></div><div class="eyebrow mt-1" style="color:var(--sub)">個伺服器</div></div>
 <div class="rv text-center"><div class="text-4xl font-black"><span data-count="100">0</span>%</div><div class="eyebrow mt-1" style="color:var(--sub)">本地儲存</div></div>
 <div class="rv text-center"><div class="text-4xl font-black"><span data-count="320">0</span></div><div class="eyebrow mt-1" style="color:var(--sub)">KM/H 信仰</div></div>
+</div>
+<div id="site-how" class="max-w-4xl mx-auto px-6 pb-20">
+<div class="rv eyebrow mb-3">點樣用</div>
+<h2 class="rv text-3xl font-black tracking-tight mb-8">三步，開波。</h2>
+<div class="grid md:grid-cols-3 gap-4">
+<div class="rv bento text-left"><div class="how-num">1</div><div class="font-black text-sm mt-3">攞條 Key</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">OpenAI / DeepSeek / Groq / Ollama 隨你揀，Key 只存你自己個 browser。</div></div>
+<div class="rv bento text-left"><div class="how-num">2</div><div class="font-black text-sm mt-3">揀個模型</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">一鍵拉模型列表。要快揀細模型，要聰明揀大模型，要睇相揀 vision 系。</div></div>
+<div class="rv bento text-left"><div class="how-num">3</div><div class="font-black text-sm mt-3">開串</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">打字、語音、影相都得。阮峻唔明會反問你，串你係順便。</div></div>
+</div>
 </div>
 <div id="site-feat" class="max-w-5xl mx-auto px-6 pb-20">
 <div class="rv eyebrow mb-3">功能</div><h2 class="rv text-3xl font-black tracking-tight mb-8">一個 App，廿四般武藝。</h2>
@@ -299,7 +323,6 @@ html.dark .user-av{background:linear-gradient(180deg,#f7f5f1,#d8d4cd);color:#232
 <div class="text-xs font-bold mt-2" style="color:var(--sub)">毒舌 · 識睇相 · 唔明會反問你</div>
 </div>
 <div id="hero-slot" class="w-full flex justify-center px-2">
-<!-- 輸入膠囊（空對話時喺呢度，正中間） -->
 <div id="grokbox" class="grok">
 <input type="file" id="file-in" multiple accept="image/*,.txt,.md,.json,.csv,.js,.py,.html,.css" class="hidden">
 <div id="att-row" class="hidden mb-1"></div>
@@ -635,45 +658,27 @@ return full}};
 const App={
 init(){marked.setOptions({breaks:true,gfm:true});
 const safe=(n,f)=>{try{f()}catch(e){console.warn('[init:'+n+']',e)}};
-safe('theme',()=>App.loadTheme());
-safe('conn',()=>App.updateConn());
-safe('ideas',()=>App.renderIdeas());
-safe('chat',()=>App.renderChat());
-safe('novel',()=>App.renderNovel());
-safe('dict',()=>App.renderDictHistory());
-safe('grades',()=>App.renderGrades());
-safe('cities',()=>App.renderCities());
-safe('soup',()=>App.renderSoup());
-safe('mouth',()=>App.renderMouthLevels());
-safe('essay',()=>App.renderEssayTypes());
-safe('trains',()=>App.renderCollection());
-safe('letters',()=>App.renderLetters());
-safe('web',()=>{App.renderWebPresets();App.renderTaste()});
-safe('mem',()=>App.renderMems());
-safe('home',()=>App.renderHome());
-safe('site',()=>App.initSite());
-safe('tl',()=>App.renderTlTargets());
-safe('pomo',()=>{App.renderPomoPresets();App.updatePomoUI()});
-safe('toggles',()=>App.syncToggles());
+safe('theme',()=>App.loadTheme());safe('conn',()=>App.updateConn());safe('ideas',()=>App.renderIdeas());safe('chat',()=>App.renderChat());
+safe('novel',()=>App.renderNovel());safe('dict',()=>App.renderDictHistory());safe('grades',()=>App.renderGrades());safe('cities',()=>App.renderCities());
+safe('soup',()=>App.renderSoup());safe('mouth',()=>App.renderMouthLevels());safe('essay',()=>App.renderEssayTypes());safe('trains',()=>App.renderCollection());
+safe('letters',()=>App.renderLetters());safe('web',()=>{App.renderWebPresets();App.renderTaste()});safe('mem',()=>App.renderMems());safe('home',()=>App.renderHome());
+safe('site',()=>App.initSite());safe('tl',()=>App.renderTlTargets());safe('pomo',()=>{App.renderPomoPresets();App.updatePomoUI()});safe('toggles',()=>App.syncToggles());
 safe('nav',()=>App.openTool('site'));
 setInterval(App.tickClock,30000);
 const d=new Date();d.setFullYear(d.getFullYear()+1);const ld=$('lt-date');if(ld)ld.value=d.toISOString().slice(0,10);
 if(state.web?.code){$('wb-prompt').value=state.web.prompt||'';App.wbShow(state.web.code)}
-safe('keys',()=>App.bindKeys());
-safe('voices',()=>App.initVoices());
+safe('keys',()=>App.bindKeys());safe('voices',()=>App.initVoices());
 if(!state.settings.apiKey)setTimeout(()=>{toast('👋 入去之後填 API Key 就開得波')},600)},
-enterApp(target){document.body.classList.remove('landing');App.openTool(target||'chat')},
+enterApp(t){document.body.classList.remove('landing');App.openTool(t||'chat')},
 showLanding(){document.body.classList.add('landing');App.openTool('site');const sc=$('panel-site').querySelector('.overflow-y-auto');if(sc)sc.scrollTop=0},
-layoutChat(){const has=state.chat.length>0;
-const ce=$('chat-empty'),cf=$('chat-full'),box=$('grokbox');
+layoutChat(){const has=state.chat.length>0,ce=$('chat-empty'),cf=$('chat-full'),box=$('grokbox');
 if(!ce||!cf||!box)return;
-ce.style.display=has?'none':'flex';
-cf.style.display=has?'flex':'none';
+ce.style.display=has?'none':'flex';cf.style.display=has?'flex':'none';
 const target=has?$('dock-slot'):$('hero-slot');
 if(target&&box.parentElement!==target)target.appendChild(box)},
 ideasPool:[['👋','用一句廣東話介紹下你自己'],['🗡','串下我個名'],['📝','幫我寫封請假紙，話肚痾'],['🚄','E5 定 E6 新幹線型啲？點解'],['💀','我考咗 42/100，你可以點串我'],['🌙','解夢：夢見曾俊偉揸新幹線'],['😤','有人同我講「咁都得」，教我點串返'],['📸','幫我諗 3 個 IG caption 影新幹線'],['🐱','記住我養咗隻貓叫肥波'],['🌌','用廣東話 30 字解釋咩係黑洞'],['🥶','講個冷笑話，唔好笑我當你輸'],['🚃','如果曾俊偉坐我隔籬，我應該點做'],['📊','幫我諗個溫書時間表，得兩日'],['✍️','寫一句毒雞湯關於返學']],
 renderIdeas(){const el=$('idea-chips');if(!el)return;
-el.innerHTML=App.ideasPool.slice(0,6).map(x=>`<button class="idea" onclick="App.quick(this.dataset.q)" data-q="${esc(x[1])}"><b>${x[0]}</b>${esc(x[1])}</button>`).join('')},
+el.innerHTML=App.ideasPool.slice(0,6).map(x=>`<button class="idea" data-q="${esc(x[1])}" onclick="App.quick(this.dataset.q)"><b>${x[0]}</b>${esc(x[1])}</button>`).join('')},
 shuffleIdeas(){for(let i=App.ideasPool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[App.ideasPool[i],App.ideasPool[j]]=[App.ideasPool[j],App.ideasPool[i]]}App.renderIdeas()},
 addFiles(files){for(const f of files){
 if(f.type.startsWith('image/')){if(f.size>4*1024*1024){toast(f.name+' 大過 4MB');continue}
@@ -689,7 +694,7 @@ toggleMic(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
 if(!SR)return toast('呢個瀏覽器唔支援語音輸入');
 if(App.rec){App.rec.stop();return}
 const r=new SR();r.lang='zh-HK';r.interimResults=true;App.rec=r;
-r.onresult=e=>{let s='';for(const res of e.results)s+=res[0].transcript;$('minp').value=s;App.rsz()};
+r.onresult=e=>{let s='';for(const res of e.results)s+=res[0].transcript;const i=$('minp');if(i)i.value=s;App.rsz()};
 r.onend=()=>{App.rec=null;const b=$('mic-btn');if(b)b.classList.remove('rec')};
 r.onerror=()=>{App.rec=null;const b=$('mic-btn');if(b)b.classList.remove('rec')};
 r.start();$('mic-btn').classList.add('rec');toast('🎙 聽緊你講嘢…')},
@@ -704,7 +709,7 @@ if(p)p.classList.toggle('on-think',state.think);
 if(t)t.classList.toggle('on',state.autoTTS)},
 loadTheme(){const t=LS.get('rg47_theme',matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');if(t==='dark')document.documentElement.classList.add('dark');App.renderThemeBtn()},
 toggleTheme(){const d=document.documentElement.classList.toggle('dark');LS.set('rg47_theme',d?'dark':'light');App.renderThemeBtn()},
-renderThemeBtn(){const d=document.documentElement.classList.contains('dark');const b=$('theme-btn');if(b)b.innerHTML=d?'☀️':'🌙'},
+renderThemeBtn(){const b=$('theme-btn');if(b)b.innerHTML=document.documentElement.classList.contains('dark')?'☀️':'🌙'},
 toggleSidebar(f){const sb=$('sidebar');const o=f!==undefined?f:!sb.classList.contains('open');sb.classList.toggle('open',o);$('overlay').style.display=o?'block':'none'},
 openTool(n){document.querySelectorAll('.tool-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
 const p=$('panel-'+n),t=$('tab-'+n);if(p)p.classList.add('active');if(t)t.classList.add('active');
@@ -739,8 +744,7 @@ saveChat(){LS.set('rg47_chat',state.chat.slice(-100).map(m=>({role:m.role,conten
 memBlock(){return state.mems.length?'\n【你記得關於用戶嘅嘢】\n- '+state.mems.slice(0,20).join('\n- '):''},
 splitSteps(t){return (t||'').split(/\n+/).flatMap(s=>s.length>70?(s.match(/[^。！？.!?]+[。！？.!?]?/g)||[s]):[s]).map(s=>s.trim()).filter(Boolean)},
 stepsHtml(t,live){return App.splitSteps(t).map((s,i)=>`<div class="tstep ${live&&i===App.splitSteps(t).length-1?'live':''}"><span class="tdot"></span><span>${esc(s)}</span></div>`).join('')},
-thinkHtml(m){const steps=App.splitSteps(m.think||'').length;
-return `<div class="thinkbox open"><div class="think-head" onclick="this.parentElement.classList.toggle('open')"><span class="tt">💭 Reasoning</span><span style="color:var(--sub)">· ${steps} 步</span><span class="chev">⌄</span></div><div class="tsteps">${App.stepsHtml(m.think,false)}</div></div>`},
+thinkHtml(m){return `<div class="thinkbox open"><div class="think-head" onclick="this.parentElement.classList.toggle('open')"><span class="tt">💭 Reasoning</span><span style="color:var(--sub)">· ${App.splitSteps(m.think||'').length} 步</span><span class="chev">⌄</span></div><div class="tsteps">${App.stepsHtml(m.think,false)}</div></div>`},
 parseQ(t){const q=t.match(/【問題】\s*([\s\S]+?)(?=【A】|$)/);if(!q)return null;
 const a=t.match(/【A】\s*([\s\S]+?)(?=【B】|$)/),b=t.match(/【B】\s*([\s\S]+?)(?:$)/);
 return {question:q[1].trim(),a:a?a[1].trim():'',b:b?b[1].trim():'',ans:null}},
