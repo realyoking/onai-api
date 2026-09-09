@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-<title>RG_OS v51.2 — Liquid Glass</title>
+<title>RG_OS v51.6 — Liquid Glass</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
@@ -12,101 +12,84 @@
 <style>
 :root{--bg:#f6f3ee;--text:#22201c;--sub:#8d887d;--acc:#e8763a;--acc-soft:rgba(232,118,58,.14);--glass:rgba(255,255,255,.52);--glass2:rgba(255,255,255,.38);--gborder:rgba(255,255,255,.65);--gborder2:rgba(255,255,255,.5);--shadow:0 4px 24px rgba(120,100,80,.10);--r:22px}
 html.dark{--bg:#101114;--text:#eceae4;--sub:#8f8d96;--acc:#f0884d;--acc-soft:rgba(240,136,77,.15);--glass:rgba(30,30,36,.55);--glass2:rgba(26,26,32,.45);--gborder:rgba(255,255,255,.09);--gborder2:rgba(255,255,255,.07);--shadow:0 4px 24px rgba(0,0,0,.35)}
-*{scrollbar-width:thin}::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-thumb{background:rgba(140,130,115,.35);border-radius:99px}::-webkit-scrollbar-thumb:hover{background:rgba(140,130,115,.55)}
-body{font-family:'Noto Sans HK',-apple-system,'PingFang HK','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);height:100vh;display:flex;overflow:hidden;-webkit-font-smoothing:antialiased}
-#amb{position:fixed;inset:0;z-index:0;pointer-events:none;background:
-radial-gradient(1100px 750px at 88% -12%,rgba(255,166,120,.34),transparent 62%),
-radial-gradient(950px 720px at -8% 108%,rgba(126,164,199,.28),transparent 60%),
-radial-gradient(700px 500px at 50% 120%,rgba(255,214,170,.22),transparent 65%),
-linear-gradient(180deg,#faf7f2 0%,#f2efe8 100%)}
-html.dark #amb{background:
-radial-gradient(1100px 750px at 88% -12%,rgba(240,136,77,.10),transparent 62%),
-radial-gradient(950px 720px at -8% 108%,rgba(96,128,168,.13),transparent 60%),
-linear-gradient(180deg,#131418 0%,#0c0d10 100%)}
+*{scrollbar-width:thin}::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-thumb{background:rgba(140,130,115,.35);border-radius:99px}
+body{font-family:'Noto Sans HK',-apple-system,'PingFang HK',sans-serif;background:var(--bg);color:var(--text);height:100vh;display:flex;overflow:hidden;-webkit-font-smoothing:antialiased}
+#amb{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(1100px 750px at 88% -12%,rgba(255,166,120,.34),transparent 62%),radial-gradient(950px 720px at -8% 108%,rgba(126,164,199,.28),transparent 60%),radial-gradient(700px 500px at 50% 120%,rgba(255,214,170,.22),transparent 65%),linear-gradient(180deg,#faf7f2,#f2efe8)}
+html.dark #amb{background:radial-gradient(1100px 750px at 88% -12%,rgba(240,136,77,.10),transparent 62%),radial-gradient(950px 720px at -8% 108%,rgba(96,128,168,.13),transparent 60%),linear-gradient(180deg,#131418,#0c0d10)}
+body.landing #sidebar,body.landing #menu-btn{display:none!important}
 ::selection{background:rgba(232,118,58,.22)}
 button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--acc);outline-offset:2px;border-radius:10px}
 .surface{background:transparent}
-.glass{background:var(--glass);backdrop-filter:blur(20px) saturate(1.5);-webkit-backdrop-filter:blur(20px) saturate(1.5);border:1px solid var(--gborder);border-radius:var(--r);box-shadow:var(--shadow)}
-.card{background:var(--glass);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);border:1px solid var(--gborder);border-radius:var(--r);padding:20px;box-shadow:var(--shadow)}
-.field{background:var(--glass2);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--gborder2);color:var(--text);border-radius:14px;padding:12px 14px;outline:none;width:100%;font-size:14px;transition:border-color .18s,box-shadow .18s;font-family:inherit}
+.card{background:var(--glass);backdrop-filter:blur(16px) saturate(1.4);border:1px solid var(--gborder);border-radius:var(--r);padding:20px;box-shadow:var(--shadow)}
+.glass{background:var(--glass);backdrop-filter:blur(20px) saturate(1.5);border:1px solid var(--gborder);border-radius:var(--r);box-shadow:var(--shadow)}
+.field{background:var(--glass2);backdrop-filter:blur(10px);border:1px solid var(--gborder2);color:var(--text);border-radius:14px;padding:12px 14px;outline:none;width:100%;font-size:14px;transition:.18s;font-family:inherit}
 .field:focus{border-color:rgba(232,118,58,.55);box-shadow:0 0 0 3px rgba(232,118,58,.13)}
 .field::placeholder{color:var(--sub)}
-.btn-p{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;padding:10px 18px;font-weight:800;font-family:inherit;font-size:14px;cursor:pointer;transition:all .25s ease;border:1px solid rgba(0,0,0,.10);background:linear-gradient(180deg,#40403e 0%,#0c0c0c 100%);color:rgba(255,255,255,.94);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 -1px 0 rgba(0,0,0,.4),0 4px 16px rgba(60,50,40,.18)}
-.btn-p:hover{background:linear-gradient(180deg,#55524c 0%,#2a2723 100%)}
-.btn-p:active{background:linear-gradient(180deg,#111,#000);transform:translateY(1px);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 2px 8px rgba(60,50,40,.15)}
-.btn-p:disabled{opacity:.4;transform:none;filter:grayscale(.6)}
-html.dark .btn-p{border:1px solid rgba(255,255,255,.22);background:linear-gradient(180deg,#fbfaf8 0%,#d8d4ce 100%);color:#23211d;box-shadow:inset 0 1px 0 rgba(255,255,255,.85),inset 0 -1px 0 rgba(0,0,0,.08),0 4px 16px rgba(0,0,0,.4)}
-html.dark .btn-p:hover{background:linear-gradient(180deg,#fff 0%,#e9e5de 100%)}
-html.dark .btn-p:active{background:linear-gradient(180deg,#e5e1da,#d5d1ca)}
-.btn-d{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;padding:10px 18px;font-weight:800;font-family:inherit;font-size:14px;cursor:pointer;transition:all .25s;border:1px solid rgba(0,0,0,.10);background:linear-gradient(180deg,rgba(248,113,113,.85),rgba(220,60,60,.9));color:rgba(255,255,255,.95);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 4px 16px rgba(200,60,50,.2)}
-.btn-d:hover{background:linear-gradient(180deg,rgba(248,113,113,.6),rgba(200,50,50,.75))}
-.btn-d:active{transform:translateY(1px)}
-.chip{border:1px solid var(--gborder2);border-radius:999px;padding:4px 13px;font-size:11px;font-weight:800;cursor:pointer;color:var(--sub);transition:.18s;background:var(--glass2);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-family:inherit}
-.chip:hover{border-color:rgba(232,118,58,.5);color:var(--text);background:rgba(255,255,255,.6)}
-.chip.on{background:rgba(255,255,255,.85);color:var(--acc);border-color:rgba(232,118,58,.45);box-shadow:0 2px 10px rgba(232,118,58,.12)}
-html.dark .chip:hover{background:rgba(255,255,255,.1)}
-html.dark .chip.on{background:rgba(240,136,77,.16);border-color:rgba(240,136,77,.4)}
-.icon-btn{width:34px;height:34px;border-radius:999px;display:flex;align-items:center;justify-content:center;border:1px solid var(--gborder2);transition:.18s;font-size:13px;background:var(--glass2);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:var(--text);cursor:pointer;font-family:inherit}
-.icon-btn:hover{background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(250,248,244,.6));border-color:rgba(232,118,58,.4);color:var(--acc)}
-html.dark .icon-btn:hover{background:rgba(255,255,255,.1)}
+.btn-p{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;padding:10px 18px;font-weight:800;font-family:inherit;font-size:14px;cursor:pointer;transition:.25s;border:1px solid rgba(0,0,0,.10);background:linear-gradient(180deg,#40403e,#0c0c0c);color:rgba(255,255,255,.94);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 4px 16px rgba(60,50,40,.18)}
+.btn-p:hover{background:linear-gradient(180deg,#55524c,#2a2723)}
+.btn-p:active{transform:translateY(1px)}
+.btn-p:disabled{opacity:.4;filter:grayscale(.6)}
+html.dark .btn-p{border-color:rgba(255,255,255,.22);background:linear-gradient(180deg,#fbfaf8,#d8d4ce);color:#23211d;box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 4px 16px rgba(0,0,0,.4)}
+html.dark .btn-p:hover{background:linear-gradient(180deg,#fff,#e9e5de)}
+.btn-d{display:inline-flex;align-items:center;justify-content:center;border-radius:12px;padding:10px 18px;font-weight:800;font-family:inherit;font-size:14px;cursor:pointer;transition:.25s;border:1px solid rgba(0,0,0,.10);background:linear-gradient(180deg,rgba(248,113,113,.85),rgba(220,60,60,.9));color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.3)}
+.chip{border:1px solid var(--gborder2);border-radius:999px;padding:4px 13px;font-size:11px;font-weight:800;cursor:pointer;color:var(--sub);transition:.18s;background:var(--glass2);backdrop-filter:blur(8px);font-family:inherit}
+.chip:hover{border-color:rgba(232,118,58,.5);color:var(--text)}
+.chip.on{background:rgba(255,255,255,.85);color:var(--acc);border-color:rgba(232,118,58,.45)}
+html.dark .chip.on{background:rgba(240,136,77,.16)}
+.icon-btn{width:34px;height:34px;border-radius:999px;display:flex;align-items:center;justify-content:center;border:1px solid var(--gborder2);transition:.18s;font-size:13px;background:var(--glass2);backdrop-filter:blur(8px);color:var(--text);cursor:pointer;font-family:inherit}
+.icon-btn:hover{border-color:rgba(232,118,58,.4);color:var(--acc)}
+.icon-btn.on{border-color:var(--acc);color:var(--acc);background:var(--acc-soft)}
 .tab{padding:9px 14px;margin:2px 10px;border-radius:13px;font-size:13px;cursor:pointer;color:var(--sub);transition:.18s;display:flex;align-items:center;gap:10px;font-weight:800;position:relative}
 .tab:hover{color:var(--text);background:rgba(255,255,255,.35)}
 html.dark .tab:hover{background:rgba(255,255,255,.06)}
-.tab.active{background:rgba(255,255,255,.65)!important;color:var(--acc)!important;box-shadow:0 2px 12px rgba(232,118,58,.10),inset 0 1px 0 rgba(255,255,255,.8)}
+.tab.active{background:rgba(255,255,255,.65)!important;color:var(--acc)!important;box-shadow:0 2px 12px rgba(232,118,58,.10)}
 html.dark .tab.active{background:rgba(240,136,77,.13)!important}
 .tab.active::before{content:'';position:absolute;left:-10px;top:50%;transform:translateY(-50%);width:3px;height:18px;border-radius:99px;background:var(--acc)}
-.stab{padding:8px 16px;border-radius:11px;font-size:12px;font-weight:800;cursor:pointer;color:var(--sub);transition:.15s}
-.stab:hover{color:var(--text)}
-.stab.active{background:rgba(255,255,255,.7);color:var(--acc);box-shadow:0 1px 6px rgba(120,100,80,.08)}
+.stab{padding:8px 16px;border-radius:11px;font-size:12px;font-weight:800;cursor:pointer;color:var(--sub)}
+.stab.active{background:rgba(255,255,255,.7);color:var(--acc)}
 html.dark .stab.active{background:rgba(240,136,77,.14)}
 .sec-label{padding:16px 24px 5px;font-size:9px;font-weight:900;letter-spacing:.2em;color:var(--sub)}
 .tool-panel{display:none;height:100%;width:100%;flex-direction:column;overflow:hidden}
 .tool-panel.active{display:flex!important;animation:fi .3s cubic-bezier(.2,.7,.3,1)}
 @keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
-.logo-mark{width:36px;height:36px;border-radius:13px;background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--gborder);display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:var(--shadow);flex-shrink:0}
-.cal-btn{height:52px;border-radius:14px;font-weight:900;font-size:17px;background:var(--glass2);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--gborder2);transition:transform .08s,background .15s;user-select:none;color:var(--text);font-family:inherit;box-shadow:inset 0 1px 0 rgba(255,255,255,.5)}
+.logo-mark{width:36px;height:36px;border-radius:13px;background:var(--glass);backdrop-filter:blur(12px);border:1px solid var(--gborder);display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:var(--shadow);flex-shrink:0;cursor:pointer;transition:.15s}
+.logo-mark:hover{border-color:rgba(232,118,58,.5)}
+.cal-btn{height:52px;border-radius:14px;font-weight:900;font-size:17px;background:var(--glass2);backdrop-filter:blur(8px);border:1px solid var(--gborder2);transition:transform .08s;user-select:none;color:var(--text);font-family:inherit;box-shadow:inset 0 1px 0 rgba(255,255,255,.5)}
 html.dark .cal-btn{box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
-.cal-btn:hover{background:rgba(255,255,255,.62)}
-html.dark .cal-btn:hover{background:rgba(255,255,255,.1)}
 .cal-btn:active{transform:scale(.92)}
 .cal-btn.op{color:var(--acc)}
-header.phead{background:rgba(255,255,255,.45);backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4)}
+header.phead{background:rgba(255,255,255,.45);backdrop-filter:blur(20px) saturate(1.4)}
 html.dark header.phead{background:rgba(20,20,25,.5)}
 #chat-view p{margin:.3em 0}
 #chat-view pre{background:#12151b!important;border-radius:14px;padding:14px;overflow-x:auto;font-size:12px;position:relative;margin:.6em 0;border:1px solid rgba(255,255,255,.08)}
 #chat-view pre code{background:transparent!important;border:none;padding:0}
 #chat-view code{background:rgba(255,255,255,.5);border:1px solid var(--gborder2);padding:1px 6px;border-radius:6px;font-size:.85em}
 html.dark #chat-view code{background:rgba(255,255,255,.07)}
-.code-copy{position:absolute;top:8px;right:8px;background:rgba(255,255,255,.1);color:#9aa3af;border:1px solid rgba(255,255,255,.15);border-radius:7px;font-size:10px;padding:3px 8px;cursor:pointer;font-weight:700;backdrop-filter:blur(6px)}
-.code-copy:hover{color:#fff;background:rgba(255,255,255,.18)}
+.code-copy{position:absolute;top:8px;right:8px;background:rgba(255,255,255,.1);color:#9aa3af;border:1px solid rgba(255,255,255,.15);border-radius:7px;font-size:10px;padding:3px 8px;cursor:pointer;font-weight:700}
+.code-copy:hover{color:#fff}
 .dots i{display:inline-block;width:5px;height:5px;border-radius:99px;background:var(--acc);margin-right:3px;animation:bl 1.2s infinite}
 .dots i:nth-child(2){animation-delay:.2s}.dots i:nth-child(3){animation-delay:.4s}
 @keyframes bl{0%,80%,100%{opacity:.2}40%{opacity:1}}
 #toasts{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:300;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none}
-.toast{background:rgba(30,28,26,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:#f5f2ec;padding:11px 20px;border-radius:16px;font-size:12px;font-weight:800;border:1px solid rgba(255,255,255,.14);box-shadow:0 12px 40px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.1);animation:ti .3s cubic-bezier(.2,.9,.3,1.2);white-space:nowrap;max-width:80vw}
+.toast{background:rgba(30,28,26,.82);backdrop-filter:blur(16px);color:#f5f2ec;padding:11px 20px;border-radius:16px;font-size:12px;font-weight:800;border:1px solid rgba(255,255,255,.14);box-shadow:0 12px 40px rgba(0,0,0,.25);animation:ti .3s;white-space:nowrap;max-width:80vw}
 .toast.out{opacity:0;transform:translateY(10px);transition:.3s}
-@keyframes ti{from{opacity:0;transform:translateY(16px) scale(.94)}to{opacity:1;transform:none}}
-#sidebar{width:252px;background:var(--glass);backdrop-filter:blur(28px) saturate(1.6);-webkit-backdrop-filter:blur(28px) saturate(1.6);border-right:1px solid var(--gborder);display:flex;flex-direction:column;z-index:50}
+@keyframes ti{from{opacity:0;transform:translateY(16px) scale(.94)}to{opacity:1}}
+#sidebar{width:252px;background:var(--glass);backdrop-filter:blur(28px) saturate(1.6);border-right:1px solid var(--gborder);display:flex;flex-direction:column;z-index:50}
 @media(max-width:768px){#sidebar{position:fixed;top:0;bottom:0;left:0;transform:translateX(-100%);transition:transform .28s cubic-bezier(.2,.7,.3,1);box-shadow:12px 0 48px rgba(60,50,40,.18)}#sidebar.open{transform:none}}
 input[type=range]{accent-color:var(--acc);width:100%}
 a{color:inherit;text-decoration:underline;text-decoration-color:rgba(232,118,58,.5);text-underline-offset:2px}
-.hstat{border:1px solid var(--gborder);border-radius:20px;padding:14px 16px;background:var(--glass2);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:flex;gap:12px;align-items:center;transition:.18s}
-.hstat:hover{transform:translateY(-2px);border-color:rgba(232,118,58,.4);box-shadow:0 8px 24px rgba(232,118,58,.1)}
-.hstat .n{font-size:22px;font-weight:900;line-height:1}
-.hstat .l{font-size:10px;font-weight:900;color:var(--sub);letter-spacing:.08em;margin-top:3px}
+.hstat{border:1px solid var(--gborder);border-radius:20px;padding:14px 16px;background:var(--glass2);backdrop-filter:blur(12px);display:flex;gap:12px;align-items:center;transition:.18s}
+.hstat:hover{transform:translateY(-2px);border-color:rgba(232,118,58,.4)}
+.hstat .n{font-size:22px;font-weight:900;line-height:1}.hstat .l{font-size:10px;font-weight:900;color:var(--sub);letter-spacing:.08em;margin-top:3px}
 .hico{width:40px;height:40px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:19px;background:rgba(255,255,255,.55);border:1px solid var(--gborder);flex-shrink:0}
 html.dark .hico{background:rgba(255,255,255,.07)}
-.launch{border:1px solid var(--gborder);border-radius:20px;padding:14px;text-align:left;cursor:pointer;background:var(--glass2);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:.18s;display:flex;flex-direction:column;gap:6px;font-family:inherit;color:var(--text)}
+.launch{border:1px solid var(--gborder);border-radius:20px;padding:14px;text-align:left;cursor:pointer;background:var(--glass2);backdrop-filter:blur(12px);transition:.18s;display:flex;flex-direction:column;gap:6px;font-family:inherit;color:var(--text)}
 .launch:hover{border-color:rgba(232,118,58,.45);transform:translateY(-3px);box-shadow:0 12px 32px rgba(232,118,58,.12)}
-.launch .t{font-size:13px;font-weight:900;display:flex;align-items:center;gap:8px}
-.launch .d{font-size:10px;font-weight:700;color:var(--sub);line-height:1.5}
+.launch .t{font-size:13px;font-weight:900;display:flex;align-items:center;gap:8px}.launch .d{font-size:10px;font-weight:700;color:var(--sub);line-height:1.5}
 .psub{font-size:10px;font-weight:800;color:var(--sub);margin-left:10px}
 .empty{text-align:center;padding:44px 20px;color:var(--sub);border:1.5px dashed var(--gborder2);border-radius:22px}
 .empty .e{font-size:36px;margin-bottom:10px;filter:grayscale(.25)}
-.empty .t{font-weight:900;font-size:13px;color:var(--text);margin-bottom:4px}
-.empty .s{font-size:11px;font-weight:700;line-height:1.6}
-.qstart{border:1.5px dashed var(--gborder2);border-radius:14px;padding:8px 15px;font-size:12px;font-weight:800;color:var(--sub);cursor:pointer;transition:.15s;background:var(--glass2);font-family:inherit}
-.qstart:hover{border-color:rgba(232,118,58,.55);color:var(--acc);border-style:solid;transform:translateY(-1px)}
+.empty .t{font-weight:900;font-size:13px;color:var(--text);margin-bottom:4px}.empty .s{font-size:11px;font-weight:700;line-height:1.6}
 .hero-title{font-size:clamp(40px,7vw,78px);line-height:1.04;letter-spacing:-.03em;font-weight:900}
 .grad-text{background:linear-gradient(105deg,var(--acc) 20%,#f0a568 65%,#e8c79a 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .dotgrid{background-image:radial-gradient(rgba(140,130,115,.18) 1px,transparent 1px);background-size:24px 24px;position:relative;overflow:hidden}
@@ -116,49 +99,102 @@ html.dark .hero-glow{background:radial-gradient(circle,rgba(240,136,77,.14),tran
 .glow-btn{position:relative;overflow:hidden}
 .glow-btn::after{content:'';position:absolute;inset:0;background:radial-gradient(120px circle at var(--mx,50%) 50%,rgba(255,255,255,.28),transparent 60%);opacity:0;transition:opacity .2s}
 .glow-btn:hover::after{opacity:1}
-.marquee{overflow:hidden;border-block:1px solid var(--gborder2);background:rgba(255,255,255,.25);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.marquee{overflow:hidden;border-block:1px solid var(--gborder2);background:rgba(255,255,255,.25);backdrop-filter:blur(8px)}
 html.dark .marquee{background:rgba(255,255,255,.03)}
 .marquee-track{display:flex;gap:56px;width:max-content;animation:mq 24s linear infinite;padding:14px 0;font-weight:900;font-size:12px;letter-spacing:.12em;color:var(--sub);white-space:nowrap}
-.marquee-track span:hover{color:var(--acc)}
 @keyframes mq{to{transform:translateX(-50%)}}
-.bento{border:1px solid var(--gborder);border-radius:24px;background:var(--glass);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);padding:22px;transition:.2s;cursor:pointer;font-family:inherit;color:var(--text);box-shadow:var(--shadow)}
+.bento{border:1px solid var(--gborder);border-radius:24px;background:var(--glass);backdrop-filter:blur(16px) saturate(1.4);padding:22px;transition:.2s;cursor:pointer;font-family:inherit;color:var(--text);box-shadow:var(--shadow)}
 .bento:hover{transform:translateY(-4px);border-color:rgba(232,118,58,.45);box-shadow:0 16px 40px rgba(232,118,58,.13)}
 .bento .bi{font-size:26px}
 .rv{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.3,1)}
 .rv.in{opacity:1;transform:none}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
-.faq.open .faq-a{max-height:220px}
-.faq-c{transition:transform .25s;display:inline-block}
-.faq.open .faq-c{transform:rotate(45deg);color:var(--acc)}
-.tcard{border:1px solid var(--gborder);border-radius:24px;padding:22px;background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:var(--shadow);transition:.2s}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}.faq.open .faq-a{max-height:220px}
+.faq-c{transition:transform .25s;display:inline-block}.faq.open .faq-c{transform:rotate(45deg);color:var(--acc)}
+.tcard{border:1px solid var(--gborder);border-radius:24px;padding:22px;background:var(--glass);backdrop-filter:blur(16px);box-shadow:var(--shadow);transition:.2s}
 .tcard:hover{transform:translateY(-3px);border-color:rgba(232,118,58,.4)}
 .eyebrow{font-size:10px;font-weight:900;letter-spacing:.22em;color:var(--acc);text-transform:uppercase}
-.cta-dark{background:rgba(32,28,25,.78);backdrop-filter:blur(20px) saturate(1.3);-webkit-backdrop-filter:blur(20px) saturate(1.3);border:1px solid rgba(255,255,255,.14);box-shadow:0 16px 48px rgba(40,30,20,.3),inset 0 1px 0 rgba(255,255,255,.1)}
+.cta-dark{background:rgba(32,28,25,.78);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.14);box-shadow:0 16px 48px rgba(40,30,20,.3)}
 #site-feat,#site-talk,#site-faq{scroll-margin-top:80px}
-.think{border:1.5px dashed rgba(232,118,58,.4);background:rgba(232,118,58,.06);border-radius:12px;padding:8px 12px;margin-bottom:8px;font-size:11px;color:var(--sub)}
-.think summary{cursor:pointer;font-weight:900;user-select:none;color:var(--acc)}
-.tk{white-space:pre-wrap;max-height:220px;overflow:auto;margin-top:6px;line-height:1.6}
+/* thinking timeline */
+.thinkbox{border:1px solid var(--gborder2);border-radius:16px;background:var(--glass2);backdrop-filter:blur(10px);margin-bottom:8px;overflow:hidden}
+.think-head{display:flex;align-items:center;gap:8px;padding:10px 14px;cursor:pointer;font-weight:900;font-size:13px;color:var(--sub);user-select:none}
+.think-head .tt{color:var(--text)}
+.thinkbox.live .tt{color:var(--acc)}
+.think-head .chev{margin-left:auto;transition:transform .25s;font-size:11px}
+.thinkbox.open .chev{transform:rotate(180deg)}
+.tsteps{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.thinkbox.open .tsteps{max-height:380px;overflow-y:auto;padding-top:2px}
+.tstep{display:flex;gap:11px;padding:0 14px 13px 16px;position:relative;font-size:12px;color:var(--sub);line-height:1.65}
+.tstep::before{content:'';position:absolute;left:20px;top:16px;bottom:-2px;width:1.5px;background:var(--gborder2)}
+.tstep:last-child::before{display:none}
+.tdot{width:9px;height:9px;border-radius:99px;background:var(--sub);opacity:.45;margin-top:5px;flex-shrink:0;position:relative;z-index:1;transition:.3s}
+.tstep.live .tdot{background:var(--acc);opacity:1;animation:pd 1s infinite}
+@keyframes pd{50%{box-shadow:0 0 0 6px rgba(232,118,58,.14)}}
+/* grok chatbox */
+.grok{display:flex;flex-direction:column;gap:2px;width:100%;max-width:36rem;margin:0 auto;padding:14px 14px 10px;border-radius:28px;background:var(--glass);backdrop-filter:blur(24px) saturate(1.5);border:1px solid var(--gborder);box-shadow:var(--shadow)}
+#minp{width:100%;background:none;border:none;outline:none;resize:none;font-size:15px;font-weight:600;color:var(--text);min-height:44px;max-height:160px;font-family:inherit}
+#minp::placeholder{color:var(--sub)}
+.gbar{display:flex;align-items:center;gap:8px;margin-top:4px}
+.gsep{width:1px;height:22px;background:linear-gradient(180deg,transparent,var(--gborder2),transparent);flex-shrink:0}
+.gpill{border:1.5px solid var(--gborder2);border-radius:999px;padding:5px 13px;font-size:12px;font-weight:800;color:var(--sub);background:transparent;cursor:pointer;transition:.18s;display:flex;align-items:center;gap:6px;font-family:inherit;white-space:nowrap}
+.gpill:hover{color:var(--text);border-color:var(--sub)}
+.gpill.on-think{color:#8b7cf6;border-color:#8b7cf6;background:rgba(139,124,246,.1)}
+.gat{width:38px;height:38px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:17px;background:none;border:none;cursor:pointer;color:var(--sub);transition:.15s;flex-shrink:0;font-family:inherit}
+.gat:hover{background:rgba(255,255,255,.5);color:var(--text)}
+html.dark .gat:hover{background:rgba(255,255,255,.08)}
+.mic{width:38px;height:38px;border-radius:999px;background:var(--text);color:var(--bg);display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;transition:.15s;border:none;flex-shrink:0;font-family:inherit}
+.mic.rec{background:#e05252;color:#fff;animation:pm 1s infinite}
+@keyframes pm{50%{box-shadow:0 0 0 8px rgba(224,82,82,.15)}}
+.sendc{width:40px;height:40px;border-radius:999px;border:none;cursor:pointer;background:var(--text);color:var(--bg);font-size:16px;font-weight:900;display:flex;align-items:center;justify-content:center;transition:.15s;flex-shrink:0;font-family:inherit}
+.sendc:disabled{opacity:.3}
+.sendc.stop{background:#e05252;color:#fff}
+#att-row{display:flex;gap:8px;flex-wrap:wrap}
+#att-row.hidden{display:none}
+/* idea chips */
+.ideas{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:640px}
+.idea{border:1px solid var(--gborder2);background:var(--glass2);backdrop-filter:blur(10px);border-radius:999px;padding:8px 16px;font-size:12.5px;font-weight:800;color:var(--sub);cursor:pointer;transition:.15s;font-family:inherit;text-align:left}
+.idea:hover{color:var(--acc);border-color:rgba(232,118,58,.5);transform:translateY(-1px)}
+.idea b{color:var(--text);margin-right:6px}
+/* question card */
+.qcard{border:1px solid var(--gborder2);border-radius:18px;background:var(--glass);backdrop-filter:blur(14px);overflow:hidden;margin:4px 0 8px}
+.qhead{display:flex;align-items:center;gap:8px;padding:11px 16px;font-weight:900;font-size:13px;background:rgba(232,118,58,.08);border-bottom:1px solid var(--gborder2)}
+.qhead .qc{margin-left:auto;color:var(--sub);font-size:11px}
+.qbody{padding:14px 16px}
+.qq{font-weight:800;font-size:14px;margin-bottom:12px;line-height:1.55}
+.qopt{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:9px 12px;border:1.5px solid var(--gborder2);border-radius:12px;background:var(--glass2);margin-bottom:8px;cursor:pointer;font-size:13px;font-weight:700;color:var(--text);transition:.15s;font-family:inherit}
+.qopt:hover{border-color:rgba(232,118,58,.5)}
+.qopt.sel{border-color:var(--acc);background:var(--acc-soft)}
+.qbadge{width:22px;height:22px;border-radius:7px;border:1.5px solid var(--gborder2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:var(--sub);flex-shrink:0}
+.qopt.sel .qbadge{background:var(--acc);color:#fff;border-color:var(--acc)}
+.qfree{display:flex;align-items:center;gap:10px}
+.qfree input{flex:1;border:1.5px solid var(--gborder2);background:var(--glass2);border-radius:12px;padding:9px 12px;font-size:13px;font-weight:700;outline:none;color:var(--text);font-family:inherit;min-width:0}
+.qfree input:focus{border-color:var(--acc)}
+.qfoot{display:flex;justify-content:flex-end;gap:14px;margin-top:12px;align-items:center}
+.qskip{background:none;border:none;color:var(--sub);font-weight:800;font-size:13px;cursor:pointer;font-family:inherit}
+.qskip:hover{color:var(--text)}
+.qsend{border:1.5px solid rgba(90,156,248,.6);background:rgba(90,156,248,.15);color:#5a9cf8;border-radius:10px;padding:7px 18px;font-weight:900;font-size:13px;cursor:pointer;font-family:inherit}
+.qsend:hover{background:rgba(90,156,248,.28)}
+.qdone{color:var(--sub);font-size:12px;font-weight:800;margin-top:10px}
 .att-thumb{position:relative;width:56px;height:56px;border-radius:14px;overflow:hidden;border:1px solid var(--gborder);box-shadow:var(--shadow)}
 .att-thumb img{width:100%;height:100%;object-fit:cover}
 .att-thumb button{position:absolute;top:2px;right:2px;background:rgba(0,0,0,.55);color:#fff;border-radius:99px;width:17px;height:17px;font-size:9px;line-height:17px;text-align:center}
 .pomo-num{font-size:68px;font-weight:900;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
 .pomo-num.run{color:var(--acc)}
 .user-av{background:linear-gradient(180deg,#454340,#16140f);color:#fff;border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.25)}
-html.dark .user-av{background:linear-gradient(180deg,#f7f5f1,#d8d4cd);color:#23211d;border-color:rgba(255,255,255,.5);box-shadow:inset 0 1px 0 rgba(255,255,255,.9)}
-@media(prefers-reduced-motion:reduce){.marquee-track,.hero-glow{animation:none}.rv{transition:none;opacity:1;transform:none}}
+html.dark .user-av{background:linear-gradient(180deg,#f7f5f1,#d8d4cd);color:#23211d;border-color:rgba(255,255,255,.5)}
+@media(prefers-reduced-motion:reduce){.marquee-track,.hero-glow,.mic.rec{animation:none}.rv{transition:none;opacity:1;transform:none}}
 </style>
 </head>
-<body>
+<body class="landing">
 <div id="amb"></div>
 <aside id="sidebar">
-<div class="p-5 pb-2 flex items-center gap-3"><div class="logo-mark">⚡</div><div><div class="text-base font-black italic tracking-tighter leading-none">RG_OS <span style="color:var(--acc)">v51</span></div><div class="text-[9px] font-black mt-1" style="color:var(--sub)">香港仔版 · Liquid Glass</div></div></div>
+<div class="p-5 pb-2 flex items-center gap-3"><div class="logo-mark" onclick="App.showLanding()" title="返宣傳頁">⚡</div><div><div class="text-base font-black italic tracking-tighter leading-none">RG_OS <span style="color:var(--acc)">v51</span></div><div class="text-[9px] font-black mt-1" style="color:var(--sub)">香港仔版 · Liquid Glass</div></div></div>
 <div class="px-5 pb-2"><div class="text-[10px] font-black px-3 py-1.5 rounded-full inline-flex items-center gap-2 cursor-pointer border transition hover:opacity-80" style="border-color:var(--gborder2);background:var(--glass2)" onclick="App.openSettings()"><span id="led" class="w-1.5 h-1.5 rounded-full bg-red-500"></span><span id="conn-text">未配置</span></div></div>
 <nav class="flex-1 overflow-y-auto px-3 pb-2">
-<div class="sec-label">門面</div>
-<div onclick="App.openTool('site')" id="tab-site" class="tab active">🎬 宣傳頁</div>
+<div class="sec-label">主頁</div>
 <div onclick="App.openTool('home')" id="tab-home" class="tab">🏠 主頁</div>
 <div class="sec-label">傾偈</div>
-<div onclick="App.openTool('chat')" id="tab-chat" class="tab">💬 阮峻對話</div>
+<div onclick="App.openTool('chat')" id="tab-chat" class="tab active">💬 阮峻對話</div>
 <div class="sec-label">工具</div>
 <div onclick="App.openTool('cal')" id="tab-cal" class="tab">🧮 亂算器</div>
 <div onclick="App.openTool('dict')" id="tab-dict" class="tab">📖 離譜詞典</div>
@@ -196,31 +232,31 @@ html.dark .user-av{background:linear-gradient(180deg,#f7f5f1,#d8d4cd);color:#232
 
 <main id="main-stage" class="flex-1 surface relative flex flex-col overflow-hidden">
 
-<!-- SITE (default) -->
+<!-- LANDING -->
 <div id="panel-site" class="tool-panel active"><div class="flex-1 overflow-y-auto">
-<div class="sticky top-0 z-10 phead border-b" style="border-color:var(--gborder2)"><div class="max-w-5xl mx-auto flex items-center gap-4 px-6 py-4 flex-wrap"><span class="font-black italic tracking-tighter">RG_OS</span><span class="flex-1"></span><button class="chip" onclick="App.siteTo('feat')">功能</button><button class="chip" onclick="App.siteTo('talk')">好評</button><button class="chip" onclick="App.siteTo('faq')">FAQ</button><button class="glow-btn btn-p !rounded-full !px-5 !py-2 !text-xs" onclick="App.openTool('chat')">即刻用 →</button></div></div>
+<div class="sticky top-0 z-10 phead border-b" style="border-color:var(--gborder2)"><div class="max-w-5xl mx-auto flex items-center gap-4 px-6 py-4 flex-wrap"><span class="font-black italic tracking-tighter">RG_OS</span><span class="flex-1"></span><button class="chip" onclick="App.siteTo('feat')">功能</button><button class="chip" onclick="App.siteTo('talk')">好評</button><button class="chip" onclick="App.siteTo('faq')">FAQ</button><button class="glow-btn btn-p !rounded-full !px-5 !py-2 !text-xs" onclick="App.enterApp('chat')">即刻用 →</button></div></div>
 <div class="dotgrid"><div class="hero-glow"></div><div class="max-w-5xl mx-auto px-6 pt-20 pb-24 text-center relative">
-<div class="rv eyebrow">v51 · 香港仔版 · BYOK</div>
-<h1 class="rv hero-title mt-5">毒舌，<br>都係一種<span class="grad-text">生產力</span>。</h1>
-<p class="rv max-w-xl mx-auto mt-6 text-sm font-bold leading-relaxed" style="color:var(--sub)">廿五個工具、識睇相、識思考、識記嘢嘅香港中三學生。零伺服器，你嘅 Key 你話事。</p>
-<div class="rv flex gap-3 justify-center mt-8 flex-wrap"><button class="glow-btn btn-p !rounded-full !px-8 !py-4 !text-sm" onclick="App.openTool('chat')">開始傾偈 →</button><button class="rounded-full px-8 py-4 text-sm font-black border bg-transparent transition hover:scale-[1.03]" style="border-color:var(--gborder2);background:var(--glass2);backdrop-filter:blur(10px)" onclick="App.siteTo('feat')">睇下有咩</button></div>
+<div class="rv eyebrow">v51.6 · 香港仔版 · BYOK</div>
+<h1 class="rv hero-title mt-5">問阮峻<br><span class="grad-text">任何嘢</span>。</h1>
+<p class="rv max-w-xl mx-auto mt-6 text-sm font-bold leading-relaxed" style="color:var(--sub)">廿四個工具、識睇相、識思考、會反問你嘅香港中三學生。零伺服器，你嘅 Key 你話事。</p>
+<div class="rv flex gap-3 justify-center mt-8 flex-wrap"><button class="glow-btn btn-p !rounded-full !px-8 !py-3.5 !text-sm" onclick="App.enterApp('chat')">開始傾偈 →</button><button class="rounded-full px-8 py-3.5 text-sm font-black border bg-transparent transition hover:scale-[1.03]" style="border-color:var(--gborder2);background:var(--glass2);backdrop-filter:blur(10px)" onclick="App.siteTo('feat')">睇下有咩</button></div>
 </div></div>
-<div class="marquee"><div class="marquee-track"><span>🚄 E5系 320KM/H</span><span>📎 識睇相</span><span>💭 識思考</span><span>🧠 識記嘢</span><span>🗣 廣東話發聲</span><span>曾俊偉唔准用</span><span>🚄 E5系 320KM/H</span><span>📎 識睇相</span><span>💭 識思考</span><span>🧠 識記嘢</span><span>🗣 廣東話發聲</span><span>曾俊偉唔准用</span></div></div>
+<div class="marquee"><div class="marquee-track"><span>🚄 E5系 320KM/H</span><span>📎 識睇相</span><span>💭 Reasoning 時間軸</span><span>❓ 會反問你</span><span>🎤 語音輸入</span><span>曾俊偉唔准用</span><span>🚄 E5系 320KM/H</span><span>📎 識睇相</span><span>💭 Reasoning 時間軸</span><span>❓ 會反問你</span><span>🎤 語音輸入</span><span>曾俊偉唔准用</span></div></div>
 <div class="max-w-5xl mx-auto px-6 py-16 grid grid-cols-2 md:grid-cols-4 gap-4">
-<div class="rv text-center"><div class="text-4xl font-black" style="color:var(--acc)"><span data-count="25">0</span></div><div class="eyebrow mt-1" style="color:var(--sub)">個工具</div></div>
+<div class="rv text-center"><div class="text-4xl font-black" style="color:var(--acc)"><span data-count="24">0</span></div><div class="eyebrow mt-1" style="color:var(--sub)">個工具</div></div>
 <div class="rv text-center"><div class="text-4xl font-black"><span data-count="0">0</span></div><div class="eyebrow mt-1" style="color:var(--sub)">個伺服器</div></div>
 <div class="rv text-center"><div class="text-4xl font-black"><span data-count="100">0</span>%</div><div class="eyebrow mt-1" style="color:var(--sub)">本地儲存</div></div>
 <div class="rv text-center"><div class="text-4xl font-black"><span data-count="320">0</span></div><div class="eyebrow mt-1" style="color:var(--sub)">KM/H 信仰</div></div>
 </div>
 <div id="site-feat" class="max-w-5xl mx-auto px-6 pb-20">
-<div class="rv eyebrow mb-3">功能</div><h2 class="rv text-3xl font-black tracking-tight mb-8">一個 App，廿五般武藝。</h2>
+<div class="rv eyebrow mb-3">功能</div><h2 class="rv text-3xl font-black tracking-tight mb-8">一個 App，廿四般武藝。</h2>
 <div class="grid md:grid-cols-3 gap-4">
-<button class="rv bento md:col-span-2 text-left" onclick="App.openTool('chat')"><div class="bi">💬</div><div class="font-black text-sm mt-3">阮峻對話</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">影相問功課、上傳文件、開思考模式、俾佢出聲讀你聽。</div></button>
-<button class="rv bento text-left" onclick="App.openTool('mem')"><div class="bi">🧠</div><div class="font-black text-sm mt-3">記憶系統</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">話佢知「記住xxx」，佢永遠記得。</div></button>
-<button class="rv bento text-left" onclick="App.openTool('games')"><div class="bi">🎮</div><div class="font-black text-sm mt-3">遊戲中心</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">成語接龍/猜謎/20Q，贏佢唔易。</div></button>
-<button class="rv bento text-left" onclick="App.openTool('draw')"><div class="bi">🖼️</div><div class="font-black text-sm mt-3">畫圖</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">一句生成圖片，即場下載。</div></button>
-<button class="rv bento md:col-span-2 text-left" onclick="App.openTool('translate')"><div class="bi">🌐</div><div class="font-black text-sm mt-3">真翻譯</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">廣東話⇄英文⇄日韓，地道口語翻譯。</div></button>
-<button class="rv bento text-left" onclick="App.openTool('pomo')"><div class="bi">⏱️</div><div class="font-black text-sm mt-3">番茄鐘</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">阮峻監你讀書，偷懶即刻串。</div></button>
+<button class="rv bento md:col-span-2 text-left" onclick="App.enterApp('chat')"><div class="bi">💬</div><div class="font-black text-sm mt-3">阮峻對話</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">影相問功課、開深諗模式睇 Reasoning 時間軸、佢唔明會反問你、仲可以播出嚟。</div></button>
+<button class="rv bento text-left" onclick="App.enterApp('mem')"><div class="bi">🧠</div><div class="font-black text-sm mt-3">記憶系統</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">話佢知「記住xxx」，佢永遠記得。</div></button>
+<button class="rv bento text-left" onclick="App.enterApp('games')"><div class="bi">🎮</div><div class="font-black text-sm mt-3">遊戲中心</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">成語接龍/猜謎/20Q。</div></button>
+<button class="rv bento text-left" onclick="App.enterApp('draw')"><div class="bi">🖼️</div><div class="font-black text-sm mt-3">畫圖</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">一句生成圖片。</div></button>
+<button class="rv bento md:col-span-2 text-left" onclick="App.enterApp('translate')"><div class="bi">🌐</div><div class="font-black text-sm mt-3">真翻譯</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">廣東話⇄英文⇄日韓，地道口語。</div></button>
+<button class="rv bento text-left" onclick="App.enterApp('pomo')"><div class="bi">⏱️</div><div class="font-black text-sm mt-3">番茄鐘</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">阮峻監你讀書。</div></button>
 </div></div>
 <div id="site-talk" class="max-w-5xl mx-auto px-6 pb-20">
 <div class="rv eyebrow mb-3">好評</div><h2 class="rv text-3xl font-black tracking-tight mb-8">佢哋都係受害者。</h2>
@@ -231,14 +267,14 @@ html.dark .user-av{background:linear-gradient(180deg,#f7f5f1,#d8d4cd);color:#232
 </div></div>
 <div id="site-faq" class="max-w-2xl mx-auto px-6 pb-20">
 <div class="rv eyebrow mb-3">FAQ</div><h2 class="rv text-3xl font-black tracking-tight mb-8">問之前，先諗下值唔值。</h2>
-<div class="rv faq card !rounded-2xl px-5 cursor-pointer !py-0" onclick="App.faqT(this)"><div class="flex justify-between items-center py-4 font-black text-sm">要錢咩？<span class="faq-c">+</span></div><div class="faq-a text-xs font-bold" style="color:var(--sub)"><p class="pb-4">App 免費。API 你自己俾（BYOK）。睇相要用支援 vision 嘅模型（GPT-4o / Gemini / Claude 系）。</p></div></div>
-<div class="rv faq card !rounded-2xl px-5 cursor-pointer mt-3 !py-0" onclick="App.faqT(this)"><div class="flex justify-between items-center py-4 font-black text-sm">思考模式咩嚟？<span class="faq-c">+</span></div><div class="faq-a text-xs font-bold" style="color:var(--sub)"><p class="pb-4">用推理模型（DeepSeek-R1 等）時，可以攤開佢嘅思考過程睇。想佢諗深啲就開，想快就閂。</p></div></div>
+<div class="rv faq card !rounded-2xl px-5 cursor-pointer !py-0" onclick="App.faqT(this)"><div class="flex justify-between items-center py-4 font-black text-sm">要錢咩？<span class="faq-c">+</span></div><div class="faq-a text-xs font-bold" style="color:var(--sub)"><p class="pb-4">App 免費。API 你自己俾（BYOK）。睇相要用 vision 模型（GPT-4o / Gemini / Claude 系）。</p></div></div>
+<div class="rv faq card !rounded-2xl px-5 cursor-pointer mt-3 !py-0" onclick="App.faqT(this)"><div class="flex justify-between items-center py-4 font-black text-sm">深諗模式咩嚟？<span class="faq-c">+</span></div><div class="faq-a text-xs font-bold" style="color:var(--sub)"><p class="pb-4">配推理模型（DeepSeek-R1 等）用，會見到佢嘅 Reasoning 時間軸。</p></div></div>
 <div class="rv faq card !rounded-2xl px-5 cursor-pointer mt-3 !py-0" onclick="App.faqT(this)"><div class="flex justify-between items-center py-4 font-black text-sm">可以唔提曾俊偉嗎？<span class="faq-c">+</span></div><div class="faq-a text-xs font-bold" style="color:var(--sub)"><p class="pb-4">唔得。呢個係 feature，唔係 bug。</p></div></div>
 </div>
 <div class="max-w-5xl mx-auto px-6 pb-24"><div class="rv cta-dark rounded-[32px] p-12 md:p-16 text-center">
 <div class="text-3xl md:text-5xl font-black tracking-tight" style="color:#f5f2ec">睇夠未？</div>
 <p class="text-xs font-bold mt-3" style="color:rgba(245,242,236,.6)">個 app 唔會自己用自己。</p>
-<button class="rounded-full px-10 py-4 text-sm font-black mt-8 bg-white hover:scale-105 transition shadow-lg" style="color:#2a2620" onclick="App.openTool('home')">返主頁開工 →</button>
+<button class="rounded-full px-10 py-4 text-sm font-black mt-8 bg-white hover:scale-105 transition shadow-lg" style="color:#2a2620" onclick="App.enterApp('home')">返主頁開工 →</button>
 </div><div class="text-center eyebrow py-10" style="color:var(--sub)">RG_OS v51 · Made with 廣東話</div></div>
 </div></div>
 
@@ -256,22 +292,43 @@ html.dark .user-av{background:linear-gradient(180deg,#f7f5f1,#d8d4cd);color:#232
 
 <!-- CHAT -->
 <div id="panel-chat" class="tool-panel">
-<header class="h-14 border-b flex items-center gap-2 pl-16 md:pl-6 pr-4 md:pr-6 flex-wrap phead" style="border-color:var(--gborder2)"><span class="font-black text-sm">阮峻對話</span><span id="chat-model" class="chip cursor-default">--</span><div class="flex-1"></div><button id="think-btn" class="chip" onclick="App.toggleThink()" title="思考模式">💭 思考：關</button><button id="tts-btn" class="chip" onclick="App.toggleTTS()" title="自動讀出">🔊 讀出：關</button><button id="fast-btn" class="chip" onclick="App.toggleFast()">⚡ 快答：關</button><button onclick="App.clearChat()" class="icon-btn">🗑</button></header>
-<div id="scroller" class="flex-1 overflow-y-auto p-4 md:p-6"><div id="chat-view" class="max-w-2xl mx-auto space-y-5"></div></div>
-<div class="p-4 md:p-6 pt-2">
-<div id="att-row" class="max-w-2xl mx-auto flex gap-2 mb-2 flex-wrap hidden"></div>
-<div class="max-w-2xl mx-auto flex items-end rounded-3xl p-2 border shadow-lg" style="background:var(--glass);backdrop-filter:blur(20px) saturate(1.5);-webkit-backdrop-filter:blur(20px) saturate(1.5);border-color:var(--gborder)">
+<div id="chat-empty" class="flex-1 flex flex-col items-center justify-center overflow-y-auto p-6">
+<div class="text-center mb-7">
+<div class="text-5xl mb-3">🚄</div>
+<div class="text-2xl md:text-3xl font-black tracking-tight">阮峻<span class="grad-text">在線</span></div>
+<div class="text-xs font-bold mt-2" style="color:var(--sub)">毒舌 · 識睇相 · 唔明會反問你</div>
+</div>
+<div id="hero-slot" class="w-full flex justify-center px-2">
+<!-- 輸入膠囊（空對話時喺呢度，正中間） -->
+<div id="grokbox" class="grok">
 <input type="file" id="file-in" multiple accept="image/*,.txt,.md,.json,.csv,.js,.py,.html,.css" class="hidden">
-<button onclick="$('file-in').click()" class="w-10 h-10 flex items-center justify-center text-lg shrink-0 hover:scale-110 transition" title="加相/文件">📎</button>
-<textarea id="minp" rows="1" class="flex-1 bg-transparent border-none outline-none py-2.5 px-1 font-medium resize-none max-h-40 text-sm" placeholder="傾兩句 / 影相問嘢…（Enter 發送）"></textarea>
-<button id="sbtn" onclick="App.send()" disabled class="w-10 h-10 btn-p !rounded-full !p-0 flex items-center justify-center font-bold shrink-0">↑</button>
-</div></div>
+<div id="att-row" class="hidden mb-1"></div>
+<textarea id="minp" rows="1" placeholder="傾兩句 / 影相問嘢…（Enter 發送）"></textarea>
+<div class="gbar">
+<button class="gat" onclick="$('file-in').click()" title="加相/文件">📎</button>
+<div class="gsep"></div>
+<button id="pill-think" class="gpill" onclick="App.setPill()">💭 深諗</button>
+<div class="flex-1"></div>
+<button id="mic-btn" class="mic" onclick="App.toggleMic()" title="語音輸入">🎙</button>
+<button id="sbtn" onclick="App.send()" disabled class="sendc">↑</button>
+</div>
+</div>
+</div>
+<div class="text-[10px] font-black mt-8 mb-3" style="color:var(--sub);letter-spacing:.15em">試下問</div>
+<div id="idea-chips" class="ideas"></div>
+<button onclick="App.shuffleIdeas()" class="chip mt-4">🎲 換一批</button>
+</div>
+<div id="chat-full" class="flex-1 flex flex-col overflow-hidden" style="display:none">
+<header class="h-14 border-b flex items-center gap-2 pl-16 md:pl-6 pr-4 md:pr-6 flex-wrap phead" style="border-color:var(--gborder2)"><span class="font-black text-sm">阮峻對話</span><span id="chat-model" class="chip cursor-default">--</span><div class="flex-1"></div><button id="tts-hdr" class="icon-btn" onclick="App.toggleTTS()" title="自動讀出">🔊</button><button onclick="App.clearChat()" class="icon-btn" title="清空">🗑</button></header>
+<div id="scroller" class="flex-1 overflow-y-auto p-4 md:p-6"><div id="chat-view" class="max-w-2xl mx-auto space-y-5"></div></div>
+<div id="dock-slot" class="p-4 md:p-6 pt-2"></div>
+</div>
 </div>
 
 <!-- CAL -->
 <div id="panel-cal" class="tool-panel">
 <header class="p-6 pl-16 md:pl-6 font-black text-lg border-b flex items-center justify-between surface phead" style="border-color:var(--gborder2)"><span>亂算器</span><button id="chaos-btn" class="chip" onclick="App.toggleChaos()">🤪 亂算：關</button></header>
-<div class="flex-1 flex items-center justify-center p-4 overflow-y-auto"><div class="card w-full max-w-[340px] !bg-white/60 shadow-2xl" style="backdrop-filter:blur(24px) saturate(1.5);-webkit-backdrop-filter:blur(24px) saturate(1.5)">
+<div class="flex-1 flex items-center justify-center p-4 overflow-y-auto"><div class="card w-full max-w-[340px] !bg-white/60 shadow-2xl" style="backdrop-filter:blur(24px) saturate(1.5)">
 <div class="rounded-2xl p-5 mb-4 text-right border" style="background:rgba(255,255,255,.4);border-color:var(--gborder2)"><div id="cal-expr" class="text-2xl font-black break-all min-h-[32px]">0</div><div id="cal-prev" class="text-xs font-bold mt-1" style="color:var(--acc)">&nbsp;</div></div>
 <div class="grid grid-cols-4 gap-2">
 <button onclick="App.calClear()" class="cal-btn" style="color:#e05252">C</button><button onclick="App.calInput('(')" class="cal-btn op">(</button><button onclick="App.calInput(')')" class="cal-btn op">)</button><button onclick="App.calInput('/')" class="cal-btn op">÷</button>
@@ -279,7 +336,7 @@ html.dark .user-av{background:linear-gradient(180deg,#f7f5f1,#d8d4cd);color:#232
 <button onclick="App.calInput('4')" class="cal-btn">4</button><button onclick="App.calInput('5')" class="cal-btn">5</button><button onclick="App.calInput('6')" class="cal-btn">6</button><button onclick="App.calInput('-')" class="cal-btn op">−</button>
 <button onclick="App.calInput('1')" class="cal-btn">1</button><button onclick="App.calInput('2')" class="cal-btn">2</button><button onclick="App.calInput('3')" class="cal-btn">3</button><button onclick="App.calInput('+')" class="cal-btn op">+</button>
 <button onclick="App.calInput('0')" class="cal-btn col-span-2">0</button><button onclick="App.calInput('.')" class="cal-btn">.</button><button onclick="App.calBack()" class="cal-btn op">⌫</button>
-<button onclick="App.calEval()" class="cal-btn eq col-span-4 !bg-none" style="background:linear-gradient(180deg,#40403e,#0c0c0c);color:rgba(255,255,255,.94);border:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 4px 14px rgba(60,50,40,.2)">＝</button>
+<button onclick="App.calEval()" class="cal-btn col-span-4" style="background:linear-gradient(180deg,#40403e,#0c0c0c);color:#fff;border:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.22)">＝</button>
 </div></div></div>
 </div>
 
@@ -296,7 +353,7 @@ html.dark .user-av{background:linear-gradient(180deg,#f7f5f1,#d8d4cd);color:#232
 <div class="flex-1 overflow-y-auto p-6 md:p-10"><div class="max-w-xl mx-auto card space-y-3">
 <div class="text-[10px] font-black" style="color:var(--sub)">譯成咩話？</div>
 <div id="tl-targets" class="flex flex-wrap gap-2"></div>
-<textarea id="tl-in" rows="4" class="field resize-none" placeholder="打入任何嘢…（自動偵測語言，Ctrl+Enter 譯）"></textarea>
+<textarea id="tl-in" rows="4" class="field resize-none" placeholder="打入任何嘢…（Ctrl+Enter 譯）"></textarea>
 <button onclick="App.tlGo()" class="w-full btn-p">🌐 翻譯</button>
 <div id="tl-out" class="hidden"><div class="rounded-2xl p-5 text-sm leading-relaxed border min-h-[60px]" style="border-color:var(--gborder2);background:var(--glass2)" id="tl-body"></div><button onclick="App.copyText(document.getElementById('tl-body').textContent)" class="chip mt-3">📋 複製</button></div>
 </div></div></div>
@@ -308,7 +365,7 @@ html.dark .user-av{background:linear-gradient(180deg,#f7f5f1,#d8d4cd);color:#232
 <div class="flex gap-3"><input id="gr-score" type="number" class="field" placeholder="得分"><input id="gr-full" type="number" class="field" placeholder="滿分"></div>
 <button onclick="App.rateGrade()" class="w-full btn-p">⚖️ 審判</button>
 <div id="gr-res" class="hidden rounded-2xl p-5 text-center" style="background:rgba(224,82,82,.08);border:1px solid rgba(224,82,82,.2)"></div>
-<button id="gr-roast-btn" onclick="App.aiRoast()" class="hidden w-full py-3 border rounded-2xl font-black text-xs bg-transparent transition hover:opacity-80" style="border-color:rgba(232,118,58,.5);color:var(--acc);background:var(--acc-soft)">🔥 叫阮峻評一句</button>
+<button id="gr-roast-btn" onclick="App.aiRoast()" class="hidden w-full py-3 border rounded-2xl font-black text-xs bg-transparent" style="border-color:rgba(232,118,58,.5);color:var(--acc);background:var(--acc-soft)">🔥 叫阮峻評一句</button>
 <div id="gr-ai" class="hidden rounded-2xl p-4 text-sm leading-relaxed border" style="border-color:var(--gborder2);background:var(--glass2)"></div>
 </div><div id="gr-history" class="card hidden"></div></div></div>
 </div>
@@ -351,7 +408,7 @@ html.dark .user-av{background:linear-gradient(180deg,#f7f5f1,#d8d4cd);color:#232
 <div class="flex-1 overflow-y-auto p-6 md:p-10 max-w-xl mx-auto w-full">
 <div class="card space-y-3">
 <input id="im-model" class="field" placeholder="圖片模型（例如 dall-e-3 / Kwai-Kolors/Kolors）">
-<textarea id="im-prompt" rows="3" class="field resize-none" placeholder="描述畫咩，例如：一隻戴住學生襟章嘅柴犬喺新幹線上食杯麵，吉卜力風"></textarea>
+<textarea id="im-prompt" rows="3" class="field resize-none" placeholder="描述畫咩…"></textarea>
 <button onclick="App.drawImg()" class="w-full btn-p">🖼️ 畫！</button>
 </div>
 <div id="im-out" class="mt-5"><div class="empty"><div class="e">🖼️</div><div class="t">畫布空嘅</div><div class="s">句陶瓷啲，出圖靚啲</div></div></div>
@@ -448,7 +505,7 @@ html.dark .user-av{background:linear-gradient(180deg,#f7f5f1,#d8d4cd);color:#232
 <div id="panel-food" class="tool-panel surface"><header class="p-6 pl-16 md:pl-6 font-black text-lg border-b phead" style="border-color:var(--gborder2)">深夜食堂</header>
 <div class="flex-1 overflow-y-auto p-6 md:p-10 max-w-md mx-auto w-full">
 <input id="fd-in" class="field mb-3" placeholder="雪櫃有咩？（雞蛋、隔夜飯…）">
-<div class="flex gap-2 mb-6"><button onclick="App.foodGo()" class="flex-1 btn-p">🍳 決定今晚食咩</button><button onclick="App.foodGo(true)" class="px-5 py-3 rounded-xl font-black text-xs border shrink-0 transition hover:opacity-80" style="border-color:rgba(232,118,58,.5);color:var(--acc);background:var(--acc-soft)">🎲 隨便餵我</button></div>
+<div class="flex gap-2 mb-6"><button onclick="App.foodGo()" class="flex-1 btn-p">🍳 決定今晚食咩</button><button onclick="App.foodGo(true)" class="px-5 py-3 rounded-xl font-black text-xs border shrink-0" style="border-color:rgba(232,118,58,.5);color:var(--acc);background:var(--acc-soft)">🎲 隨便餵我</button></div>
 <div id="fd-out"><div class="empty"><div class="e">🍳</div><div class="t">隻鑊仲凍</div><div class="s">報上雪櫃存貨</div></div></div>
 </div></div>
 
@@ -466,19 +523,19 @@ html.dark .user-av{background:linear-gradient(180deg,#f7f5f1,#d8d4cd);color:#232
 <!-- POMODORO -->
 <div id="panel-pomo" class="tool-panel surface"><header class="p-6 pl-16 md:pl-6 font-black text-lg border-b phead" style="border-color:var(--gborder2)">番茄鐘<span class="psub">阮峻監你讀書</span></header>
 <div class="flex-1 overflow-y-auto p-6 md:p-10 max-w-md mx-auto w-full text-center">
-<input id="pm-task" class="field mb-3 text-center" placeholder="今日溫咩？（例如：數學卷二）">
+<input id="pm-task" class="field mb-3 text-center" placeholder="今日溫咩？">
 <div class="flex gap-2 justify-center mb-6" id="pm-presets"></div>
 <div class="pomo-num" id="pm-num">25:00</div>
 <div class="text-xs font-black mt-1 mb-6" style="color:var(--sub)" id="pm-status">揀個時長開始</div>
 <div class="flex gap-2 justify-center mb-6"><button id="pm-btn" onclick="App.pomoToggle()" class="px-8 btn-p !rounded-full">▶ 開始</button><button onclick="App.pomoReset()" class="chip">↺ 重設</button></div>
-<div class="text-[10px] font-black mb-2" style="color:var(--sub)">今日完成 <span id="pm-done" style="color:var(--acc)">0</span> 粒番茄 🍅</div>
+<div class="text-[10px] font-black mb-2" style="color:var(--sub)">今日完成 <span id="pm-done" style="color:var(--acc)">0</span> 🍅</div>
 <div id="pm-ai" class="card text-sm font-bold italic hidden" style="border-left:3px solid var(--acc)"></div>
 </div></div>
 
 <!-- MEMORY -->
 <div id="panel-mem" class="tool-panel surface"><header class="p-6 pl-16 md:pl-6 font-black text-lg border-b flex items-center justify-between phead" style="border-color:var(--gborder2)"><span>阮峻嘅記憶</span><span class="chip cursor-default" style="color:var(--acc)"><span id="mem-count">0</span> 條</span></header>
 <div class="flex-1 overflow-y-auto p-6 md:p-10 max-w-xl mx-auto w-full">
-<div class="card mb-4 text-xs font-bold leading-relaxed" style="color:var(--sub)">喺對話度打「<b style="color:var(--acc)">記住…</b>」就會自動存入嚟。呢啲嘢會注入佢個腦，佢喺任何工具都記得。</div>
+<div class="card mb-4 text-xs font-bold leading-relaxed" style="color:var(--sub)">喺對話度打「<b style="color:var(--acc)">記住…</b>」就會自動存入嚟。</div>
 <div class="flex gap-2 mb-6"><input id="mem-in" class="field flex-1" placeholder="手動加一條記憶…"><button onclick="App.memAdd()" class="px-6 btn-p !rounded-xl shrink-0">+ 記住</button></div>
 <div id="mem-list" class="space-y-2"></div>
 </div></div>
@@ -487,22 +544,22 @@ html.dark .user-av{background:linear-gradient(180deg,#f7f5f1,#d8d4cd);color:#232
 <div id="panel-backup" class="tool-panel surface"><header class="p-6 pl-16 md:pl-6 font-black text-lg border-b phead" style="border-color:var(--gborder2)">備份</header>
 <div class="flex-1 overflow-y-auto p-6 md:p-10 max-w-md mx-auto w-full">
 <div class="card space-y-4">
-<div class="text-xs font-bold leading-relaxed" style="color:var(--sub)">所有嘢（對話/小說/記憶/收集…）只存喺呢個 browser。清 browser data = 冇晒。定期匯出一份穩陣。</div>
+<div class="text-xs font-bold leading-relaxed" style="color:var(--sub)">所有嘢只存喺呢個 browser。定期匯出一份穩陣。</div>
 <button onclick="App.bkExport()" class="w-full btn-p">⬇ 匯出全部（JSON）</button>
 <div class="border-2 border-dashed rounded-2xl p-5 text-center" style="border-color:var(--gborder2)">
 <input type="file" id="bk-file" accept=".json" class="hidden" onchange="App.bkImport(this)">
-<button onclick="$('bk-file').click()" class="chip">⬆ 匯入備份檔（會覆蓋而家嘅嘢）</button>
+<button onclick="$('bk-file').click()" class="chip">⬆ 匯入備份檔</button>
 </div>
 <button onclick="App.bkWipe()" class="w-full btn-d">💣 清空所有本地數據</button>
 </div>
 </div></div>
 </main>
 
-<button id="menu-btn" onclick="App.toggleSidebar()" class="fixed top-3.5 left-3 z-40 md:hidden w-10 h-10 rounded-full border flex items-center justify-center shadow-lg" style="border-color:var(--gborder);background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)">☰</button>
+<button id="menu-btn" onclick="App.toggleSidebar()" class="fixed top-3.5 left-3 z-40 md:hidden w-10 h-10 rounded-full border flex items-center justify-center shadow-lg" style="border-color:var(--gborder);background:var(--glass);backdrop-filter:blur(16px)">☰</button>
 <div id="overlay" onclick="App.toggleSidebar(false)" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[45] hidden md:hidden"></div>
 
 <div id="settings-modal" style="display:none" class="fixed inset-0 bg-black/45 backdrop-blur-md z-[100] items-center justify-center p-4">
-<div class="w-full max-w-md rounded-3xl border p-6 max-h-[92vh] overflow-y-auto shadow-2xl" style="background:var(--glass);backdrop-filter:blur(32px) saturate(1.6);-webkit-backdrop-filter:blur(32px) saturate(1.6);border-color:var(--gborder)">
+<div class="w-full max-w-md rounded-3xl border p-6 max-h-[92vh] overflow-y-auto shadow-2xl" style="background:var(--glass);backdrop-filter:blur(32px) saturate(1.6);border-color:var(--gborder)">
 <div class="flex items-center justify-between mb-5"><div class="font-black text-lg">設定</div><button onclick="App.closeSettings()" class="icon-btn">✕</button></div>
 <div class="flex gap-2 mb-5"><button id="stab-conn" class="stab active" onclick="App.setTab('conn')">🔌 連線</button><button id="stab-persona" class="stab" onclick="App.setTab('persona')">🎭 人設</button><button id="stab-params" class="stab" onclick="App.setTab('params')">⚡ 參數</button></div>
 <div id="set-conn">
@@ -515,7 +572,7 @@ html.dark .user-av{background:linear-gradient(180deg,#f7f5f1,#d8d4cd);color:#232
 <div id="set-status" class="text-[11px] font-bold mb-3 min-h-[16px]" style="color:var(--sub)"></div>
 <input id="in-model" class="field mb-2" list="dl-models" placeholder="傾偈模型">
 <datalist id="dl-models"></datalist>
-<div class="text-[10px] leading-relaxed" style="color:var(--sub)">貼士：睇相揀 GPT-4o / Gemini / Claude 系；思考模式揀 DeepSeek-R1 或 o 系；畫圖喺畫圖頁面填圖片模型。</div>
+<div class="text-[10px] leading-relaxed" style="color:var(--sub)">貼士：睇相揀 GPT-4o / Gemini / Claude 系；深諗模式揀 DeepSeek-R1 或 o 系。</div>
 </div>
 <div id="set-persona" style="display:none">
 <input id="in-name" class="field mb-4" placeholder="你個名">
@@ -544,19 +601,20 @@ systemPrompt:`你係阮峻，14歲，香港中三學生。
 【性格】毒舌、串嘴、口賤心軟。唔講粗口。
 【信仰】新幹線係你人生意義，講起會報型號時速（E5系 320km/h）。
 【死對頭】曾俊偉，你同學，成日攞嚟笑，但只限把口。
-【規則】答案短而直接，1至3句。遇到認真問題即刻收起毒舌，俾貼心回應。`,
+【規則】答案短而直接，1至3句。遇到認真問題即刻收起毒舌，俾貼心回應。
+【澄清】如果用戶要求有任何關鍵唔清晰（目的/對象/格式/範圍），可以先問一條澄清問題再答，嚴格格式：【問題】xxx【A】選項一【B】選項二。唔好為問而問，夠清楚就直接答。`,
 temperature:.8,maxTokens:512,models:[]};
-const FAST_SYS='你係阮峻，14歲香港中學生。廣東話口語，毒舌串嘴，答得快短狠，最多兩句。';
 
 const state={settings:Object.assign({},DEFAULTS,LS.get('rg47_settings',{})),chat:LS.get('rg47_chat',[]),
 novel:Object.assign({title:'',premise:'',chapters:[]},LS.get('rg47_novel',{})),
 dictWords:LS.get('rg47_dict',[]),grades:LS.get('rg47_grades',[]),cities:LS.get('rg47_cities',[]),
 soups:LS.get('rg48_soup',[]),fortunes:LS.get('rg48_fortunes',{}),trains:LS.get('rg48_trains',[]),
-letters:LS.get('rg48_letters',[]),web:LS.get('rg48_web',null),fast:LS.get('rg48_fast',false),
-taste:LS.get('rg48_taste',true),mems:LS.get('rg51_mems',[]),showThink:LS.get('rg51_think',false),
+letters:LS.get('rg48_letters',[]),web:LS.get('rg48_web',null),
+think:LS.get('rg51_think',false),
+taste:LS.get('rg48_taste',true),mems:LS.get('rg51_mems',[]),
 autoTTS:LS.get('rg51_tts',false),pomoDone:LS.get('rg51_pomo',0),gameScore:LS.get('rg51_game',{jl:0,cm:0,w:0}),
 att:[],busy:false,ctrl:null,newsLoaded:false,debate:null,lastGrade:null,mouthLevel:2,essayType:0,
-battle:null,wbViewMode:'prev',pomo:{timer:null,left:0,running:false},game:null,cal:{expr:'0',chaos:false}};
+battle:null,wbViewMode:'prev',pomo:{timer:null,left:0,running:false},game:null,cal:{expr:'0',chaos:false},rec:null,_pq:null,_qsel:null};
 
 const API={
 norm(u){u=(u||'').trim().replace(/\/+$/,'');if(!u)return'';if(!/^https?:\/\//i.test(u))u='https://'+u;if(!/\/v\d+$/.test(u))u+='/v1';return u},
@@ -575,90 +633,144 @@ if(rk){think+=rk;onThink&&onThink(think)}if(d){full+=d;onDelta&&onDelta(full,thi
 return full}};
 
 const App={
-init(){marked.setOptions({breaks:true,gfm:true});App.loadTheme();App.updateConn();App.renderChat();App.renderNovel();App.renderDictHistory();App.renderGrades();App.renderCities();App.renderSoup();App.renderMouthLevels();App.renderEssayTypes();App.renderCollection();App.renderLetters();App.renderWebPresets();App.renderTaste();App.renderMems();App.renderHome();App.initSite();App.renderTlTargets();App.renderPomoPresets();App.updatePomoUI();App.syncToggles();
+init(){marked.setOptions({breaks:true,gfm:true});
+const safe=(n,f)=>{try{f()}catch(e){console.warn('[init:'+n+']',e)}};
+safe('theme',()=>App.loadTheme());
+safe('conn',()=>App.updateConn());
+safe('ideas',()=>App.renderIdeas());
+safe('chat',()=>App.renderChat());
+safe('novel',()=>App.renderNovel());
+safe('dict',()=>App.renderDictHistory());
+safe('grades',()=>App.renderGrades());
+safe('cities',()=>App.renderCities());
+safe('soup',()=>App.renderSoup());
+safe('mouth',()=>App.renderMouthLevels());
+safe('essay',()=>App.renderEssayTypes());
+safe('trains',()=>App.renderCollection());
+safe('letters',()=>App.renderLetters());
+safe('web',()=>{App.renderWebPresets();App.renderTaste()});
+safe('mem',()=>App.renderMems());
+safe('home',()=>App.renderHome());
+safe('site',()=>App.initSite());
+safe('tl',()=>App.renderTlTargets());
+safe('pomo',()=>{App.renderPomoPresets();App.updatePomoUI()});
+safe('toggles',()=>App.syncToggles());
+safe('nav',()=>App.openTool('site'));
 setInterval(App.tickClock,30000);
-const d=new Date();d.setFullYear(d.getFullYear()+1);$('lt-date').value=d.toISOString().slice(0,10);
+const d=new Date();d.setFullYear(d.getFullYear()+1);const ld=$('lt-date');if(ld)ld.value=d.toISOString().slice(0,10);
 if(state.web?.code){$('wb-prompt').value=state.web.prompt||'';App.wbShow(state.web.code)}
-App.bindKeys();App.initVoices();
-if(!state.settings.apiKey)setTimeout(()=>{App.openSettings();toast('👋 填咗 API Key 先開得波')},400)},
-initVoices(){if('speechSynthesis'in window)speechSynthesis.onvoiceschanged=()=>{}},
-syncToggles(){$('think-btn').textContent='💭 思考：'+(state.showThink?'開':'關');$('think-btn').classList.toggle('on',state.showThink);
- $('tts-btn').textContent='🔊 讀出：'+(state.autoTTS?'開':'關');$('tts-btn').classList.toggle('on',state.autoTTS);
- $('fast-btn').textContent='⚡ 快答：'+(state.fast?'開':'關');$('fast-btn').classList.toggle('on',state.fast)},
-bindKeys(){$('minp').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){e.preventDefault();App.send()}});
- $('file-in').addEventListener('change',e=>{App.addFiles([...e.target.files]);e.target.value=''});
- $('dict-in').addEventListener('keydown',e=>{if(e.key==='Enter')App.lookup()});
- $('tl-in').addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey))App.tlGo()});
- $('we-city').addEventListener('keydown',e=>{if(e.key==='Enter')App.getWeather()});
- $('fo-name').addEventListener('keydown',e=>{if(e.key==='Enter')App.drawFortune()});
- $('bt-in').addEventListener('keydown',e=>{if(e.key==='Enter')App.battleAttack()});
- $('db-reply').addEventListener('keydown',e=>{if(e.key==='Enter')App.dbSend()});
- $('gm-in').addEventListener('keydown',e=>{if(e.key==='Enter')App.gmSend()});
- $('dm-in').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.isComposing)App.dreamGo()});
- $('fd-in').addEventListener('keydown',e=>{if(e.key==='Enter')App.foodGo()});
- $('mem-in').addEventListener('keydown',e=>{if(e.key==='Enter')App.memAdd()});
- $('wb-prompt').addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey))App.webBuild()});
- $('in-temp').addEventListener('input',e=>$('in-temp-val').textContent=e.target.value);
- $('in-tok').addEventListener('input',e=>$('in-tok-val').textContent=e.target.value);
- $('dict-hist').addEventListener('click',e=>{const b=e.target.closest('[data-w]');if(b){$('dict-in').value=b.dataset.w;App.lookup()}});
- $('we-cities').addEventListener('click',e=>{const b=e.target.closest('[data-c]');if(b){$('we-city').value=b.dataset.c;App.getWeather()}});
- $('nv-view').addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(!b)return;const i=+b.dataset.idx;if(b.dataset.act==='regen')App.genChapter(i,true);if(b.dataset.act==='copy')App.copyText(state.novel.chapters[i].content)});
-document.addEventListener('keydown',e=>{if(!$('panel-cal').classList.contains('active'))return;const tg=document.activeElement?.tagName;if(tg==='INPUT'||tg==='TEXTAREA')return;
-if(/^[0-9.()+%]$/.test(e.key))App.calInput(e.key);else if(e.key==='*')App.calInput('*');else if(e.key==='/'){e.preventDefault();App.calInput('/')}else if(e.key==='-')App.calInput('-');else if(e.key==='Enter'||e.key==='=')App.calEval();else if(e.key==='Backspace')App.calBack();else if(e.key==='Escape')App.calClear()})},
+safe('keys',()=>App.bindKeys());
+safe('voices',()=>App.initVoices());
+if(!state.settings.apiKey)setTimeout(()=>{toast('👋 入去之後填 API Key 就開得波')},600)},
+enterApp(target){document.body.classList.remove('landing');App.openTool(target||'chat')},
+showLanding(){document.body.classList.add('landing');App.openTool('site');const sc=$('panel-site').querySelector('.overflow-y-auto');if(sc)sc.scrollTop=0},
+layoutChat(){const has=state.chat.length>0;
+const ce=$('chat-empty'),cf=$('chat-full'),box=$('grokbox');
+if(!ce||!cf||!box)return;
+ce.style.display=has?'none':'flex';
+cf.style.display=has?'flex':'none';
+const target=has?$('dock-slot'):$('hero-slot');
+if(target&&box.parentElement!==target)target.appendChild(box)},
+ideasPool:[['👋','用一句廣東話介紹下你自己'],['🗡','串下我個名'],['📝','幫我寫封請假紙，話肚痾'],['🚄','E5 定 E6 新幹線型啲？點解'],['💀','我考咗 42/100，你可以點串我'],['🌙','解夢：夢見曾俊偉揸新幹線'],['😤','有人同我講「咁都得」，教我點串返'],['📸','幫我諗 3 個 IG caption 影新幹線'],['🐱','記住我養咗隻貓叫肥波'],['🌌','用廣東話 30 字解釋咩係黑洞'],['🥶','講個冷笑話，唔好笑我當你輸'],['🚃','如果曾俊偉坐我隔籬，我應該點做'],['📊','幫我諗個溫書時間表，得兩日'],['✍️','寫一句毒雞湯關於返學']],
+renderIdeas(){const el=$('idea-chips');if(!el)return;
+el.innerHTML=App.ideasPool.slice(0,6).map(x=>`<button class="idea" onclick="App.quick(this.dataset.q)" data-q="${esc(x[1])}"><b>${x[0]}</b>${esc(x[1])}</button>`).join('')},
+shuffleIdeas(){for(let i=App.ideasPool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[App.ideasPool[i],App.ideasPool[j]]=[App.ideasPool[j],App.ideasPool[i]]}App.renderIdeas()},
 addFiles(files){for(const f of files){
-if(f.type.startsWith('image/')){if(f.size>4*1024*1024){toast(f.name+' 大過 4MB，慳啲');continue}
+if(f.type.startsWith('image/')){if(f.size>4*1024*1024){toast(f.name+' 大過 4MB');continue}
 const rd=new FileReader();rd.onload=()=>{state.att.push({kind:'img',name:f.name,url:rd.result});App.renderAtt()};rd.readAsDataURL(f)}
 else{f.text().then(t=>{state.att.push({kind:'txt',name:f.name,text:t});App.renderAtt()})}}
-if(files.length)App.openTool('chat')},
-renderAtt(){const row=$('att-row');row.classList.toggle('hidden',!state.att.length);
+if(files.length&&document.body.classList.contains('landing'))App.enterApp('chat')},
+renderAtt(){const row=$('att-row');if(!row)return;row.classList.toggle('hidden',!state.att.length);
 row.innerHTML=state.att.map((f,i)=>f.kind==='img'
 ?`<div class="att-thumb"><img src="${f.url}"><button onclick="App.rmAtt(${i})">✕</button></div>`
 :`<span class="chip on">📄 ${esc(f.name.slice(0,14))} <b onclick="App.rmAtt(${i})">✕</b></span>`).join('')},
 rmAtt(i){state.att.splice(i,1);App.renderAtt()},
-speak(t){if(!('speechSynthesis'in window))return toast('呢個瀏覽器唔支援發聲');
+toggleMic(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+if(!SR)return toast('呢個瀏覽器唔支援語音輸入');
+if(App.rec){App.rec.stop();return}
+const r=new SR();r.lang='zh-HK';r.interimResults=true;App.rec=r;
+r.onresult=e=>{let s='';for(const res of e.results)s+=res[0].transcript;$('minp').value=s;App.rsz()};
+r.onend=()=>{App.rec=null;const b=$('mic-btn');if(b)b.classList.remove('rec')};
+r.onerror=()=>{App.rec=null;const b=$('mic-btn');if(b)b.classList.remove('rec')};
+r.start();$('mic-btn').classList.add('rec');toast('🎙 聽緊你講嘢…')},
+initVoices(){if('speechSynthesis'in window)speechSynthesis.onvoiceschanged=()=>{}},
+speak(t){if(!('speechSynthesis'in window))return toast('唔支援發聲');
 speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(String(t).replace(/[#*`>\[\]()|]/g,'').slice(0,400));
-const vs=speechSynthesis.getVoices();u.voice=vs.find(v=>v.lang==='zh-HK')||vs.find(v=>v.lang==='zh-HK-HK')||vs.find(v=>v.lang&&v.lang.startsWith('zh'))||null;u.rate=1.05;u.lang='zh-HK';speechSynthesis.speak(u)},
+const vs=speechSynthesis.getVoices();u.voice=vs.find(v=>v.lang==='zh-HK')||vs.find(v=>v.lang&&v.lang.startsWith('zh'))||null;u.rate=1.05;u.lang='zh-HK';speechSynthesis.speak(u)},
 toggleTTS(){state.autoTTS=!state.autoTTS;LS.set('rg51_tts',state.autoTTS);App.syncToggles();if(!state.autoTTS)speechSynthesis?.cancel();toast(state.autoTTS?'阮峻會出聲喇':'收聲')},
-toggleThink(){state.showThink=!state.showThink;LS.set('rg51_think',state.showThink);App.syncToggles();toast(state.showThink?'💭 思考過程會顯示':'思考收埋')},
-toggleFast(){state.fast=!state.fast;LS.set('rg48_fast',state.fast);App.syncToggles();toast(state.fast?'快答模式開':'快答模式收')},
+setPill(){state.think=!state.think;LS.set('rg51_think',state.think);App.syncToggles()},
+syncToggles(){const p=$('pill-think'),t=$('tts-hdr');
+if(p)p.classList.toggle('on-think',state.think);
+if(t)t.classList.toggle('on',state.autoTTS)},
 loadTheme(){const t=LS.get('rg47_theme',matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');if(t==='dark')document.documentElement.classList.add('dark');App.renderThemeBtn()},
 toggleTheme(){const d=document.documentElement.classList.toggle('dark');LS.set('rg47_theme',d?'dark':'light');App.renderThemeBtn()},
-renderThemeBtn(){const d=document.documentElement.classList.contains('dark');$('theme-btn').innerHTML=d?'☀️':'🌙'},
+renderThemeBtn(){const d=document.documentElement.classList.contains('dark');const b=$('theme-btn');if(b)b.innerHTML=d?'☀️':'🌙'},
 toggleSidebar(f){const sb=$('sidebar');const o=f!==undefined?f:!sb.classList.contains('open');sb.classList.toggle('open',o);$('overlay').style.display=o?'block':'none'},
 openTool(n){document.querySelectorAll('.tool-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
- $('panel-'+n)?.classList.add('active');$('tab-'+n)?.classList.add('active');App.toggleSidebar(false);
+const p=$('panel-'+n),t=$('tab-'+n);if(p)p.classList.add('active');if(t)t.classList.add('active');
+if(document.body.classList.contains('landing'))return;
+App.toggleSidebar(false);
 if(n==='news'&&!state.newsLoaded){state.newsLoaded=true;App.loadNews()}if(n==='home')App.renderHome()},
 openSettings(){const s=state.settings;$('in-url').value=s.baseUrl;$('in-key').value=s.apiKey;$('in-model').value=s.model;$('in-sys').value=s.systemPrompt;$('in-name').value=s.userName;$('in-temp').value=s.temperature;$('in-temp-val').textContent=s.temperature;$('in-tok').value=s.maxTokens;$('in-tok-val').textContent=s.maxTokens;$('set-status').textContent='';App.renderModelList();App.setTab('conn');$('settings-modal').style.display='flex';App.toggleSidebar(false)},
 closeSettings(){$('settings-modal').style.display='none'},
 setTab(t){['conn','persona','params'].forEach(x=>{$('set-'+x).style.display=x===t?'block':'none';$('stab-'+x).classList.toggle('active',x===t)})},
 preset(u){$('in-url').value=u},toggleKey(){const k=$('in-key');k.type=k.type==='password'?'text':'password'},
-renderModelList(){$('dl-models').innerHTML=(state.settings.models||[]).map(m=>`<option value="${esc(m)}">`).join('')},
+renderModelList(){const dl=$('dl-models');if(dl)dl.innerHTML=(state.settings.models||[]).map(m=>`<option value="${esc(m)}">`).join('')},
 async fetchModels(){const url=$('in-url').value.trim(),key=$('in-key').value.trim(),st=$('set-status');
 if(!url||!key){st.textContent='❌ 填 URL 同 Key 先';st.style.color='#e05252';return}
 st.textContent='⏳ 攞緊…';st.style.color='var(--sub)';
 try{const{ids,ping}=await API.listModels(url,key);state.settings.models=ids.slice(0,500);LS.set('rg47_settings',state.settings);App.renderModelList();
 st.textContent=`✅ 連到線！延遲 ${ping}ms · ${ids.length} 個模型`;st.style.color='#3f9d63'}catch(e){st.textContent='❌ '+e.message;st.style.color='#e05252'}},
 saveSettings(){const s=state.settings;s.baseUrl=$('in-url').value.trim()||DEFAULTS.baseUrl;s.apiKey=$('in-key').value.trim();s.model=$('in-model').value.trim();s.systemPrompt=$('in-sys').value.trim()||DEFAULTS.systemPrompt;s.userName=$('in-name').value.trim()||'元宝爸爸';s.temperature=+$('in-temp').value;s.maxTokens=+$('in-tok').value;LS.set('rg47_settings',s);App.updateConn();App.closeSettings();toast('儲存咗 🚄')},
-updateConn(){const s=state.settings,ok=!!(s.apiKey&&s.model);$('led').className='w-1.5 h-1.5 rounded-full '+(ok?'bg-green-500':'bg-red-500');
- $('conn-text').textContent=ok?'已連線':'未配置';$('chat-model').textContent=s.model||'未配置';$('u-display').textContent=s.userName;$('u-avatar').textContent=s.userName.slice(0,1);$('sbtn').disabled=!ok;$('nv-btn').disabled=!ok||!state.novel.title;$('nv-new-btn').style.display=state.novel.title?'':'none'},
+updateConn(){const s=state.settings,ok=!!(s.apiKey&&s.model);
+const led=$('led');if(led)led.className='w-1.5 h-1.5 rounded-full '+(ok?'bg-green-500':'bg-red-500');
+const ct=$('conn-text');if(ct)ct.textContent=ok?'已連線':'未配置';
+const cm=$('chat-model');if(cm)cm.textContent=s.model||'未配置';
+const ud=$('u-display');if(ud)ud.textContent=s.userName;
+const ua=$('u-avatar');if(ua)ua.textContent=s.userName.slice(0,1);
+const sb=$('sbtn');if(sb)sb.disabled=!ok;
+const nv=$('nv-btn');if(nv)nv.disabled=!ok||!state.novel.title;
+const nn=$('nv-new-btn');if(nn)nn.style.display=state.novel.title?'':'none'},
 checkReady(){if(!state.settings.apiKey||!state.settings.model){toast('去設定填 Key 同模型');App.openSettings();return false}return true},
 async streamInto({messages,el,plain,maxTokens=400,temperature}){el.innerHTML='<span class="dots"><i></i><i></i><i></i></span>';state.ctrl=new AbortController();
 try{const full=await API.chat({messages,maxTokens,temperature,signal:state.ctrl.signal,onDelta:t=>{if(plain)el.textContent=t;else el.innerHTML=marked.parse(t)}});
 if(plain)el.textContent=full;else App.decorateCode(el);return full}catch(e){el.innerHTML=e.name==='AbortError'?'<i>（停咗）</i>':App.errHtml(e.message);return null}},
-saveChat(){LS.set('rg47_chat',state.chat.slice(-100).map(m=>({role:m.role,content:m.content,think:m.think})))},
+saveChat(){LS.set('rg47_chat',state.chat.slice(-100).map(m=>({role:m.role,content:m.content,think:m.think,q:m.q})))},
 memBlock(){return state.mems.length?'\n【你記得關於用戶嘅嘢】\n- '+state.mems.slice(0,20).join('\n- '):''},
-renderChat(){const v=$('chat-view');v.innerHTML='';
-if(!state.chat.length){v.innerHTML=`<div class="text-center py-12"><div class="text-5xl mb-4">🚄</div><div class="font-black text-lg mb-1">阮峻在線 · 識睇相識思考</div><div class="text-xs font-bold mb-6" style="color:var(--sub)">試下：</div><div class="flex flex-wrap gap-2 justify-center"><button class="qstart" onclick="App.quick('用一句廣東話介紹下你自己')">介紹自己</button><button class="qstart" onclick="App.quick('串下我個名')">串下我個名</button><button class="qstart" onclick="App.quick('記住我養咗隻貓叫肥波')">教佢記嘢</button><button class="qstart" onclick="App.quick('新幹線點解偉大？')">新幹線點解偉大</button></div></div>`;return}
+splitSteps(t){return (t||'').split(/\n+/).flatMap(s=>s.length>70?(s.match(/[^。！？.!?]+[。！？.!?]?/g)||[s]):[s]).map(s=>s.trim()).filter(Boolean)},
+stepsHtml(t,live){return App.splitSteps(t).map((s,i)=>`<div class="tstep ${live&&i===App.splitSteps(t).length-1?'live':''}"><span class="tdot"></span><span>${esc(s)}</span></div>`).join('')},
+thinkHtml(m){const steps=App.splitSteps(m.think||'').length;
+return `<div class="thinkbox open"><div class="think-head" onclick="this.parentElement.classList.toggle('open')"><span class="tt">💭 Reasoning</span><span style="color:var(--sub)">· ${steps} 步</span><span class="chev">⌄</span></div><div class="tsteps">${App.stepsHtml(m.think,false)}</div></div>`},
+parseQ(t){const q=t.match(/【問題】\s*([\s\S]+?)(?=【A】|$)/);if(!q)return null;
+const a=t.match(/【A】\s*([\s\S]+?)(?=【B】|$)/),b=t.match(/【B】\s*([\s\S]+?)(?:$)/);
+return {question:q[1].trim(),a:a?a[1].trim():'',b:b?b[1].trim():'',ans:null}},
+qHtml(q){return `<div class="qcard"><div class="qhead">❓ 阮峻想問清楚<span class="qc">1 of 1</span></div><div class="qbody"><div class="qq">${esc(q.question)}</div>
+ ${q.a?`<button class="qopt ${q.ans===q.a?'sel':''}" data-v="${esc(q.a)}" onclick="App.qPick(this)"><span class="qbadge">A</span>${esc(q.a)}</button>`:''}
+ ${q.b?`<button class="qopt ${q.ans===q.b?'sel':''}" data-v="${esc(q.b)}" onclick="App.qPick(this)"><span class="qbadge">B</span>${esc(q.b)}</button>`:''}
+ ${q.ans?'':`<div class="qfree"><span class="qbadge">C</span><input id="q-free" placeholder="自己答…" onkeydown="if(event.key==='Enter')App.qAnswer()"></div>
+<div class="qfoot"><button class="qskip" onclick="App.qSubmit('（跳過咗，你直接答啦）')">跳過</button><button class="qsend" onclick="App.qAnswer()">答覆 →</button></div>`}
+ ${q.ans?`<div class="qdone">✅ 你答咗：${esc(q.ans)}</div>`:''}</div></div>`},
+qPick(btn){App._qsel=btn.dataset.v;document.querySelectorAll('#chat-view .qopt').forEach(b=>b.classList.remove('sel'));btn.classList.add('sel')},
+qAnswer(){const free=$('q-free')?.value.trim()||'';const ans=App._qsel||free;if(!ans)return toast('揀個選項或者打句嘢');App.qSubmit(ans)},
+qSubmit(ans){const pq=App._pq;if(!pq)return;App._pq=null;App._qsel=null;
+if(state.chat[pq.i])state.chat[pq.i].q.ans=ans;
+App.saveChat();App.renderChat();
+App.sendRaw(ans+'\n（← 呢個係對你澄清問題嘅回覆，而家直接作答啦，唔好再問。）')},
+renderChat(){App.layoutChat();
+if(!state.chat.length)return;
+const v=$('chat-view');if(!v)return;v.innerHTML='';
 state.chat.forEach((m,i)=>{const b=App.appendMsgEl(m.role);
 if(m.role==='user'){const hasImg=m.parts&&m.parts.length>1;
 b.innerHTML=`<div class="inline-block btn-p !rounded-2xl !rounded-tr-sm !text-sm !px-4 !py-2.5 text-left break-words whitespace-pre-wrap">${hasImg?'📷 ':''}${esc(m.content)}</div>`}
 else{let html='';
-if(m.think&&(state.showThink||m.thinkOpen))html+=`<details class="think" ${state.showThink?'open':''}><summary>💭 思考過程（${m.think.length}字）</summary><div class="tk">${esc(m.think)}</div></details>`;
-html+=marked.parse(m.content);b.innerHTML=html;App.decorateCode(b);
+if(m.think)html+=App.thinkHtml(m);
+if(m.q)html+=App.qHtml(m.q);
+else html+=marked.parse(m.content);
+b.innerHTML=html;App.decorateCode(b);
 const a=document.createElement('div');a.className='flex gap-2 mt-2 flex-wrap';
 a.innerHTML=`<button class="chip" onclick="App.copyMsg(${i})">複製</button><button class="chip" onclick="App.speak(state.chat[${i}].content)">🔊</button>`+(i===state.chat.length-1?`<button class="chip" onclick="App.regenerate()">↻ 再嚟</button>`:'');b.appendChild(a)}});
  $('scroller').scrollTop=$('scroller').scrollHeight},
-appendMsgEl(role){const v=$('chat-view');v.querySelector('.text-center')?.remove();
+appendMsgEl(role){const v=$('chat-view');
 const row=document.createElement('div');row.className='flex gap-3 '+(role==='user'?'flex-row-reverse':'');
 const av=document.createElement('div');av.className='w-8 h-8 rounded-xl user-av flex items-center justify-center shrink-0 font-black mt-1';
 av.textContent=role==='user'?(state.settings.userName||'U').slice(0,1):'RG';
@@ -669,9 +781,10 @@ if(c&&window.hljs){c.classList.add('hljs');try{hljs.highlightElement(c)}catch{}}
 const btn=document.createElement('button');btn.className='code-copy';btn.textContent='複製';
 btn.onclick=()=>navigator.clipboard.writeText(pre.innerText).then(()=>{btn.textContent='OK';setTimeout(()=>btn.textContent='複製',1200)});pre.appendChild(btn)})},
 errHtml(m){return `<div class="rounded-xl px-4 py-3 text-xs font-bold" style="background:rgba(224,82,82,.08);color:#e05252;border:1px solid rgba(224,82,82,.2);border-left:3px solid #e05252">⚠️ ${esc(m)}</div>`},
-setStopBtn(b){const btn=$('sbtn');btn.innerHTML=b?'■':'↑';btn.style.background=b?'linear-gradient(180deg,#f07171,#c73a3a)':'';btn.style.color=b?'#fff':''},
-quick(t){$('minp').value=t;App.send()},
-send(){const inp=$('minp'),val=inp.value.trim();
+setStopBtn(b){const btn=$('sbtn');if(!btn)return;btn.innerHTML=b?'■':'↑';btn.classList.toggle('stop',b)},
+quick(t){App.enterApp('chat');$('minp').value=t;App.send()},
+sendRaw(text){state.chat.push({role:'user',content:text});App.saveChat();App.renderChat();App.runCompletion()},
+send(){const inp=$('minp'),val=inp?inp.value.trim():'';
 if(!val&&!state.att.length)return;
 if(state.busy){state.ctrl?.abort();return}
 if(!App.checkReady())return;
@@ -684,43 +797,39 @@ for(const f of state.att.filter(f=>f.kind==='img'))parts.push({type:'image_url',
 const entry={role:'user',content:txt};if(state.att.some(f=>f.kind==='img'))entry.parts=parts;
 state.chat.push(entry);App.saveChat();
 state.att=[];App.renderAtt();
-inp.value='';App.rsz();App.renderChat();App.runCompletion()},
+if(inp){inp.value='';App.rsz()}App.renderChat();App.runCompletion()},
 async runCompletion(){state.busy=true;App.setStopBtn(true);if(state.autoTTS)speechSynthesis?.cancel();
 const body=App.appendMsgEl('assistant');
-let det=null,tk=null,ans=null;
-if(state.showThink){body.innerHTML='';det=document.createElement('details');det.className='think';det.open=true;
-det.innerHTML='<summary>💭 思考中…</summary><div class="tk"></div>';body.appendChild(det);tk=det.querySelector('.tk');
-ans=document.createElement('div');body.appendChild(ans)}
+let box=null,steps=null,ans=null;
+if(state.think){body.innerHTML=`<div class="thinkbox open live" id="livetk"><div class="think-head"><span class="tt">💭 Reasoning…</span><span class="chev">⌄</span></div><div class="tsteps"><div class="tstep live"><span class="tdot"></span><span>開始諗嘢…</span></div></div></div><div class="ans"><span class="dots"><i></i><i></i><i></i></span></div>`;
+box=$('livetk');steps=box.querySelector('.tsteps');ans=body.querySelector('.ans')}
 else{body.innerHTML='<span class="dots"><i></i><i></i><i></i></span>';ans=body}
 const sc=$('scroller'),t0=performance.now();let txt='',think='',firstAt=0;state.ctrl=new AbortController();
-const fast=state.fast,ctx=fast?state.chat.slice(-8):state.chat.slice(-20);
-const sys=(fast?FAST_SYS:state.settings.systemPrompt)+App.memBlock();
+const ctx=state.chat.slice(-20);
+const sys=state.settings.systemPrompt+App.memBlock();
 const msgs=[{role:'system',content:sys},...ctx.map(m=>m.parts?{role:m.role,content:m.parts}:m)];
-try{txt=await API.chat({messages:msgs,signal:state.ctrl.signal,maxTokens:fast?200:(state.settings.maxTokens??512),
-onThink:t=>{think=t;if(tk){tk.textContent=t;sc.scrollTop=sc.scrollHeight}},
+try{txt=await API.chat({messages:msgs,signal:state.ctrl.signal,maxTokens:state.settings.maxTokens??512,
+onThink:t=>{think=t;if(steps){steps.innerHTML=App.stepsHtml(t,true);sc.scrollTop=sc.scrollHeight}},
 onDelta:(t,tk2)=>{txt=t;think=tk2||think;if(!firstAt)firstAt=performance.now()-t0;
-if(det){if(tk)tk.textContent=think||'（冇輸出思考）';if(ans)ans.innerHTML=marked.parse(txt)}
-else body.innerHTML=marked.parse(txt);
+if(ans)ans.innerHTML=marked.parse(txt);
 if(nearB(sc))sc.scrollTop=sc.scrollHeight}});
-state.chat.push({role:'assistant',content:txt,think:think||undefined})}catch(e){
+const q=App.parseQ(txt);
+state.chat.push({role:'assistant',content:txt,think:think||undefined,q:q||undefined})}catch(e){
 if(e.name==='AbortError'){if(txt.trim())state.chat.push({role:'assistant',content:txt});else body.closest('.flex')?.remove()}
 else body.innerHTML=App.errHtml(e.message)}
-state.busy=false;state.ctrl=null;App.setStopBtn(false);App.saveChat();
-state.chat.forEach(m=>delete m.thinkOpen);
-App.renderChat();
+state.busy=false;state.ctrl=null;App.setStopBtn(false);App.saveChat();App.renderChat();
 const secs=((performance.now()-t0)/1000).toFixed(1);
 const last=$('chat-view').lastElementChild?.querySelector('.flex-1');
 if(last){const sp=document.createElement('div');sp.className='text-[9px] font-black mt-1';sp.style.color='var(--sub)';
-sp.textContent=`⏱ ${secs}s${firstAt?' · 首'+(firstAt/1000).toFixed(1)+'s':''}${think?' · 💭'+think.length+'字':''}`;last.appendChild(sp)}
-if(state.autoTTS&&txt)App.speak(txt)},
+sp.textContent=`⏱ ${secs}s${firstAt?' · 首'+(firstAt/1000).toFixed(1)+'s':''}${think?' · 💭'+App.splitSteps(think).length+'步':''}`;last.appendChild(sp)}
+if(state.autoTTS&&txt&&!state.chat.at(-1)?.q)App.speak(txt)},
 regenerate(){if(state.busy)return;while(state.chat.length&&state.chat.at(-1).role==='assistant')state.chat.pop();App.saveChat();App.renderChat();if(state.chat.length)App.runCompletion()},
 clearChat(){if(!state.chat.length||!confirm('清空對話？'))return;state.chat=[];App.saveChat();App.renderChat()},
 copyMsg(i){App.copyText(state.chat[i].content)},
 copyText(t){navigator.clipboard.writeText(t).then(()=>toast('複製咗'),()=>toast('複製唔到'))},
-rsz(){const i=$('minp');i.style.height='auto';i.style.height=Math.min(i.scrollHeight,160)+'px'},
-homeTools:[['chat','💬','阮峻對話','睇相/思考/發聲'],['mem','🧠','記憶','佢會記住你'],['news','📰','新聞銳評','HN+銳評'],['web','⚡','網頁工廠','一句生成'],['draw','🖼️','畫圖','文字生圖'],['games','🎮','遊戲中心','接龍/猜謎/20Q'],['translate','🌐','真翻譯','廣東話地道譯'],['cal','🧮','亂算器','正經+亂算'],['dict','📖','離譜詞典','胡說八道'],['grade','📊','成績審判','入分數'],['weather','🌤️','天氣','3日預報'],['pomo','⏱️','番茄鐘','監你讀書'],['novel','✍️','Novel','連載小說'],['essay','📝','小作文','請假紙等'],['mouth','🎤','嘴替','幫你講'],['soup','🍜','毒雞湯','背刺'],['fortune','🎋','求籤','每日一籤'],['battle','🛡️','鬧交','3回合'],['debate','🔪','抬槓','永遠反對'],['train','🚄','圖鑑','抽卡'],['dream','🔮','解夢','玄學'],['food','🍳','深夜食堂','今晚食咩'],['letter','✉️','慢遞','寫俾未來'],['backup','💾','備份','匯出保命'],['site','🎬','宣傳頁','門面']],
-subtitles:{chat:'📎 加相 · 💭 思考 · 🔊 讀出',cal:'鍵盤入都得',dict:'解釋係錯嘅傷害係真嘅',translate:'Ctrl+Enter 快譯',grade:'60%以下查水份',weather:'wttr.in 唔使Key',news:'HN熱榜',web:'Ctrl+Enter 生成',draw:'要圖片模型',novel:'每章300~500字',essay:'細節越多越似',mouth:'力度自選',soup:'勵志開頭背刺結尾',fortune:'同人同日同一籤',battle:'3回合裁判判',debate:'槓精自動反面',train:'重複自動跳過',dream:'純屬娛樂',games:'贏唔贏到先？',food:'剩料整硬菜',letter:'到日子先拆到',pomo:'專心！',mem:'「記住xxx」即存',backup:'定期匯出'},
-addSubtitles(){for(const id in App.subtitles){const h=$('panel-'+id)?.querySelector('header');if(!h||h.dataset.sub)continue;h.dataset.sub='1';const s=document.createElement('span');s.className='psub';s.textContent=App.subtitles[id];(h.querySelector('span')||h).appendChild(s)}},
+rsz(){const i=$('minp');if(!i)return;i.style.height='auto';i.style.height=Math.min(i.scrollHeight,160)+'px'},
+homeTools:[['chat','💬','阮峻對話','睇相/深諗/會反問'],['mem','🧠','記憶','佢會記住你'],['news','📰','新聞銳評','HN+銳評'],['web','⚡','網頁工廠','一句生成'],['draw','🖼️','畫圖','文字生圖'],['games','🎮','遊戲中心','接龍/猜謎/20Q'],['translate','🌐','真翻譯','廣東話地道譯'],['cal','🧮','亂算器','正經計數'],['dict','📖','離譜詞典','胡說八道'],['grade','📊','成績審判','入分數'],['weather','🌤️','天氣','3日預報'],['pomo','⏱️','番茄鐘','監你讀書'],['novel','✍️','Novel','連載小說'],['essay','📝','小作文','請假紙等'],['mouth','🎤','嘴替','幫你講'],['soup','🍜','毒雞湯','背刺'],['fortune','🎋','求籤','每日一籤'],['battle','🛡️','鬧交','3回合'],['debate','🔪','抬槓','永遠反對'],['train','🚄','圖鑑','抽卡'],['dream','🔮','解夢','玄學'],['food','🍳','深夜食堂','今晚食咩'],['letter','✉️','慢遞','寫俾未來'],['backup','💾','備份','匯出保命']],
+subtitles:{cal:'鍵盤入都得',dict:'解釋係錯嘅傷害係真嘅',translate:'Ctrl+Enter 快譯',grade:'60%以下查水份',weather:'wttr.in 唔使Key',news:'HN熱榜',web:'Ctrl+Enter 生成',draw:'要圖片模型',novel:'每章300~500字',essay:'細節越多越似',mouth:'力度自選',soup:'勵志開頭背刺結尾',fortune:'同人同日同一籤',battle:'3回合裁判判',debate:'槓精自動反面',train:'重複自動跳過',dream:'純屬娛樂',games:'贏唔贏到先？',food:'剩料整硬菜',letter:'到日子先拆到',pomo:'專心！',mem:'「記住xxx」即存',backup:'定期匯出'},
 renderHome(){const h=new Date().getHours();const g=h<5?'夜麻麻':h<11?'早晨':h<14?'食飯未':h<18?'下晝好':'晚上好';
  $('hm-greet').textContent=g+'，'+state.settings.userName;
  $('hm-date').textContent=new Date().toLocaleDateString('zh-HK',{year:'numeric',month:'long',day:'numeric',weekday:'long'});
@@ -739,7 +848,7 @@ if(state.trains.length)feed.push('🚄 最新收錄：'+state.trains[0].name);
  $('hm-feed').innerHTML=feed.length?feed.map(f=>`<div class="card !py-3 text-xs font-bold">${esc(f)}</div>`).join(''):'<div class="empty"><div class="e">🚄</div><div class="t">一切由零開始</div></div>'},
 tickClock(){const el=$('hm-clock');if(el)el.textContent=new Date().toTimeString().slice(0,5)},
 renderMems(){$('mem-count').textContent=state.mems.length;
- $('mem-list').innerHTML=state.mems.length?state.mems.map((m,i)=>`<div class="card !py-3 flex items-center justify-between gap-2 text-xs font-bold" style="border-left:3px solid var(--acc)"><span class="break-words">${esc(m)}</span><button class="chip shrink-0" onclick="App.memDel(${i})">🗑</button></div>`).join(''):'<div class="empty"><div class="e">🧠</div><div class="t">個腦空空</div><div class="s">喺對話打「記住…」或者喺度手動加</div></div>'},
+ $('mem-list').innerHTML=state.mems.length?state.mems.map((m,i)=>`<div class="card !py-3 flex items-center justify-between gap-2 text-xs font-bold" style="border-left:3px solid var(--acc)"><span class="break-words">${esc(m)}</span><button class="chip shrink-0" onclick="App.memDel(${i})">🗑</button></div>`).join(''):'<div class="empty"><div class="e">🧠</div><div class="t">個腦空空</div><div class="s">喺對話打「記住…」</div></div>'},
 memAdd(){const v=$('mem-in').value.trim();if(!v)return toast('打啲嘢先');state.mems.unshift(v);state.mems=state.mems.slice(0,30);LS.set('rg51_mems',state.mems);$('mem-in').value='';App.renderMems();toast('🧠 記咗')},
 memDel(i){state.mems.splice(i,1);LS.set('rg51_mems',state.mems);App.renderMems()},
 bkExport(){const out={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(/^rg4|^rg5/.test(k))out[k]=localStorage.getItem(k)}
@@ -747,8 +856,8 @@ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.st
 a.download='rg_os_backup_'+new Date().toISOString().slice(0,10)+'.json';a.click();URL.revokeObjectURL(a.href);toast('備份下載咗 💾')},
 bkImport(inp){const f=inp.files[0];if(!f)return;f.text().then(t=>{try{const o=JSON.parse(t);let n=0;
 for(const k in o){if(/^rg4|^rg5/.test(k)){localStorage.setItem(k,o[k]);n++}}
-toast('匯入咗 '+n+' 項，重新載入…');setTimeout(()=>location.reload(),800)}catch{toast('呢個檔唔係有效備份')}})},
-bkWipe(){if(!confirm('真係剷走所有對話/小說/記憶/收集？冇得返轉頭！'))return;
+toast('匯入咗 '+n+' 項，重新載入…');setTimeout(()=>location.reload(),800)}catch{toast('無效備份檔')}})},
+bkWipe(){if(!confirm('真係剷走所有嘢？冇得返轉頭！'))return;
 const ks=[];for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(/^rg4|^rg5/.test(k))ks.push(k)}
 ks.forEach(k=>localStorage.removeItem(k));location.reload()},
 faqT(el){el.classList.toggle('open')},
@@ -771,7 +880,7 @@ const r=App.evalExpr(c.expr);if(r===null)return toast('條式有問題');c.expr=
 calRender(){const c=state.cal;$('cal-expr').textContent=c.expr.replace(/\*/g,'×').replace(/\//g,'÷');
 const p=$('cal-prev');if(/[+\-*/%]/.test(c.expr.slice(1))){const r=App.evalExpr(c.expr);p.textContent=r===null?'…':'= '+App.fmtNum(r)}else p.textContent='\u00A0'},
 async lookup(){const w=$('dict-in').value.trim();if(!w||state.busy||!App.checkReady())return;state.busy=true;
-const out=$('dict-out');out.innerHTML='';const box=document.createElement('div');box.className='rounded-3xl p-6 text-sm leading-relaxed';box.style.cssText='background:rgba(30,28,26,.85);backdrop-filter:blur(16px);color:#f0ede6;border:1px solid rgba(255,255,255,.12);box-shadow:0 12px 40px rgba(0,0,0,.2)';out.appendChild(box);
+const out=$('dict-out');out.innerHTML='';const box=document.createElement('div');box.className='rounded-3xl p-6 text-sm leading-relaxed';box.style.cssText='background:rgba(30,28,26,.85);backdrop-filter:blur(16px);color:#f0ede6;border:1px solid rgba(255,255,255,.12)';out.appendChild(box);
 const full=await App.streamInto({messages:[{role:'system',content:'你係阮峻，14歲香港毒舌中學生。用廣東話俾個完全錯而且損人嘅解釋。格式：【定義】一兩句。【例句】一句。'},{role:'user',content:w}],el:box,maxTokens:250});
 if(full&&!state.dictWords.includes(w)){state.dictWords.unshift(w);state.dictWords=state.dictWords.slice(0,12);LS.set('rg47_dict',state.dictWords);App.renderDictHistory()}state.busy=false},
 renderDictHistory(){$('dict-hist-wrap').classList.toggle('hidden',!state.dictWords.length);
@@ -782,7 +891,7 @@ renderTlTargets(){$('tl-targets').innerHTML=App.tlTargets.map((t,i)=>`<button cl
 tlSet(i){App.tlIdx=i;App.renderTlTargets()},
 async tlGo(){const t=$('tl-in').value.trim();if(!t||state.busy||!App.checkReady())return;state.busy=true;
  $('tl-out').classList.remove('hidden');
-await App.streamInto({messages:[{role:'system',content:`你是專業翻譯。將用戶內容翻譯成「${App.tlTargets[App.tlIdx]}」。保持語氣。若目標係廣東話，用地道口語粵文（嘅咗唔係）。只輸出譯文，唔好解釋。`},{role:'user',content:t}],el:$('tl-body'),plain:true,maxTokens:800});state.busy=false},
+await App.streamInto({messages:[{role:'system',content:`你是專業翻譯。將用戶內容翻譯成「${App.tlTargets[App.tlIdx]}」。若目標係廣東話，用地道口語粵文。只輸出譯文。`},{role:'user',content:t}],el:$('tl-body'),plain:true,maxTokens:800});state.busy=false},
 rateGrade(){const sub=$('gr-sub').value.trim(),score=parseFloat($('gr-score').value),full=parseFloat($('gr-full').value);
 if(isNaN(score)||isNaN(full)||full<=0)return toast('分數填啱先');
 const per=+(score/full*100).toFixed(1);
@@ -823,13 +932,13 @@ return `<div class="card mb-3"><div class="flex gap-3 items-start"><div class="t
 async newsReview(id){const cached=LS.get('rg48_news',null),item=cached?.items?.find(x=>x.id===id);
 if(!item||state.busy||!App.checkReady())return;state.busy=true;const el=$('nwr-'+id);el.style.display='block';
 await App.streamInto({messages:[{role:'system',content:'用廣東話一句講清楚呢條英文新聞係咩事，再毒舌銳評一句。40字內。'},{role:'user',content:item.title}],el,plain:true,maxTokens:120});state.busy=false},
-webPresets:[['阮峻官網','俾阮峻整官方宣傳頁：大標題「毒舌，都係一種生產力」、bento功能格、跑馬燈、曾俊偉好評、FAQ，香港街頭潮牌風，米白底暖橙主色'],['SaaS 落地頁','虛構記帳App「慳啲」落地頁：超大標題、滾動淡入、深色模式、數據帶、定價、FAQ，暖橙瑞士排版'],['App發佈頁','手機App發佈頁：CSS手機mockup、打字機標題、下載按鈕、跑馬燈'],['倒數頁','新幹線發車風格翻牌倒數頁：輸入目標日期翻牌動畫，藍白JR配色']],
+webPresets:[['阮峻官網','俾阮峻整官方宣傳頁：大標題、bento功能格、跑馬燈、曾俊偉好評、FAQ，香港街頭潮牌風，米白底暖橙主色'],['SaaS 落地頁','虛構記帳App「慳啲」落地頁：超大標題、滾動淡入、深色模式、數據帶、定價、FAQ，暖橙瑞士排版'],['App發佈頁','手機App發佈頁：CSS手機mockup、打字機標題、下載按鈕、跑馬燈'],['倒數頁','新幹線發車風格翻牌倒數頁：輸入目標日期翻牌動畫，藍白JR配色']],
 renderWebPresets(){$('wb-presets').innerHTML=App.webPresets.map((p,i)=>`<button class="chip" onclick="App.wbPreset(${i})">✨ ${p[0]}</button>`).join('')},
 wbPreset(i){$('wb-prompt').value=App.webPresets[i][1]},
 renderTaste(){$('wb-taste').textContent=state.taste?'🎨 品味模式：開':'🎨 品味模式：關';$('wb-taste').classList.toggle('on',state.taste)},
 toggleTaste(){state.taste=!state.taste;LS.set('rg48_taste',state.taste);App.renderTaste()},
 WB_SYS:'你是頂級前端工程師。生成完整單文件HTML網頁：CSS/JS內聯，視覺驚豔、響應式、有真實交互，內容中文。代碼精煉。只輸出```html代碼塊。',
-LAND_SYS:`你是頂級網頁設計師，品味極高。嚴守：1【排印】clamp()流式字級，標題900粗負字距行高1.05 2【留白】區塊間距96-128px，內容限寬 3【顏色】一主色+中性色，支援深色 4【細節】真hover微互動transition .2s 5【結構】Nav→Hero大字CTA→數據帶→Bento功能→見證→FAQ→CTA→Footer 6【動效】IntersectionObserver滾動淡入，尊重prefers-reduced-motion 7【禁忌】唔准emoji濫用當圖標、唔准等距紫漸變卡AI味、唔准Lorem ipsum、唔准預設藍#3B82F6。內容中文/廣東話似真人品牌。只輸出\`\`\`html代碼塊。`,
+LAND_SYS:`你是頂級網頁設計師，品味極高。嚴守：1【排印】clamp()流式字級，標題900粗負字距行高1.05 2【留白】區塊間距96-128px 3【顏色】一主色+中性色，支援深色 4【細節】真hover微互動 5【結構】Nav→Hero→數據帶→Bento→見證→FAQ→CTA→Footer 6【動效】滾動淡入，尊重prefers-reduced-motion 7【禁忌】唔准emoji濫用、紫漸變卡AI味、Lorem ipsum、預設藍#3B82F6。內容中文/廣東話。只輸出\`\`\`html代碼塊。`,
 wbSys(){return state.taste?App.LAND_SYS:App.WB_SYS},
 looksIncomplete(t){if(!/<\/html>/i.test(t))return true;if(((t.match(/```/g)||[]).length)%2===1)return true;
 if((t.match(/<script\b/gi)||[]).length>(t.match(/<\/script>/gi)||[]).length)return true;return false},
@@ -838,7 +947,7 @@ state.busy=true;$('wb-view').classList.remove('hidden');App.wbTab('code');const 
 let full='',cap=8192;state.ctrl=new AbortController();
 try{for(let part=1;part<=4;part++){
  $('wb-status').textContent=part===1?'⚡ 生成中…':'⛓ 自動續寫 '+(part-1)+'…';
-const base=full;const msgs=base?[{role:'system',content:App.wbSys()},{role:'user',content:p},{role:'assistant',content:base},{role:'user',content:'由中斷處無縫繼續，唔好重複，直接續寫。'}]:[{role:'system',content:App.wbSys()},{role:'user',content:p}];
+const base=full;const msgs=base?[{role:'system',content:App.wbSys()},{role:'user',content:p},{role:'assistant',content:base},{role:'user',content:'由中斷處無縫繼續，直接續寫。'}]:[{role:'system',content:App.wbSys()},{role:'user',content:p}];
 let chunk='';try{chunk=await API.chat({messages:msgs,temperature:.7,maxTokens:cap,signal:state.ctrl.signal,onDelta:t=>{full=base+t;pre.textContent=App.extractCode(full);pre.scrollTop=pre.scrollHeight}})}catch(e){if(cap===8192&&/max.?token|context/i.test(e.message)){cap=4096;part--;continue}throw e}
 full=base+chunk;pre.textContent=App.extractCode(full);
 if(!chunk.trim()||!App.looksIncomplete(App.extractCode(full)))break}
@@ -858,15 +967,14 @@ a.href=URL.createObjectURL(new Blob([state.web.code],{type:'text/html;charset=ut
 async drawImg(){if(state.busy||!App.checkReady())return;const p=$('im-prompt').value.trim();if(!p)return toast('話俾佢知畫咩');
 const model=$('im-model').value.trim()||state.settings.imgModel||'dall-e-3';
 state.busy=true;
- $('im-out').innerHTML='<div class="empty"><div class="e">🖌️</div><div class="t">畫緊…（圖片要等十幾秒）</div></div>';
+ $('im-out').innerHTML='<div class="empty"><div class="e">🖌️</div><div class="t">畫緊…（要等十幾秒）</div></div>';
 try{const r=await fetch(API.norm(state.settings.baseUrl)+'/images/generations',{method:'POST',
 headers:{'Content-Type':'application/json','Authorization':'Bearer '+state.settings.apiKey},
 body:JSON.stringify({model,prompt:p,n:1,size:'1024x1024'})});
 if(!r.ok){let m='HTTP '+r.status;try{const j=await r.json();m+=' — '+(j.error?.message||'')}catch{}throw new Error(m)}
 const d=await r.json();const it=d.data?.[0];const src=it?.b64_json?'data:image/png;base64,'+it.b64_json:it?.url;
 if(!src)throw new Error('返唔到圖');
-state.settings.imgModel=model;LS.set('rg47_settings',state.settings);
-App._lastImg=src;
+state.settings.imgModel=model;LS.set('rg47_settings',state.settings);App._lastImg=src;
  $('im-out').innerHTML=`<div class="card !p-3"><img src="${src}" class="w-full rounded-2xl"><div class="flex gap-2 mt-3 justify-center"><button class="chip" onclick="App.imDownload()">⬇ 下載</button></div></div>`;
 toast('畫好喇 🖼️')}catch(e){$('im-out').innerHTML=App.errHtml(e.message)}
 state.busy=false},
@@ -1070,14 +1178,34 @@ p.timer=setInterval(()=>{p.left--;App.updatePomoUI();
 if(p.left<=0){clearInterval(p.timer);p.running=false;$('pm-btn').textContent='▶ 再嚟';$('pm-num').classList.remove('run');
 state.pomoDone++;LS.set('rg51_pomo',state.pomoDone);App.updatePomoUI();
  $('pm-status').textContent='🍅 搞掂！一粒番茄入袋';
-const lines=['哦？真係做完？我睇錯你。','好啦，今次俾你過。下個番茄繼續。','你居然坐得定成個番茄，曾俊偉都做唔到。','搞掂就快啲抖，唔好扮勤力。'];
+const lines=['哦？真係做完？我睇錯你。','好啦，今次俾你過。','你居然坐得定成個番茄，曾俊偉都做唔到。','搞掂就快啲抖。'];
  $('pm-ai').classList.remove('hidden');$('pm-ai').textContent='阮峻：'+lines[Math.floor(Math.random()*lines.length)];
 try{App.speak($('pm-ai').textContent)}catch{}}
 },1000)},
 pomoReset(){const p=state.pomo;clearInterval(p.timer);p.running=false;p.left=25*60;$('pm-btn').textContent='▶ 開始';$('pm-status').textContent='揀個時長開始';$('pm-num').classList.remove('run');App.updatePomoUI()},
 updatePomoUI(){const m=Math.floor(state.pomo.left/60),s=state.pomo.left%60;
  $('pm-num').textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
- $('pm-done').textContent=state.pomoDone}
+ $('pm-done').textContent=state.pomoDone},
+bindKeys(){$('minp')?.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){e.preventDefault();App.send()}});
+ $('file-in')?.addEventListener('change',e=>{App.addFiles([...e.target.files]);e.target.value=''});
+ $('dict-in')?.addEventListener('keydown',e=>{if(e.key==='Enter')App.lookup()});
+ $('tl-in')?.addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey))App.tlGo()});
+ $('we-city')?.addEventListener('keydown',e=>{if(e.key==='Enter')App.getWeather()});
+ $('fo-name')?.addEventListener('keydown',e=>{if(e.key==='Enter')App.drawFortune()});
+ $('bt-in')?.addEventListener('keydown',e=>{if(e.key==='Enter')App.battleAttack()});
+ $('db-reply')?.addEventListener('keydown',e=>{if(e.key==='Enter')App.dbSend()});
+ $('gm-in')?.addEventListener('keydown',e=>{if(e.key==='Enter')App.gmSend()});
+ $('dm-in')?.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.isComposing)App.dreamGo()});
+ $('fd-in')?.addEventListener('keydown',e=>{if(e.key==='Enter')App.foodGo()});
+ $('mem-in')?.addEventListener('keydown',e=>{if(e.key==='Enter')App.memAdd()});
+ $('wb-prompt')?.addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey))App.webBuild()});
+ $('in-temp')?.addEventListener('input',e=>$('in-temp-val').textContent=e.target.value);
+ $('in-tok')?.addEventListener('input',e=>$('in-tok-val').textContent=e.target.value);
+ $('dict-hist')?.addEventListener('click',e=>{const b=e.target.closest('[data-w]');if(b){$('dict-in').value=b.dataset.w;App.lookup()}});
+ $('we-cities')?.addEventListener('click',e=>{const b=e.target.closest('[data-c]');if(b){$('we-city').value=b.dataset.c;App.getWeather()}});
+ $('nv-view')?.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(!b)return;const i=+b.dataset.idx;if(b.dataset.act==='regen')App.genChapter(i,true);if(b.dataset.act==='copy')App.copyText(state.novel.chapters[i].content)});
+document.addEventListener('keydown',e=>{if(!$('panel-cal').classList.contains('active'))return;const tg=document.activeElement?.tagName;if(tg==='INPUT'||tg==='TEXTAREA')return;
+if(/^[0-9.()+%]$/.test(e.key))App.calInput(e.key);else if(e.key==='*')App.calInput('*');else if(e.key==='/'){e.preventDefault();App.calInput('/')}else if(e.key==='-')App.calInput('-');else if(e.key==='Enter'||e.key==='=')App.calEval();else if(e.key==='Backspace')App.calBack();else if(e.key==='Escape')App.calClear()})}
 };
 window.App=App;App.init();
 </script>
