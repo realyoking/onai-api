@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-<title>RG_OS v52.2 — Liquid Glass</title>
+<title>RG_OS v53.0 — Liquid Glass</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
@@ -21,7 +21,6 @@ body.landing #sidebar,body.landing #menu-btn{opacity:0;pointer-events:none;trans
 button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--acc);outline-offset:2px;border-radius:10px}
 .surface{background:transparent}
 .card{background:var(--glass);backdrop-filter:blur(16px) saturate(1.4);border:1px solid var(--gborder);border-radius:var(--r);padding:20px;box-shadow:var(--shadow)}
-.glass{background:var(--glass);backdrop-filter:blur(20px) saturate(1.5);border:1px solid var(--gborder);border-radius:var(--r);box-shadow:var(--shadow)}
 .field{background:var(--glass2);border:1px solid var(--gborder2);color:var(--text);border-radius:14px;padding:12px 14px;outline:none;width:100%;font-size:14px;transition:.18s;font-family:inherit}
 .field:focus{border-color:rgba(232,118,58,.55);box-shadow:0 0 0 3px rgba(232,118,58,.13)}
 .field::placeholder{color:var(--sub)}
@@ -30,7 +29,6 @@ button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px soli
 .btn-p:active{transform:translateY(1px)}
 .btn-p:disabled{opacity:.4;filter:grayscale(.6)}
 html.dark .btn-p{border-color:rgba(255,255,255,.22);background:linear-gradient(180deg,#fbfaf8,#d8d4ce);color:#23211d;box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 4px 16px rgba(0,0,0,.4)}
-html.dark .btn-p:hover{background:linear-gradient(180deg,#fff,#e9e5de)}
 .btn-d{display:inline-flex;align-items:center;justify-content:center;border-radius:12px;padding:10px 18px;font-weight:800;font-family:inherit;font-size:14px;cursor:pointer;transition:.25s;border:1px solid rgba(0,0,0,.10);background:linear-gradient(180deg,rgba(248,113,113,.85),rgba(220,60,60,.9));color:#fff}
 .chip{border:1px solid var(--gborder2);border-radius:999px;padding:4px 13px;font-size:11px;font-weight:800;cursor:pointer;color:var(--sub);transition:.18s;background:var(--glass2);backdrop-filter:blur(8px);font-family:inherit}
 .chip:hover{border-color:rgba(232,118,58,.5);color:var(--text)}
@@ -47,13 +45,11 @@ html.dark .tab.active{background:rgba(240,136,77,.13)!important}
 .tab.active::before{content:'';position:absolute;left:-10px;top:50%;transform:translateY(-50%);width:3px;height:18px;border-radius:99px;background:var(--acc)}
 .stab{padding:8px 16px;border-radius:11px;font-size:12px;font-weight:800;cursor:pointer;color:var(--sub)}
 .stab.active{background:rgba(255,255,255,.7);color:var(--acc)}
-html.dark .stab.active{background:rgba(240,136,77,.14)}
 .sec-label{padding:14px 24px 4px;font-size:9px;font-weight:900;letter-spacing:.2em;color:var(--sub)}
 .tool-panel{display:none;height:100%;width:100%;flex-direction:column;overflow:hidden}
 .tool-panel.active{display:flex!important;animation:fi .3s cubic-bezier(.2,.7,.3,1)}
 @keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
 .logo-mark{width:36px;height:36px;border-radius:13px;background:var(--glass);backdrop-filter:blur(12px);border:1px solid var(--gborder);display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:var(--shadow);flex-shrink:0;cursor:pointer;transition:.15s}
-.logo-mark:hover{border-color:rgba(232,118,58,.5)}
 .cal-btn{height:52px;border-radius:14px;font-weight:900;font-size:17px;background:var(--glass2);backdrop-filter:blur(8px);border:1px solid var(--gborder2);transition:transform .08s;user-select:none;color:var(--text);font-family:inherit}
 .cal-btn:active{transform:scale(.92)}
 .cal-btn.op{color:var(--acc)}
@@ -63,45 +59,39 @@ html.dark header.phead{background:rgba(20,20,25,.5)}
 #chat-view pre{background:#12151b!important;border-radius:14px;padding:14px;overflow-x:auto;font-size:12px;position:relative;margin:.6em 0;border:1px solid rgba(255,255,255,.08)}
 #chat-view pre code{background:transparent!important;border:none;padding:0}
 #chat-view code{background:rgba(255,255,255,.5);border:1px solid var(--gborder2);padding:1px 6px;border-radius:6px;font-size:.85em}
-html.dark #chat-view code{background:rgba(255,255,255,.07)}
 .code-copy{position:absolute;top:8px;right:8px;background:rgba(255,255,255,.1);color:#9aa3af;border:1px solid rgba(255,255,255,.15);border-radius:7px;font-size:10px;padding:3px 8px;cursor:pointer;font-weight:700}
 .code-copy:hover{color:#fff}
 .dots i{display:inline-block;width:5px;height:5px;border-radius:99px;background:var(--acc);margin-right:3px;animation:bl 1.2s infinite}
 .dots i:nth-child(2){animation-delay:.2s}.dots i:nth-child(3){animation-delay:.4s}
 @keyframes bl{0%,80%,100%{opacity:.2}40%{opacity:1}}
 #toasts{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:300;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none}
-.toast{background:rgba(30,28,26,.82);backdrop-filter:blur(16px);color:#f5f2ec;padding:11px 20px;border-radius:16px;font-size:12px;font-weight:800;border:1px solid rgba(255,255,255,.14);box-shadow:0 12px 40px rgba(0,0,0,.25);animation:ti .3s;white-space:nowrap;max-width:80vw}
+.toast{background:rgba(30,28,26,.82);backdrop-filter:blur(16px);color:#f5f2ec;padding:11px 20px;border-radius:16px;font-size:12px;font-weight:800;border:1px solid rgba(255,255,255,.14);box-shadow:0 12px 40px rgba(0,0,0,.25);white-space:nowrap;max-width:80vw}
 .toast.out{opacity:0;transform:translateY(10px);transition:.3s}
-@keyframes ti{from{opacity:0;transform:translateY(16px) scale(.94)}to{opacity:1}}
 #sidebar{width:254px;background:var(--glass);backdrop-filter:blur(28px) saturate(1.6);border-right:1px solid var(--gborder);display:flex;flex-direction:column;z-index:50}
 @media(max-width:768px){#sidebar{position:fixed;top:0;bottom:0;left:0;transform:translateX(-100%);transition:transform .28s cubic-bezier(.2,.7,.3,1);box-shadow:12px 0 48px rgba(60,50,40,.18)}#sidebar.open{transform:none}}
 input[type=range]{accent-color:var(--acc);width:100%}
 a{color:inherit;text-decoration:underline;text-decoration-color:rgba(232,118,58,.5);text-underline-offset:2px}
-.hstat{border:1px solid var(--gborder);border-radius:20px;padding:14px 16px;background:var(--glass2);backdrop-filter:blur(12px);display:flex;gap:12px;align-items:center;transition:.18s}
-.hstat:hover{transform:translateY(-2px);border-color:rgba(232,118,58,.4)}
+.hstat{border:1px solid var(--gborder);border-radius:20px;padding:14px 16px;background:var(--glass2);backdrop-filter:blur(12px);display:flex;gap:12px;align-items:center}
 .hstat .n{font-size:22px;font-weight:900;line-height:1}.hstat .l{font-size:10px;font-weight:900;color:var(--sub);letter-spacing:.08em;margin-top:3px}
 .hico{width:40px;height:40px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:19px;background:rgba(255,255,255,.55);border:1px solid var(--gborder);flex-shrink:0}
-html.dark .hico{background:rgba(255,255,255,.07)}
 .launch{border:1px solid var(--gborder);border-radius:20px;padding:14px;text-align:left;cursor:pointer;background:var(--glass2);backdrop-filter:blur(12px);transition:.18s;display:flex;flex-direction:column;gap:6px;font-family:inherit;color:var(--text)}
-.launch:hover{border-color:rgba(232,118,58,.45);transform:translateY(-3px);box-shadow:0 12px 32px rgba(232,118,58,.12)}
-.launch .t{font-size:13px;font-weight:900}.launch .d{font-size:10px;font-weight:700;color:var(--sub);line-height:1.5}
+.launch:hover{border-color:rgba(232,118,58,.45);transform:translateY(-3px)}
+.launch .t{font-size:13px;font-weight:900}.launch .d{font-size:10px;font-weight:700;color:var(--sub)}
 .empty{text-align:center;padding:44px 20px;color:var(--sub);border:1.5px dashed var(--gborder2);border-radius:22px}
-.empty .e{font-size:36px;margin-bottom:10px;filter:grayscale(.25)}
+.empty .e{font-size:36px;margin-bottom:10px}
 .empty .t{font-weight:900;font-size:13px;color:var(--text);margin-bottom:4px}.empty .s{font-size:11px;font-weight:700;line-height:1.6}
 .hero-title{font-size:clamp(38px,7vw,76px);line-height:1.04;letter-spacing:-.03em;font-weight:900}
 .grad-text{background:linear-gradient(105deg,var(--acc) 20%,#f0a568 65%,#e8c79a 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .dotgrid{background-image:radial-gradient(rgba(140,130,115,.18) 1px,transparent 1px);background-size:24px 24px;position:relative;overflow:hidden}
 .hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(255,175,125,.30),transparent 65%);filter:blur(60px);top:-180px;right:-140px;animation:hg 10s ease-in-out infinite alternate;pointer-events:none}
-html.dark .hero-glow{background:radial-gradient(circle,rgba(240,136,77,.14),transparent 65%)}
 @keyframes hg{from{transform:translate(0,0) scale(1)}to{transform:translate(-70px,60px) scale(1.12)}}
 .glow-btn{position:relative;overflow:hidden}
 .glow-btn::after{content:'';position:absolute;inset:0;background:radial-gradient(120px circle at var(--mx,50%) 50%,rgba(255,255,255,.28),transparent 60%);opacity:0;transition:opacity .2s}
 .glow-btn:hover::after{opacity:1}
 .marquee{overflow:hidden;border-block:1px solid var(--gborder2);background:rgba(255,255,255,.25);backdrop-filter:blur(8px)}
-html.dark .marquee{background:rgba(255,255,255,.03)}
 .marquee-track{display:flex;gap:56px;width:max-content;animation:mq 24s linear infinite;padding:14px 0;font-weight:900;font-size:12px;letter-spacing:.12em;color:var(--sub);white-space:nowrap}
 @keyframes mq{to{transform:translateX(-50%)}}
-.bento{border:1px solid var(--gborder);border-radius:24px;background:var(--glass);backdrop-filter:blur(16px) saturate(1.4);padding:22px;transition:.2s;cursor:pointer;font-family:inherit;color:var(--text);box-shadow:var(--shadow)}
+.bento{border:1px solid var(--gborder);border-radius:24px;background:var(--glass);backdrop-filter:blur(16px);padding:22px;transition:.2s;cursor:pointer;font-family:inherit;color:var(--text);box-shadow:var(--shadow)}
 .bento:hover{transform:translateY(-4px);border-color:rgba(232,118,58,.45);box-shadow:0 16px 40px rgba(232,118,58,.13)}
 .bento .bi{font-size:26px}
 .rv{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.3,1)}
@@ -120,7 +110,7 @@ html.dark .marquee{background:rgba(255,255,255,.03)}
 .how-num{width:40px;height:40px;border-radius:14px;background:var(--acc-soft);color:var(--acc);border:1px solid rgba(232,118,58,.35);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;flex-shrink:0}
 .rsn{margin:2px 0 12px}
 .rsn-head{display:flex;align-items:center;gap:8px;padding:2px 2px 12px;cursor:pointer;user-select:none}
-.rsn-title{font-size:17px;font-weight:800;letter-spacing:-.01em;background:linear-gradient(90deg,#7d7d7d 25%,#ffffff 50%,#7d7d7d 75%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:rshine 2.8s linear infinite}
+.rsn-title{font-size:17px;font-weight:800;background:linear-gradient(90deg,#7d7d7d 25%,#ffffff 50%,#7d7d7d 75%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:rshine 2.8s linear infinite}
 .rsn.done .rsn-title{animation:none;background:linear-gradient(90deg,#8f8f8f,#e6e6e6 55%,#9a9a9a);-webkit-background-clip:text;background-clip:text}
 @keyframes rshine{from{background-position:200% 0}to{background-position:-200% 0}}
 .rsn-chev{margin-left:auto;color:var(--sub);font-size:12px;transition:transform .25s}
@@ -128,13 +118,10 @@ html.dark .marquee{background:rgba(255,255,255,.03)}
 .rsn-body{max-height:0;overflow:hidden;transition:max-height .35s ease}
 .rsn.open .rsn-body{max-height:440px;overflow-y:auto}
 .rstep{position:relative;display:flex;gap:15px;padding:0 4px 18px 4px;font-size:13.5px;color:var(--sub);line-height:1.8}
-.rstep::before{content:'';position:absolute;left:8px;top:22px;bottom:-2px;width:1.5px;background:color-mix(in srgb,var(--text) 14%,transparent)}
+.rstep::before{content:'';position:absolute;left:8px;top:22px;bottom:-2px;width:1.5px;background:rgba(140,130,115,.25)}
 .rstep:last-child::before{display:none}
-.rstep:last-child{border-bottom:1px solid color-mix(in srgb,var(--text) 12%,transparent);padding-bottom:18px}
-html.dark .rstep::before{background:rgba(255,255,255,.12)}
-html.dark .rstep:last-child{border-color:rgba(255,255,255,.12)}
+.rstep:last-child{border-bottom:1px solid rgba(140,130,115,.2);padding-bottom:18px}
 .rdot{width:10px;height:10px;border-radius:99px;background:#777;margin-top:7px;flex-shrink:0;position:relative;z-index:1}
-html.dark .rdot{background:#5a5a5f}
 .rstep.live .rdot{background:var(--acc);animation:pd 1.1s infinite}
 .rck{color:#34c759;font-weight:900;margin-right:6px}
 @keyframes pd{50%{box-shadow:0 0 0 7px rgba(232,118,58,.13)}}
@@ -143,12 +130,9 @@ html.dark .rdot{background:#5a5a5f}
 #minp::placeholder{color:var(--sub)}
 .gbar{display:flex;align-items:center;gap:8px;margin-top:4px}
 .gsep{width:1px;height:22px;background:linear-gradient(180deg,transparent,var(--gborder2),transparent);flex-shrink:0}
-.gpill{border:1.5px solid var(--gborder2);border-radius:999px;padding:5px 13px;font-size:12px;font-weight:800;color:var(--sub);background:transparent;cursor:pointer;transition:.18s;display:flex;align-items:center;gap:6px;font-family:inherit;white-space:nowrap}
-.gpill:hover{color:var(--text);border-color:var(--sub)}
+.gpill{border:1.5px solid var(--gborder2);border-radius:999px;padding:5px 13px;font-size:12px;font-weight:800;color:var(--sub);background:transparent;cursor:pointer;transition:.18s;font-family:inherit;white-space:nowrap}
 .gpill.on-think{color:#8b7cf6;border-color:#8b7cf6;background:rgba(139,124,246,.1)}
 .gat{width:38px;height:38px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:17px;background:none;border:none;cursor:pointer;color:var(--sub);transition:.15s;flex-shrink:0;font-family:inherit}
-.gat:hover{background:rgba(255,255,255,.5);color:var(--text)}
-html.dark .gat:hover{background:rgba(255,255,255,.08)}
 .mic{width:38px;height:38px;border-radius:999px;background:var(--text);color:var(--bg);display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;transition:.15s;border:none;flex-shrink:0;font-family:inherit}
 .mic.rec{background:#e05252;color:#fff;animation:pm 1s infinite}
 @keyframes pm{50%{box-shadow:0 0 0 8px rgba(224,82,82,.15)}}
@@ -159,98 +143,79 @@ html.dark .gat:hover{background:rgba(255,255,255,.08)}
 #att-row{display:flex;gap:8px;flex-wrap:wrap}
 #att-row.hidden{display:none}
 .ideas{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:640px}
-.idea{border:1px solid var(--gborder2);background:var(--glass2);backdrop-filter:blur(10px);border-radius:999px;padding:8px 16px;font-size:12.5px;font-weight:800;color:var(--sub);cursor:pointer;transition:.15s;font-family:inherit;text-align:left}
+.idea{border:1px solid var(--gborder2);background:var(--glass2);backdrop-filter:blur(10px);border-radius:999px;padding:8px 16px;font-size:12.5px;font-weight:800;color:var(--sub);cursor:pointer;transition:.15s;font-family:inherit}
 .idea:hover{color:var(--acc);border-color:rgba(232,118,58,.5);transform:translateY(-1px)}
 .idea b{color:var(--text);margin-right:6px}
 .qcard{border:1px solid var(--gborder2);border-radius:18px;background:var(--glass);backdrop-filter:blur(14px);overflow:hidden;margin:4px 0 8px}
 .qhead{display:flex;align-items:center;gap:8px;padding:11px 16px;font-weight:900;font-size:13px;background:rgba(232,118,58,.08);border-bottom:1px solid var(--gborder2)}
-.qhead .qc{margin-left:auto;color:var(--sub);font-size:11px}
 .qbody{padding:14px 16px}
 .qq{font-weight:800;font-size:14px;margin-bottom:12px;line-height:1.55}
 .qopt{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:9px 12px;border:1.5px solid var(--gborder2);border-radius:12px;background:var(--glass2);margin-bottom:8px;cursor:pointer;font-size:13px;font-weight:700;color:var(--text);transition:.15s;font-family:inherit}
-.qopt:hover{border-color:rgba(232,118,58,.5)}
 .qopt.sel{border-color:var(--acc);background:var(--acc-soft)}
 .qbadge{width:22px;height:22px;border-radius:7px;border:1.5px solid var(--gborder2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:var(--sub);flex-shrink:0}
 .qopt.sel .qbadge{background:var(--acc);color:#fff;border-color:var(--acc)}
-.qfree{display:flex;align-items:center;gap:10px}
-.qfree input{flex:1;border:1.5px solid var(--gborder2);background:var(--glass2);border-radius:12px;padding:9px 12px;font-size:13px;font-weight:700;outline:none;color:var(--text);font-family:inherit;min-width:0}
 .qfoot{display:flex;justify-content:flex-end;gap:14px;margin-top:12px;align-items:center}
-.qskip{background:none;border:none;color:var(--sub);font-weight:800;font-size:13px;cursor:pointer;font-family:inherit}
 .qsend{border:1.5px solid rgba(90,156,248,.6);background:rgba(90,156,248,.15);color:#5a9cf8;border-radius:10px;padding:7px 18px;font-weight:900;font-size:13px;cursor:pointer;font-family:inherit}
 .qdone{color:var(--sub);font-size:12px;font-weight:800;margin-top:10px}
-.att-thumb{position:relative;width:56px;height:56px;border-radius:14px;overflow:hidden;border:1px solid var(--gborder);box-shadow:var(--shadow)}
+.att-thumb{position:relative;width:56px;height:56px;border-radius:14px;overflow:hidden;border:1px solid var(--gborder)}
 .att-thumb img{width:100%;height:100%;object-fit:cover}
 .att-thumb button{position:absolute;top:2px;right:2px;background:rgba(0,0,0,.55);color:#fff;border-radius:99px;width:17px;height:17px;font-size:9px;line-height:17px;text-align:center}
-.pomo-num{font-size:68px;font-weight:900;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
-.pomo-num.run{color:var(--acc)}
 .user-av{background:linear-gradient(180deg,#454340,#16140f);color:#fff;border:1px solid rgba(255,255,255,.16)}
 html.dark .user-av{background:linear-gradient(180deg,#f7f5f1,#d8d4cd);color:#23211d}
-/* landing nav pill */
 .navpill{display:flex;align-items:center;gap:2px;border:1px solid var(--gborder2);border-radius:999px;padding:4px;background:var(--glass2);backdrop-filter:blur(12px);box-shadow:var(--shadow)}
 .navpill button{border:none;background:none;border-radius:999px;padding:6px 16px;font-size:12.5px;font-weight:800;color:var(--sub);cursor:pointer;transition:.15s;font-family:inherit;white-space:nowrap}
-.navpill button:hover{color:var(--text)}
 .navpill button.np-on{background:var(--acc-soft);color:var(--acc)}
-@media(max-width:640px){.navpill button{padding:6px 12px;font-size:11.5px}.hero-cta{width:100%}}
 .langwrap{position:relative}
 .langbtn{border:1.5px solid var(--gborder2);border-radius:999px;padding:6px 12px;font-size:11.5px;font-weight:900;color:var(--sub);background:var(--glass2);backdrop-filter:blur(10px);cursor:pointer;transition:.15s;font-family:inherit;min-width:44px;text-align:center}
-.langbtn:hover{border-color:rgba(232,118,58,.5);color:var(--text)}
-.langmenu{position:absolute;top:calc(100% + 8px);right:0;min-width:165px;border:1px solid var(--gborder);border-radius:16px;background:var(--glass);backdrop-filter:blur(24px) saturate(1.5);box-shadow:0 16px 48px rgba(0,0,0,.22);padding:6px;z-index:200;display:none}
+.langmenu{position:absolute;top:calc(100% + 8px);right:0;min-width:165px;border:1px solid var(--gborder);border-radius:16px;background:var(--glass);backdrop-filter:blur(24px);box-shadow:0 16px 48px rgba(0,0,0,.22);padding:6px;z-index:200;display:none}
 .langmenu.open{display:block;animation:fi .18s}
 .langmenu button{display:block;width:100%;text-align:left;border:none;background:none;padding:9px 12px;border-radius:11px;font-size:13px;font-weight:800;color:var(--sub);cursor:pointer;transition:.12s;font-family:inherit}
 .langmenu button:hover{background:rgba(255,255,255,.5);color:var(--text)}
-html.dark .langmenu button:hover{background:rgba(255,255,255,.08)}
 .langmenu button.on{color:var(--acc);background:var(--acc-soft)}
-/* chat history collapse */
 .hist-toggle{display:flex;align-items:center;gap:8px;margin:4px 10px 2px;padding:9px 12px;border-radius:12px;font-size:12.5px;font-weight:900;color:var(--sub);cursor:pointer;transition:.15s;user-select:none}
 .hist-toggle:hover{background:rgba(255,255,255,.4);color:var(--text)}
-html.dark .hist-toggle:hover{background:rgba(255,255,255,.06)}
-.hist-arrow{display:inline-flex;transition:transform .25s cubic-bezier(.2,.7,.3,1);font-size:10px;color:var(--sub)}
+.hist-arrow{display:inline-flex;transition:transform .25s;font-size:10px}
 .hist-toggle.open .hist-arrow{transform:rotate(90deg);color:var(--acc)}
-#hist-list{max-height:0;overflow:hidden;transition:max-height .3s cubic-bezier(.2,.7,.3,1)}
+#hist-list{max-height:0;overflow:hidden;transition:max-height .3s}
 #hist-list.open{max-height:400px;overflow-y:auto}
 #hist-list .hist-item{display:flex;align-items:center;gap:6px;padding:8px 12px;margin:2px 10px;border-radius:12px;font-size:12px;font-weight:800;color:var(--sub);cursor:pointer;transition:.15s}
 #hist-list .hist-item:hover{background:rgba(255,255,255,.4);color:var(--text)}
-html.dark #hist-list .hist-item:hover{background:rgba(255,255,255,.06)}
 #hist-list .hist-item.on{background:rgba(255,255,255,.65)!important;color:var(--acc)!important}
-html.dark #hist-list .hist-item.on{background:rgba(240,136,77,.13)!important}
 #hist-list .hist-item span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
-#hist-list .hist-item .del{opacity:0;font-size:11px;background:none;border:none;cursor:pointer;color:var(--sub);padding:2px;flex-shrink:0;transition:.15s;font-family:inherit}
+#hist-list .hist-item .del{opacity:0;font-size:11px;background:none;border:none;cursor:pointer;color:var(--sub);flex-shrink:0;font-family:inherit}
 #hist-list .hist-item:hover .del{opacity:1}
 #hist-list .hist-item .del:hover{color:#e05252}
-.hist-new{display:flex;align-items:center;justify-content:center;gap:8px;margin:2px 10px 2px;padding:9px 12px;border-radius:12px;font-size:12.5px;font-weight:900;color:var(--sub);cursor:pointer;border:1.5px dashed var(--gborder2);background:transparent;transition:.15s;font-family:inherit;width:calc(100% - 20px)}
+.hist-new{display:flex;align-items:center;justify-content:center;margin:2px 10px 2px;padding:9px 12px;border-radius:12px;font-size:12.5px;font-weight:900;color:var(--sub);cursor:pointer;border:1.5px dashed var(--gborder2);background:transparent;transition:.15s;font-family:inherit;width:calc(100% - 20px)}
 .hist-new:hover{border-color:rgba(232,118,58,.5);color:var(--acc)}
-/* onboarding */
 #ob-modal{position:fixed;inset:0;background:rgba(10,10,12,.55);backdrop-filter:blur(10px);z-index:500;display:none;align-items:center;justify-content:center;padding:16px}
-#ob-modal.open{display:flex;animation:fi .3s}
-.ob-card{width:100%;max-w-md;border-radius:28px;border:1px solid var(--gborder);background:var(--glass);backdrop-filter:blur(32px) saturate(1.6);box-shadow:0 24px 80px rgba(0,0,0,.35);padding:28px;overflow-y:auto;max-height:92vh}
-.ob-step{display:none}.ob-step.on{display:block;animation:fi .3s}
+#ob-modal.open{display:flex}
+.ob-card{width:100%;max-width-md;border-radius:28px;border:1px solid var(--gborder);background:var(--glass);backdrop-filter:blur(32px);box-shadow:0 24px 80px rgba(0,0,0,.35);padding:28px;max-height:92vh;overflow-y:auto;max-width:440px}
+.ob-step{display:none}.ob-step.on{display:block}
 .ob-dots{display:flex;gap:6px;justify-content:center;margin-bottom:20px}
 .ob-dots span{width:8px;height:8px;border-radius:99px;background:var(--gborder2);transition:.2s}
 .ob-dots span.on{background:var(--acc);width:22px}
 .ob-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .ob-grid button{border:1.5px solid var(--gborder2);border-radius:14px;padding:12px 6px;font-size:13px;font-weight:900;color:var(--sub);background:var(--glass2);cursor:pointer;transition:.15s;font-family:inherit}
-.ob-grid button:hover{border-color:rgba(232,118,58,.4)}
 .ob-grid button.on{border-color:var(--acc);color:var(--acc);background:var(--acc-soft)}
-@media(prefers-reduced-motion:reduce){.marquee-track,.hero-glow,.float-chip,.mic.rec,.rsn-title,.hist-arrow{animation:none}.rv{transition:none;opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.marquee-track,.hero-glow,.float-chip,.mic.rec,.rsn-title{animation:none}.rv{transition:none;opacity:1;transform:none}}
 </style>
 </head>
 <body class="landing">
 <div id="amb"></div>
 
-<!-- ONBOARDING -->
 <div id="ob-modal">
 <div class="ob-card">
 <div class="ob-dots"><span id="obd-0" class="on"></span><span id="obd-1"></span><span id="obd-2"></span></div>
 <div class="ob-step on" id="ob-0">
-<div class="text-center mb-5"><div class="text-4xl mb-2">⚡</div><div class="text-xl font-black tracking-tight" id="ob-t0">歡迎嚟到 RG_OS</div><div class="text-xs font-bold mt-1" style="color:var(--sub)" id="ob-s0">首先，揀你鍾意嘅語言</div></div>
+<div class="text-center mb-5"><div class="text-4xl mb-2">⚡</div><div class="text-xl font-black" id="ob-t0">歡迎嚟到 RG_OS</div><div class="text-xs font-bold mt-1" style="color:var(--sub)" id="ob-s0">揀你鍾意嘅語言</div></div>
 <div class="ob-grid" id="ob-langs"></div>
 </div>
 <div class="ob-step" id="ob-1">
-<div class="text-center mb-5"><div class="text-4xl mb-2">👋</div><div class="text-xl font-black tracking-tight" id="ob-t1">你叫咩名？</div><div class="text-xs font-bold mt-1" style="color:var(--sub)" id="ob-s1">阮峻會咁樣稱呼你</div></div>
-<input id="ob-name" class="field text-center text-lg font-black" placeholder="你的名字">
+<div class="text-center mb-5"><div class="text-4xl mb-2">👋</div><div class="text-xl font-black" id="ob-t1">你叫咩名？</div><div class="text-xs font-bold mt-1" style="color:var(--sub)" id="ob-s1">阮峻會咁樣稱呼你</div></div>
+<input id="ob-name" class="field text-center text-lg font-black" placeholder="你個名">
 </div>
 <div class="ob-step" id="ob-2">
-<div class="text-center mb-5"><div class="text-4xl mb-2">🔌</div><div class="text-xl font-black tracking-tight" id="ob-t2">連接 AI</div><div class="text-xs font-bold mt-1" style="color:var(--sub)" id="ob-s2">貼你嘅 API Key（可以之後先搞）</div></div>
+<div class="text-center mb-5"><div class="text-4xl mb-2">🔌</div><div class="text-xl font-black" id="ob-t2">連接 AI</div><div class="text-xs font-bold mt-1" style="color:var(--sub)" id="ob-s2">貼你嘅 API Key（可以之後先搞）</div></div>
 <div class="flex flex-wrap gap-2 mb-3">
 <button class="chip" onclick="$('ob-url').value='https://api.openai.com/v1'">OpenAI</button>
 <button class="chip" onclick="$('ob-url').value='https://api.deepseek.com/v1'">DeepSeek</button>
@@ -265,7 +230,7 @@ html.dark #hist-list .hist-item.on{background:rgba(240,136,77,.13)!important}
 <datalist id="dl-models"></datalist>
 </div>
 <div class="flex gap-2 mt-2">
-<button onclick="App.obSkip()" class="chip flex-1 !py-3" id="ob-skip">跳過</button>
+<button onclick="App.obSkip()" class="chip flex-1 !py-3">跳過</button>
 <button onclick="App.obNext()" class="btn-p flex-[2] !rounded-xl" id="ob-next">下一步 →</button>
 </div>
 </div>
@@ -274,49 +239,37 @@ html.dark #hist-list .hist-item.on{background:rgba(240,136,77,.13)!important}
 <aside id="sidebar">
 <div class="p-5 pb-2 flex items-center gap-2">
 <div class="logo-mark" onclick="App.showLanding()" title="Back">⚡</div>
-<div style="min-width:0;flex:1"><div class="text-base font-black italic tracking-tighter leading-none">RG_OS <span style="color:var(--acc)">v52</span></div><div class="text-[9px] font-black mt-1" style="color:var(--sub)" id="sb-brand">香港仔版</div></div>
+<div style="min-width:0;flex:1"><div class="text-base font-black italic tracking-tighter leading-none">RG_OS <span style="color:var(--acc)">v53</span></div><div class="text-[9px] font-black mt-1" style="color:var(--sub)" id="sb-brand">香港仔版</div></div>
 <div class="langwrap"><button class="langbtn" onclick="event.stopPropagation();App.langMenu('lm-sb')"><span class="lang-cur">粵</span></button><div class="langmenu" id="lm-sb"></div></div>
 </div>
 <div class="px-5 pb-2 flex items-center gap-2">
-<div class="text-[10px] font-black px-3 py-1.5 rounded-full inline-flex items-center gap-2 cursor-pointer border transition hover:opacity-80 flex-1" style="border-color:var(--gborder2);background:var(--glass2)" onclick="App.openSettings()"><span id="led" class="w-1.5 h-1.5 rounded-full bg-red-500"></span><span id="conn-text">未配置</span></div>
-<button class="icon-btn theme-toggle shrink-0" onclick="App.toggleTheme()"></button>
+<div class="text-[10px] font-black px-3 py-1.5 rounded-full inline-flex items-center gap-2 cursor-pointer border flex-1" style="border-color:var(--gborder2);background:var(--glass2)" onclick="App.openSettings()"><span id="led" class="w-1.5 h-1.5 rounded-full bg-red-500"></span><span id="conn-text">未配置</span></div>
+<button class="icon-btn shrink-0 theme-toggle" onclick="App.toggleTheme()"></button>
 </div>
 <nav class="flex-1 overflow-y-auto px-3 pb-2">
-<button class="hist-new" onclick="App.newChat()" id="btn-newchat">＋ 新對話</button>
-<div class="hist-toggle" id="hist-toggle" onclick="App.histToggle()"><span class="hist-arrow">▸</span>💬 <span id="tt-hist">對話歷史</span></div>
+<button class="hist-new" onclick="App.newChat()">＋ 新對話</button>
+<div class="hist-toggle" id="hist-toggle" onclick="App.histToggle()"><span class="hist-arrow">▸</span>💬 對話歷史</div>
 <div id="hist-list"></div>
-<div onclick="App.openTool('chat')" id="tab-chat" class="tab active">💬 <span id="tt-cur">目前對話</span></div>
-<div class="sec-label" id="sl-3">工具</div>
-<div onclick="App.openTool('cal')" id="tab-cal" class="tab">🧮 <span id="tt-cal">亂算器</span></div>
-<div onclick="App.openTool('dict')" id="tab-dict" class="tab">📖 <span id="tt-dict">離譜詞典</span></div>
-<div onclick="App.openTool('translate')" id="tab-translate" class="tab">🌐 <span id="tt-translate">真翻譯</span></div>
-<div onclick="App.openTool('grade')" id="tab-grade" class="tab">📊 <span id="tt-grade">成績審判</span></div>
-<div onclick="App.openTool('weather')" id="tab-weather" class="tab">🌤️ <span id="tt-weather">天氣</span></div>
-<div onclick="App.openTool('news')" id="tab-news" class="tab">📰 <span id="tt-news">新聞銳評</span></div>
-<div class="sec-label" id="sl-4">創作</div>
-<div onclick="App.openTool('web')" id="tab-web" class="tab">⚡ <span id="tt-web">AI網頁工廠</span></div>
-<div onclick="App.openTool('draw')" id="tab-draw" class="tab">🖼️ <span id="tt-draw">畫圖</span></div>
-<div onclick="App.openTool('novel')" id="tab-novel" class="tab">✍️ <span id="tt-novel">Novel</span></div>
-<div onclick="App.openTool('essay')" id="tab-essay" class="tab">📝 <span id="tt-essay">小作文工廠</span></div>
-<div onclick="App.openTool('mouth')" id="tab-mouth" class="tab">🎤 <span id="tt-mouth">嘴替</span></div>
-<div class="sec-label" id="sl-5">搞嘢</div>
-<div onclick="App.openTool('soup')" id="tab-soup" class="tab">🍜 <span id="tt-soup">毒雞湯</span></div>
-<div onclick="App.openTool('fortune')" id="tab-fortune" class="tab">🎋 <span id="tt-fortune">運勢求籤</span></div>
-<div onclick="App.openTool('battle')" id="tab-battle" class="tab">🛡️ <span id="tt-battle">鬧交模擬器</span></div>
-<div onclick="App.openTool('debate')" id="tab-debate" class="tab">🔪 <span id="tt-debate">為反對而反對</span></div>
-<div onclick="App.openTool('train')" id="tab-train" class="tab">🚄 <span id="tt-train">新幹線圖鑑</span></div>
-<div onclick="App.openTool('dream')" id="tab-dream" class="tab">🔮 <span id="tt-dream">發夢解析</span></div>
-<div onclick="App.openTool('games')" id="tab-games" class="tab">🎮 <span id="tt-games">遊戲中心</span></div>
-<div class="sec-label" id="sl-6">生活</div>
-<div onclick="App.openTool('food')" id="tab-food" class="tab">🍳 <span id="tt-food">深夜食堂</span></div>
-<div onclick="App.openTool('letter')" id="tab-letter" class="tab">✉️ <span id="tt-letter">時間慢遞</span></div>
-<div onclick="App.openTool('pomo')" id="tab-pomo" class="tab">⏱️ <span id="tt-pomo">番茄鐘</span></div>
-<div class="sec-label" id="sl-7">系統</div>
-<div onclick="App.openTool('mem')" id="tab-mem" class="tab">🧠 <span id="tt-mem">記憶</span></div>
-<div onclick="App.openTool('backup')" id="tab-backup" class="tab">💾 <span id="tt-backup">備份</span></div>
+<div onclick="App.openTool('chat')" id="tab-chat" class="tab active">💬 目前對話</div>
+<div class="sec-label">工具</div>
+<div onclick="App.openTool('cal')" id="tab-cal" class="tab">🧮 亂算器</div>
+<div onclick="App.openTool('dict')" id="tab-dict" class="tab">📖 離譜詞典</div>
+<div onclick="App.openTool('translate')" id="tab-translate" class="tab">🌐 真翻譯</div>
+<div onclick="App.openTool('grade')" id="tab-grade" class="tab">📊 成績審判</div>
+<div onclick="App.openTool('weather')" id="tab-weather" class="tab">🌤️ 天氣</div>
+<div onclick="App.openTool('news')" id="tab-news" class="tab">📰 新聞銳評</div>
+<div class="sec-label">創作</div>
+<div onclick="App.openTool('web')" id="tab-web" class="tab">⚡ AI網頁工廠</div>
+<div onclick="App.openTool('draw')" id="tab-draw" class="tab">🖼️ 畫圖</div>
+<div onclick="App.openTool('novel')" id="tab-novel" class="tab">✍️ Novel</div>
+<div onclick="App.openTool('essay')" id="tab-essay" class="tab">📝 小作文工廠</div>
+<div onclick="App.openTool('mouth')" id="tab-mouth" class="tab">🎤 嘴替</div>
+<div class="sec-label">系統</div>
+<div onclick="App.openTool('mem')" id="tab-mem" class="tab">🧠 記憶</div>
+<div onclick="App.openTool('backup')" id="tab-backup" class="tab">💾 備份</div>
 </nav>
-<div class="p-4 border-t flex items-center gap-2" style="border-color:var(--gborder2)">
-<button onclick="App.openSettings()" class="flex-1 flex items-center gap-2.5 p-2 rounded-xl hover:opacity-75 transition min-w-0"><div id="u-avatar" class="w-8 h-8 rounded-full user-av flex items-center justify-center text-[11px] font-black shrink-0">R</div><div id="u-display" class="text-xs font-black truncate text-left">...</div></button>
+<div class="p-4 border-t" style="border-color:var(--gborder2)">
+<button onclick="App.openSettings()" class="flex items-center gap-2.5 p-2 rounded-xl hover:opacity-75 transition w-full"><div id="u-avatar" class="w-8 h-8 rounded-full user-av flex items-center justify-center text-[11px] font-black shrink-0">R</div><div id="u-display" class="text-xs font-black truncate text-left">...</div></button>
 </div>
 </aside>
 
@@ -330,69 +283,84 @@ html.dark #hist-list .hist-item.on{background:rgba(240,136,77,.13)!important}
 <div class="flex-1"></div>
 <div class="langwrap"><button class="langbtn" onclick="event.stopPropagation();App.langMenu('lm-site')"><span class="lang-cur">粵</span></button><div class="langmenu" id="lm-site"></div></div>
 <button class="icon-btn theme-toggle" onclick="App.toggleTheme()"></button>
-<button class="glow-btn btn-p !rounded-full !px-4 md:!px-5 !py-2 !text-xs" onclick="App.enterApp('chat')" id="btn-try">即刻用 →</button>
+<button class="glow-btn btn-p !rounded-full !px-4 !py-2 !text-xs" onclick="App.enterApp('chat')" id="btn-try">即刻用 →</button>
 </div>
 <div class="flex justify-center mt-2"><div class="navpill">
-<button id="np-feat" class="np-on" onclick="App.siteTo('feat');App.npPick('np-feat')"><span id="tt-nav-feat">功能</span></button>
-<button id="np-talk" onclick="App.siteTo('talk');App.npPick('np-talk')"><span id="tt-nav-talk">好評</span></button>
-<button id="np-faq" onclick="App.siteTo('faq');App.npPick('np-faq')"><span id="tt-nav-faq">FAQ</span></button>
+<button id="np-feat" class="np-on" onclick="App.siteTo('feat');App.npPick('np-feat')">功能</button>
+<button id="np-talk" onclick="App.siteTo('talk');App.npPick('np-talk')">好評</button>
+<button id="np-faq" onclick="App.siteTo('faq');App.npPick('np-faq')">FAQ</button>
 </div></div>
 </div></div>
 <div class="dotgrid"><div class="hero-glow"></div><div class="max-w-5xl mx-auto px-6 pt-16 pb-24 text-center relative">
-<div class="rv eyebrow">v52.2 · BYOK</div>
-<h1 class="rv hero-title mt-5"><span id="hero-l1">問阮峻</span><br><span class="grad-text" id="hero-l2">任何嘢</span>。</h1>
-<p class="rv max-w-xl mx-auto mt-6 text-sm font-bold leading-relaxed" style="color:var(--sub)" id="hero-sub">廿四個工具、識睇相、識思考、會反問你嘅香港中三學生。零伺服器，你嘅 Key 你話事。</p>
+<div class="rv eyebrow">v53 · 香港仔版 · BYOK</div>
+<h1 class="rv hero-title mt-5">問阮峻<br><span class="grad-text">任何嘢</span>。</h1>
+<p class="rv max-w-xl mx-auto mt-6 text-sm font-bold leading-relaxed" style="color:var(--sub)">十三個工具、識睇相、識思考、會反問你嘅香港中三學生。零伺服器，你嘅 Key 你話事。</p>
 <div class="rv phone-wrap">
-<div class="float-chip" style="left:5%;top:20%;animation-delay:-2s">📷 AI</div>
-<div class="float-chip" style="right:4%;top:44%;animation-delay:-4s">💭 R</div>
-<div class="float-chip" style="left:8%;bottom:16%;animation-delay:-1s">🧠 ♡</div>
+<div class="float-chip" style="left:5%;top:20%;animation-delay:-2s">📷 AI Vision</div>
+<div class="float-chip" style="right:4%;top:44%;animation-delay:-4s">💭 Reasoning</div>
+<div class="float-chip" style="left:8%;bottom:16%;animation-delay:-1s">🧠 Memory</div>
 <img class="phone-img" src="IMG_5689.png" alt="preview" onerror="this.style.display='none'">
 </div>
-<div class="rv flex gap-3 justify-center mt-10 flex-wrap"><button class="glow-btn btn-p !rounded-full !px-8 !py-3.5 !text-sm hero-cta" onclick="App.enterApp('chat')" id="btn-start">開始傾偈 →</button><button class="rounded-full px-8 py-3.5 text-sm font-black border bg-transparent transition hover:scale-[1.03] hero-cta" style="border-color:var(--gborder2);background:var(--glass2);backdrop-filter:blur(10px)" onclick="App.siteTo('feat')" id="btn-see">睇下有咩</button></div>
+<div class="rv flex gap-3 justify-center mt-10 flex-wrap">
+<button class="glow-btn btn-p !rounded-full !px-8 !py-3.5 !text-sm" onclick="App.enterApp('chat')">開始傾偈 →</button>
+<button class="rounded-full px-8 py-3.5 text-sm font-black border bg-transparent" style="border-color:var(--gborder2);background:var(--glass2)" onclick="App.siteTo('feat')">睇下有咩</button>
+</div>
 </div></div>
-<div class="marquee"><div class="marquee-track"><span>🚄 320KM/H</span><span>📷 VISION</span><span>💭 REASONING</span><span>❓ CLARIFY</span><span>🎙 VOICE</span><span>⚡ BYOK</span><span>🚄 320KM/H</span><span>📷 VISION</span><span>💭 REASONING</span><span>❓ CLARIFY</span><span>🎙 VOICE</span><span>⚡ BYOK</span></div></div>
+<div class="marquee"><div class="marquee-track"><span>🚄 E5系 320KM/H</span><span>📎 識睇相</span><span>💭 Reasoning</span><span>❓ 會反問你</span><span>🎤 語音輸入</span><span>🧠 記得你</span><span>🚄 E5系 320KM/H</span><span>📎 識睇相</span><span>💭 Reasoning</span><span>❓ 會反問你</span><span>🎤 語音輸入</span><span>🧠 記得你</span></div></div>
 <div class="max-w-5xl mx-auto px-6 py-16 grid grid-cols-2 md:grid-cols-4 gap-4">
-<div class="rv text-center"><div class="text-4xl font-black" style="color:var(--acc)"><span data-count="24">0</span></div><div class="eyebrow mt-1" style="color:var(--sub)">Tools</div></div>
-<div class="rv text-center"><div class="text-4xl font-black"><span data-count="0">0</span></div><div class="eyebrow mt-1" style="color:var(--sub)">Servers</div></div>
-<div class="rv text-center"><div class="text-4xl font-black"><span data-count="100">0</span>%</div><div class="eyebrow mt-1" style="color:var(--sub)">Local</div></div>
-<div class="rv text-center"><div class="text-4xl font-black"><span data-count="320">0</span></div><div class="eyebrow mt-1" style="color:var(--sub)">KM/H</div></div>
+<div class="rv text-center"><div class="text-4xl font-black" style="color:var(--acc)"><span data-count="13">0</span></div><div class="eyebrow mt-1" style="color:var(--sub)">個工具</div></div>
+<div class="rv text-center"><div class="text-4xl font-black"><span data-count="0">0</span></div><div class="eyebrow mt-1" style="color:var(--sub)">個伺服器</div></div>
+<div class="rv text-center"><div class="text-4xl font-black"><span data-count="100">0</span>%</div><div class="eyebrow mt-1" style="color:var(--sub)">本地儲存</div></div>
+<div class="rv text-center"><div class="text-4xl font-black"><span data-count="320">0</span></div><div class="eyebrow mt-1" style="color:var(--sub)">KM/H 信仰</div></div>
 </div>
 <div id="site-how" class="max-w-4xl mx-auto px-6 pb-20">
-<div class="rv eyebrow mb-3">How</div>
-<h2 class="rv text-3xl font-black tracking-tight mb-8">三步開波。</h2>
+<div class="rv eyebrow mb-3">點樣用</div>
+<h2 class="rv text-3xl font-black tracking-tight mb-8">三步，開波。</h2>
 <div class="grid md:grid-cols-3 gap-4">
-<div class="rv bento text-left"><div class="how-num">1</div><div class="font-black text-sm mt-3">Key</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">OpenAI / DeepSeek / Groq / Ollama。Key 只存你個 browser。</div></div>
-<div class="rv bento text-left"><div class="how-num">2</div><div class="font-black text-sm mt-3">Model</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">一鍵拉模型列表。快揀細，聰明揀大，睇相揀 vision。</div></div>
-<div class="rv bento text-left"><div class="how-num">3</div><div class="font-black text-sm mt-3">Go</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">打字、語音、影相。唔明會反問你。</div></div>
+<div class="rv bento text-left"><div class="how-num">1</div><div class="font-black text-sm mt-3">攞條 Key</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">OpenAI / DeepSeek / Groq / Ollama 隨你揀。Key 只存你自己個 browser。</div></div>
+<div class="rv bento text-left"><div class="how-num">2</div><div class="font-black text-sm mt-3">揀個模型</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">一鍵拉模型列表。要快揀細模型，要聰明揀大模型，要睇相揀 vision 系。</div></div>
+<div class="rv bento text-left"><div class="how-num">3</div><div class="font-black text-sm mt-3">開串</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">打字、語音、影相都得。阮峻唔明會反問你，串你係順便。</div></div>
 </div>
 </div>
 <div id="site-feat" class="max-w-5xl mx-auto px-6 pb-20">
-<div class="rv eyebrow mb-3">Features</div><h2 class="rv text-3xl font-black tracking-tight mb-8">一個 App，廿四般武藝。</h2>
+<div class="rv eyebrow mb-3">功能</div>
+<h2 class="rv text-3xl font-black tracking-tight mb-8">一個 App，十三般武藝。</h2>
 <div class="grid md:grid-cols-3 gap-4">
-<button class="rv bento md:col-span-2 text-left" onclick="App.enterApp('chat')"><div class="bi">💬</div><div class="font-black text-sm mt-3">Chat</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">影相問功課、Reasoning 時間軸、會反問你。</div></button>
-<button class="rv bento text-left" onclick="App.enterApp('mem')"><div class="bi">🧠</div><div class="font-black text-sm mt-3">Memory</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">「記住xxx」永久記得。</div></button>
-<button class="rv bento text-left" onclick="App.enterApp('games')"><div class="bi">🎮</div><div class="font-black text-sm mt-3">Games</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">成語接龍/猜謎/20Q。</div></button>
-<button class="rv bento text-left" onclick="App.enterApp('draw')"><div class="bi">🖼️</div><div class="font-black text-sm mt-3">Draw</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">一句生成圖片。</div></button>
-<button class="rv bento md:col-span-2 text-left" onclick="App.enterApp('translate')"><div class="bi">🌐</div><div class="font-black text-sm mt-3">Translate</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">粵⇄英⇄日韓。</div></button>
-<button class="rv bento text-left" onclick="App.enterApp('pomo')"><div class="bi">⏱️</div><div class="font-black text-sm mt-3">Pomodoro</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">監你讀書。</div></button>
-</div></div>
-<div id="site-talk" class="max-w-5xl mx-auto px-6 pb-20">
-<div class="rv eyebrow mb-3">Reviews</div><h2 class="rv text-3xl font-black tracking-tight mb-8">佢哋都係受害者。</h2>
-<div class="grid md:grid-cols-3 gap-4">
-<div class="rv tcard"><div class="text-xs font-bold leading-relaxed">「我唔明點解要有個專門鬧我嘅功能。」</div><div class="text-[10px] font-black mt-4" style="color:var(--sub)">曾俊偉</div></div>
-<div class="rv tcard"><div class="text-xs font-bold leading-relaxed">「佢記得我貓叫咩名。」</div><div class="text-[10px] font-black mt-4" style="color:var(--sub)">元宝爸爸</div></div>
-<div class="rv tcard"><div class="text-xs font-bold leading-relaxed">「唔該唔好將我同人類嘅 app 相提並論。」</div><div class="text-[10px] font-black mt-4" style="color:var(--sub)">E5系</div></div>
-</div></div>
-<div id="site-faq" class="max-w-2xl mx-auto px-6 pb-20">
-<div class="rv eyebrow mb-3">FAQ</div><h2 class="rv text-3xl font-black tracking-tight mb-8">問之前，先諗下。</h2>
-<div class="rv faq card !rounded-2xl px-5 cursor-pointer !py-0" onclick="App.faqT(this)"><div class="flex justify-between items-center py-4 font-black text-sm">要錢咩？<span class="faq-c">+</span></div><div class="faq-a text-xs font-bold" style="color:var(--sub)"><p class="pb-4">App 免費。API 你自己俾（BYOK）。</p></div></div>
-<div class="rv faq card !rounded-2xl px-5 cursor-pointer mt-3 !py-0" onclick="App.faqT(this)"><div class="flex justify-between items-center py-4 font-black text-sm">深諗模式？<span class="faq-c">+</span></div><div class="faq-a text-xs font-bold" style="color:var(--sub)"><p class="pb-4">配推理模型用，見到閃光 Reasoning 時間軸。</p></div></div>
-<div class="rv faq card !rounded-2xl px-5 cursor-pointer mt-3 !py-0" onclick="App.faqT(this)"><div class="flex justify-between items-center py-4 font-black text-sm">可以唔提曾俊偉嗎？<span class="faq-c">+</span></div><div class="faq-a text-xs font-bold" style="color:var(--sub)"><p class="pb-4">唔得。Feature，唔係 bug。</p></div></div>
+<button class="rv bento md:col-span-2 text-left" onclick="App.enterApp('chat')"><div class="bi">💬</div><div class="font-black text-sm mt-3">阮峻對話</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">影相問功課、開深諗模式睇 Reasoning 時間軸、佢唔明會反問你、仲可以播出嚟。</div></button>
+<button class="rv bento text-left" onclick="App.enterApp('mem')"><div class="bi">🧠</div><div class="font-black text-sm mt-3">記憶系統</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">話佢知「記住xxx」，佢永遠記得。</div></button>
+<button class="rv bento text-left" onclick="App.enterApp('draw')"><div class="bi">🖼️</div><div class="font-black text-sm mt-3">畫圖</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">一句生成圖片。</div></button>
+<button class="rv bento md:col-span-2 text-left" onclick="App.enterApp('translate')"><div class="bi">🌐</div><div class="font-black text-sm mt-3">真翻譯</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">廣東話⇄英文⇄日韓，地道口語。</div></button>
+<button class="rv bento text-left" onclick="App.enterApp('web')"><div class="bi">⚡</div><div class="font-black text-sm mt-3">AI網頁工廠</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">描述即所得，自動續寫。</div></button>
+<button class="rv bento text-left" onclick="App.enterApp('news')"><div class="bi">📰</div><div class="font-black text-sm mt-3">新聞銳評</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">HN 熱榜 + 銳評。</div></button>
+<button class="rv bento text-left" onclick="App.enterApp('novel')"><div class="bi">✍️</div><div class="font-black text-sm mt-3">Novel</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">連載小說生成器。</div></button>
+<button class="rv bento text-left" onclick="App.enterApp('essay')"><div class="bi">📝</div><div class="font-black text-sm mt-3">小作文工廠</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">請假紙/悔過書/週報。</div></button>
+<button class="rv bento text-left" onclick="App.enterApp('mouth')"><div class="bi">🎤</div><div class="font-black text-sm mt-3">嘴替</div><div class="text-xs font-bold mt-1" style="color:var(--sub)">幫你講唔敢講嘅嘢。</div></button>
 </div>
-<div class="max-w-5xl mx-auto px-6 pb-24"><div class="rv cta-dark rounded-[32px] p-12 md:p-16 text-center">
+</div>
+<div id="site-talk" class="max-w-5xl mx-auto px-6 pb-20">
+<div class="rv eyebrow mb-3">好評</div>
+<h2 class="rv text-3xl font-black tracking-tight mb-8">佢哋都係受害者。</h2>
+<div class="grid md:grid-cols-3 gap-4">
+<div class="rv tcard"><div class="text-xs font-bold leading-relaxed">「我唔明點解要有個專門鬧我嘅功能。」</div><div class="text-[10px] font-black mt-4" style="color:var(--sub)">曾俊偉 · 被針對人士</div></div>
+<div class="rv tcard"><div class="text-xs font-bold leading-relaxed">「佢記得我貓叫咩名，仲記得話隻貓似我。」</div><div class="text-[10px] font-black mt-4" style="color:var(--sub)">元宝爸爸 · 用戶</div></div>
+<div class="rv tcard"><div class="text-xs font-bold leading-relaxed">「唔該唔好將我同人類嘅 app 相提並論。」</div><div class="text-[10px] font-black mt-4" style="color:var(--sub)">E5系新幹線 · 信仰對象</div></div>
+</div>
+</div>
+<div id="site-faq" class="max-w-2xl mx-auto px-6 pb-20">
+<div class="rv eyebrow mb-3">FAQ</div>
+<h2 class="rv text-3xl font-black tracking-tight mb-8">問之前，先諗下值唔值。</h2>
+<div class="rv faq card !rounded-2xl px-5 cursor-pointer !py-0" onclick="App.faqT(this)"><div class="flex justify-between items-center py-4 font-black text-sm">要錢咩？<span class="faq-c">+</span></div><div class="faq-a text-xs font-bold" style="color:var(--sub)"><p class="pb-4">App 免費。API 你自己俾（BYOK）。睇相要用 vision 模型（GPT-4o / Gemini / Claude 系）。</p></div></div>
+<div class="rv faq card !rounded-2xl px-5 cursor-pointer mt-3 !py-0" onclick="App.faqT(this)"><div class="flex justify-between items-center py-4 font-black text-sm">深諗模式咩嚟？<span class="faq-c">+</span></div><div class="faq-a text-xs font-bold" style="color:var(--sub)"><p class="pb-4">配推理模型（DeepSeek-R1 等）用，見到閃光 Reasoning 時間軸。</p></div></div>
+<div class="rv faq card !rounded-2xl px-5 cursor-pointer mt-3 !py-0" onclick="App.faqT(this)"><div class="flex justify-between items-center py-4 font-black text-sm">可以唔提曾俊偉嗎？<span class="faq-c">+</span></div><div class="faq-a text-xs font-bold" style="color:var(--sub)"><p class="pb-4">唔得。呢個係 feature，唔係 bug。</p></div></div>
+</div>
+<div class="max-w-5xl mx-auto px-6 pb-24">
+<div class="rv cta-dark rounded-[32px] p-12 md:p-16 text-center">
 <div class="text-3xl md:text-5xl font-black tracking-tight" style="color:#f5f2ec">睇夠未？</div>
-<button class="rounded-full px-10 py-4 text-sm font-black mt-8 bg-white hover:scale-105 transition shadow-lg" style="color:#2a2620" onclick="App.enterApp('home')">返主頁開工 →</button>
-</div><div class="text-center eyebrow py-10" style="color:var(--sub)">RG_OS · Made with 廣東話</div></div>
+<p class="text-xs font-bold mt-3" style="color:rgba(245,242,236,.6)">個 app 唔會自己用自己。</p>
+<button class="rounded-full px-10 py-4 text-sm font-black mt-8 bg-white" style="color:#2a2620" onclick="App.enterApp('home')">返主頁開工 →</button>
+</div>
+<div class="text-center eyebrow py-10" style="color:var(--sub)">RG_OS v53 · Made with 廣東話</div>
+</div>
 </div></div>
 
 <!-- HOME -->
@@ -416,16 +384,16 @@ html.dark #hist-list .hist-item.on{background:rgba(240,136,77,.13)!important}
 </div>
 <div id="hero-slot" class="w-full flex justify-center px-2">
 <div id="grokwrap" style="width:100%">
-<div id="grokbox" class="grok">
+<div class="grok">
 <input type="file" id="file-in" multiple accept="image/*,.txt,.md,.json,.csv,.js,.py,.html,.css" class="hidden">
 <div id="att-row" class="hidden mb-1"></div>
 <textarea id="minp" rows="1" placeholder="傾兩句 / 影相問嘢…（Enter 發送）"></textarea>
 <div class="gbar">
-<button class="gat" onclick="$('file-in').click()" title="attach">📎</button>
+<button class="gat" onclick="$('file-in').click()">📎</button>
 <div class="gsep"></div>
 <button id="pill-think" class="gpill" onclick="App.setPill()">💭 深諗</button>
 <div class="flex-1"></div>
-<button id="mic-btn" class="mic" onclick="App.toggleMic()" title="voice">🎙</button>
+<button id="mic-btn" class="mic" onclick="App.toggleMic()">🎙</button>
 <button id="sbtn" onclick="App.send()" disabled class="sendc">↑</button>
 </div>
 </div>
@@ -437,11 +405,11 @@ html.dark #hist-list .hist-item.on{background:rgba(240,136,77,.13)!important}
 <button onclick="App.shuffleIdeas()" class="chip mt-4">🎲 換一批</button>
 </div>
 <div id="chat-full" class="flex-1 flex flex-col overflow-hidden" style="display:none">
-<header class="h-14 border-b flex items-center gap-2 pl-16 md:pl-6 pr-4 md:pr-6 flex-wrap phead" style="border-color:var(--gborder2)"><span class="font-black text-sm" id="chat-title-label">目前對話</span><span id="chat-model" class="chip cursor-default">--</span><div class="flex-1"></div>
+<header class="h-14 border-b flex items-center gap-2 pl-16 md:pl-6 pr-4 md:pr-6 flex-wrap phead" style="border-color:var(--gborder2)"><span class="font-black text-sm">目前對話</span><span id="chat-model" class="chip cursor-default">--</span><div class="flex-1"></div>
 <div class="langwrap"><button class="langbtn" onclick="event.stopPropagation();App.langMenu('lm-chat')"><span class="lang-cur">粵</span></button><div class="langmenu" id="lm-chat"></div></div>
 <button class="icon-btn theme-toggle" onclick="App.toggleTheme()"></button>
-<button id="tts-hdr" class="icon-btn" onclick="App.toggleTTS()" title="TTS">🔊</button>
-<button onclick="App.clearChat()" class="icon-btn" title="clear">🗑</button></header>
+<button id="tts-hdr" class="icon-btn" onclick="App.toggleTTS()">🔊</button>
+<button onclick="App.clearChat()" class="icon-btn">🗑</button></header>
 <div id="scroller" class="flex-1 overflow-y-auto p-4 md:p-6"><div id="chat-view" class="max-w-2xl mx-auto space-y-5"></div></div>
 <div id="dock-slot" class="p-4 md:p-6 pt-2"></div>
 </div>
@@ -467,7 +435,7 @@ html.dark #hist-list .hist-item.on{background:rgba(240,136,77,.13)!important}
 <div class="p-6 md:p-10 max-w-xl mx-auto w-full overflow-y-auto">
 <div class="flex gap-2 mb-4"><input id="dict-in" class="field flex-1" placeholder="入個字或者詞…"><button onclick="App.lookup()" class="px-6 btn-p !rounded-xl shrink-0">翻譯</button></div>
 <div id="dict-hist-wrap" class="mb-6 hidden"><div class="text-[10px] font-black mb-2" style="color:var(--sub)">最近查過</div><div id="dict-hist" class="flex flex-wrap gap-2"></div></div>
-<div id="dict-out"><div class="empty"><div class="e">📖</div><div class="t">詞典仲未開張</div></div></div>
+<div id="dict-out"><div class="empty"><div class="e">📖</div><div class="t">詞典仲未開張</div><div class="s">查個字，收穫一個錯嘅解釋</div></div></div>
 </div></div>
 
 <!-- TRANSLATE -->
@@ -510,7 +478,7 @@ html.dark #hist-list .hist-item.on{background:rgba(240,136,77,.13)!important}
 
 <!-- NEWS -->
 <div id="panel-news" class="tool-panel surface"><header class="p-6 pl-16 md:pl-6 font-black text-lg border-b flex items-center justify-between phead" style="border-color:var(--gborder2)"><span>新聞銳評</span><button onclick="App.loadNews(true)" class="chip">⟳</button></header>
-<div class="flex-1 overflow-y-auto p-6 md:p-10"><div id="nw-load" class="hidden text-xs font-black text-center py-10" style="color:var(--sub)">爬緊全球熱榜…</div><div id="nw-list" class="max-w-2xl mx-auto"><div class="empty"><div class="e">📰</div><div class="t">熱榜載入中</div></div></div></div>
+<div class="flex-1 overflow-y-auto p-6 md:p-10"><div id="nw-load" class="hidden text-xs font-black text-center py-10" style="color:var(--sub)">爬緊全球熱榜…</div><div id="nw-list" class="max-w-2xl mx-auto"><div class="empty"><div class="e">📰</div><div class="t">熱榜載入中</div><div class="s">第一次打開會自動爬</div></div></div></div>
 </div>
 
 <!-- WEB -->
@@ -559,98 +527,6 @@ html.dark #hist-list .hist-item.on{background:rgba(240,136,77,.13)!important}
 <div id="mo-out" class="hidden"><div class="rounded-2xl p-5 text-sm leading-relaxed font-black border" style="border-color:var(--gborder2);border-left:3px solid var(--acc);background:var(--glass2)" id="mo-body"></div><div class="flex gap-2 mt-3"><button onclick="App.copyText(document.getElementById('mo-body').textContent)" class="chip">📋</button><button onclick="App.speak(document.getElementById('mo-body').textContent)" class="chip">🔊</button></div></div>
 </div></div></div>
 
-<!-- SOUP -->
-<div id="panel-soup" class="tool-panel surface"><header class="p-6 pl-16 md:pl-6 font-black text-lg border-b phead" style="border-color:var(--gborder2)">毒雞湯</header>
-<div class="flex-1 overflow-y-auto p-6 md:p-10"><div class="max-w-xl mx-auto"><button onclick="App.soup()" class="w-full btn-p mb-6">🍜 再嚟一碗</button><div id="soup-feed" class="space-y-3"></div></div></div></div>
-
-<!-- FORTUNE -->
-<div id="panel-fortune" class="tool-panel surface"><header class="p-6 pl-16 md:pl-6 font-black text-lg border-b phead" style="border-color:var(--gborder2)">運勢求籤</header>
-<div class="flex-1 overflow-y-auto p-6 md:p-10 max-w-md mx-auto w-full text-center">
-<input id="fo-name" class="field mb-3 text-center" placeholder="求籤人（留空 = 你）">
-<button onclick="App.drawFortune()" class="w-full btn-p">🎋 求一枝籤</button>
-<div id="fo-out" class="mt-6"><div class="empty"><div class="e">🎋</div><div class="t">今日運勢未卜</div></div></div>
-</div></div>
-
-<!-- BATTLE -->
-<div id="panel-battle" class="tool-panel surface"><header class="p-6 pl-16 md:pl-6 font-black text-lg border-b flex items-center justify-between phead" style="border-color:var(--gborder2)"><span>鬧交模擬器</span><span class="chip cursor-default">禁粗口</span></header>
-<div class="flex-1 overflow-y-auto p-6 md:p-10"><div class="max-w-xl mx-auto">
-<div id="bt-setup" class="card"><div class="text-[10px] font-black mb-2" style="color:var(--sub)">對手</div><input id="bt-opp" class="field mb-4" placeholder="對手名（默認：曾俊偉）"><button onclick="App.battleStart()" class="w-full btn-p">⚔️ 開拖（3 回合）</button></div>
-<div id="bt-arena" class="hidden"><div id="bt-log" class="space-y-3 mb-4"></div>
-<div class="flex gap-2 mb-3"><input id="bt-in" class="field flex-1" placeholder="放馬過嚟…"><button id="bt-btn" onclick="App.battleAttack()" class="px-6 btn-p !rounded-xl shrink-0">出手</button></div>
-<div class="flex gap-2 justify-center"><button id="bt-judge-btn" onclick="App.battleJudge()" class="chip hidden">⚖️ 叫裁判</button><button onclick="App.battleReset()" class="chip">↺</button></div>
-</div></div></div></div>
-
-<!-- DEBATE -->
-<div id="panel-debate" class="tool-panel surface"><header class="p-6 pl-16 md:pl-6 font-black text-lg border-b phead" style="border-color:var(--gborder2)">為反對而反對</header>
-<div class="flex-1 overflow-y-auto p-6 md:p-10"><div class="max-w-xl mx-auto">
-<div id="db-setup" class="card"><div class="text-[10px] font-black mb-2" style="color:var(--sub)">你嘅觀點</div><textarea id="db-in" rows="2" class="field mb-4 resize-none" placeholder="例如：新幹線係世界上最型嘅火車"></textarea><button onclick="App.debateStart()" class="w-full btn-p">🔪 開始抬槓</button></div>
-<div id="db-arena" class="hidden"><div class="card mb-4 text-[10px] font-black" style="color:var(--sub)">辯題：<span id="db-topic" class="text-sm" style="color:var(--text)"></span></div><div id="db-log" class="space-y-3 mb-4"></div>
-<div class="flex gap-2 mb-3"><input id="db-reply" class="field flex-1" placeholder="唔服？繼續辯…"><button id="db-btn" onclick="App.dbSend()" class="px-6 btn-p !rounded-xl shrink-0">反駁</button></div>
-<div class="flex gap-2 justify-center"><button class="chip" onclick="App.dbConcede()">🏳️ 你贏咗</button><button onclick="App.dbReset()" class="chip">↺</button></div>
-</div></div></div></div>
-
-<!-- TRAIN -->
-<div id="panel-train" class="tool-panel surface"><header class="p-6 pl-16 md:pl-6 font-black text-lg border-b phead" style="border-color:var(--gborder2)">新幹線圖鑑</header>
-<div class="flex-1 overflow-y-auto p-6 md:p-10 max-w-md mx-auto w-full text-center">
-<button onclick="App.drawTrain()" class="w-full btn-p">🚄 抽一架</button>
-<div id="tr-out" class="mt-6"><div class="empty"><div class="e">🚄</div><div class="t">車庫空嘅</div></div></div>
-<div class="text-[10px] font-black mt-8 mb-2" style="color:var(--sub)">已收集 <span id="tr-count">0</span> 架</div>
-<div id="tr-collection" class="flex flex-wrap gap-2 justify-center"></div>
-</div></div>
-
-<!-- DREAM -->
-<div id="panel-dream" class="tool-panel surface"><header class="p-6 pl-16 md:pl-6 font-black text-lg border-b phead" style="border-color:var(--gborder2)">發夢解析</header>
-<div class="flex-1 overflow-y-auto p-6 md:p-10 max-w-md mx-auto w-full">
-<textarea id="dm-in" rows="3" class="field resize-none mb-3" placeholder="琴晚發咩夢？"></textarea>
-<button onclick="App.dreamGo()" class="w-full btn-p mb-6">🔮 解夢</button>
-<div id="dm-out"><div class="empty"><div class="e">🌙</div><div class="t">琴晚發咗咩夢</div></div></div>
-</div></div>
-
-<!-- GAMES -->
-<div id="panel-games" class="tool-panel surface"><header class="p-6 pl-16 md:pl-6 font-black text-lg border-b flex items-center justify-between phead" style="border-color:var(--gborder2)"><span>遊戲中心</span><span class="chip cursor-default" style="color:var(--acc)">戰績：<span id="gm-score">0</span></span></header>
-<div class="flex-1 overflow-y-auto p-6 md:p-10 max-w-xl mx-auto w-full">
-<div id="gm-menu" class="card space-y-3">
-<button onclick="App.gmStart('jl')" class="w-full btn-p text-left">🐉 成語接龍</button>
-<button onclick="App.gmStart('cm')" class="w-full btn-p text-left">🧩 猜謎</button>
-<button onclick="App.gmStart('w')" class="w-full btn-p text-left">❓ 二十條問題</button>
-</div>
-<div id="gm-arena" class="hidden"><div id="gm-log" class="space-y-3 mb-4"></div>
-<div class="flex gap-2 mb-3"><input id="gm-in" class="field flex-1" placeholder="入答案…"><button id="gm-btn" onclick="App.gmSend()" class="px-6 btn-p !rounded-xl shrink-0">出招</button></div>
-<div class="flex gap-2 justify-center"><button onclick="App.gmQuit()" class="chip">🏳️</button></div>
-</div>
-</div></div>
-
-<!-- FOOD -->
-<div id="panel-food" class="tool-panel surface"><header class="p-6 pl-16 md:pl-6 font-black text-lg border-b phead" style="border-color:var(--gborder2)">深夜食堂</header>
-<div class="flex-1 overflow-y-auto p-6 md:p-10 max-w-md mx-auto w-full">
-<input id="fd-in" class="field mb-3" placeholder="雪櫃有咩？">
-<div class="flex gap-2 mb-6"><button onclick="App.foodGo()" class="flex-1 btn-p">🍳 決定今晚食咩</button><button onclick="App.foodGo(true)" class="px-5 py-3 rounded-xl font-black text-xs border shrink-0" style="border-color:rgba(232,118,58,.5);color:var(--acc);background:var(--acc-soft)">🎲</button></div>
-<div id="fd-out"><div class="empty"><div class="e">🍳</div><div class="t">隻鑊仲凍</div></div></div>
-</div></div>
-
-<!-- LETTER -->
-<div id="panel-letter" class="tool-panel surface"><header class="p-6 pl-16 md:pl-6 font-black text-lg border-b phead" style="border-color:var(--gborder2)">時間慢遞</header>
-<div class="flex-1 overflow-y-auto p-6 md:p-10 max-w-xl mx-auto w-full">
-<div class="card space-y-3 mb-6">
-<input id="lt-title" class="field" placeholder="封信個名">
-<textarea id="lt-body" rows="4" class="field resize-none" placeholder="想同未來嘅自己講咩…"></textarea>
-<div class="flex gap-3 items-end"><div class="flex-1"><div class="text-[10px] font-black mb-1" style="color:var(--sub)">解封日期</div><input id="lt-date" type="date" class="field"></div><button onclick="App.ltPreface()" class="chip h-12 px-4">✨</button></div>
-<button onclick="App.ltSeal()" class="w-full btn-p">✉️ 封存</button>
-</div><div id="lt-list" class="space-y-3"></div>
-</div></div>
-
-<!-- POMODORO -->
-<div id="panel-pomo" class="tool-panel surface"><header class="p-6 pl-16 md:pl-6 font-black text-lg border-b phead" style="border-color:var(--gborder2)">番茄鐘</header>
-<div class="flex-1 overflow-y-auto p-6 md:p-10 max-w-md mx-auto w-full text-center">
-<input id="pm-task" class="field mb-3 text-center" placeholder="今日溫咩？">
-<div class="flex gap-2 justify-center mb-6" id="pm-presets"></div>
-<div class="pomo-num" id="pm-num">25:00</div>
-<div class="text-xs font-black mt-1 mb-6" style="color:var(--sub)" id="pm-status">揀個時長開始</div>
-<div class="flex gap-2 justify-center mb-6"><button id="pm-btn" onclick="App.pomoToggle()" class="px-8 btn-p !rounded-full">▶ 開始</button><button onclick="App.pomoReset()" class="chip">↺</button></div>
-<div class="text-[10px] font-black mb-2" style="color:var(--sub)">今日完成 <span id="pm-done" style="color:var(--acc)">0</span> 🍅</div>
-<div id="pm-ai" class="card text-sm font-bold italic hidden" style="border-left:3px solid var(--acc)"></div>
-</div></div>
-
 <!-- MEMORY -->
 <div id="panel-mem" class="tool-panel surface"><header class="p-6 pl-16 md:pl-6 font-black text-lg border-b flex items-center justify-between phead" style="border-color:var(--gborder2)"><span>阮峻嘅記憶</span><span class="chip cursor-default" style="color:var(--acc)"><span id="mem-count">0</span></span></header>
 <div class="flex-1 overflow-y-auto p-6 md:p-10 max-w-xl mx-auto w-full">
@@ -663,7 +539,7 @@ html.dark #hist-list .hist-item.on{background:rgba(240,136,77,.13)!important}
 <div id="panel-backup" class="tool-panel surface"><header class="p-6 pl-16 md:pl-6 font-black text-lg border-b phead" style="border-color:var(--gborder2)">備份</header>
 <div class="flex-1 overflow-y-auto p-6 md:p-10 max-w-md mx-auto w-full">
 <div class="card space-y-4">
-<div class="text-xs font-bold leading-relaxed" style="color:var(--sub)">所有嘢只存喺呢個 browser。</div>
+<div class="text-xs font-bold leading-relaxed" style="color:var(--sub)">所有嘢只存喺呢個 browser。定期匯出一份穩陣。</div>
 <button onclick="App.bkExport()" class="w-full btn-p">⬇ 匯出全部（JSON）</button>
 <div class="border-2 border-dashed rounded-2xl p-5 text-center" style="border-color:var(--gborder2)">
 <input type="file" id="bk-file" accept=".json" class="hidden" onchange="App.bkImport(this)">
@@ -678,7 +554,7 @@ html.dark #hist-list .hist-item.on{background:rgba(240,136,77,.13)!important}
 <div id="overlay" onclick="App.toggleSidebar(false)" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[45] hidden md:hidden"></div>
 
 <div id="settings-modal" style="display:none" class="fixed inset-0 bg-black/45 backdrop-blur-md z-[100] items-center justify-center p-4">
-<div class="w-full max-w-md rounded-3xl border p-6 max-h-[92vh] overflow-y-auto shadow-2xl" style="background:var(--glass);backdrop-filter:blur(32px) saturate(1.6);border-color:var(--gborder)">
+<div class="w-full max-w-md rounded-3xl border p-6 max-h-[92vh] overflow-y-auto shadow-2xl" style="background:var(--glass);backdrop-filter:blur(32px);border-color:var(--gborder)">
 <div class="flex items-center justify-between mb-5"><div class="font-black text-lg">設定</div><button onclick="App.closeSettings()" class="icon-btn">✕</button></div>
 <div class="flex gap-2 mb-5"><button id="stab-conn" class="stab active" onclick="App.setTab('conn')">🔌 連線</button><button id="stab-persona" class="stab" onclick="App.setTab('persona')">🎭 人設</button><button id="stab-params" class="stab" onclick="App.setTab('params')">⚡ 參數</button></div>
 <div id="set-conn">
@@ -689,7 +565,7 @@ html.dark #hist-list .hist-item.on{background:rgba(240,136,77,.13)!important}
 <div class="relative mb-3"><input id="in-key" type="password" class="field pr-12" placeholder="API Key"><button onclick="App.toggleKey()" class="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-black" style="color:var(--sub)">👁</button></div>
 <button onclick="App.fetchModels()" class="w-full btn-p mb-2 !text-xs">⟳ 攞模型列表</button>
 <div id="set-status" class="text-[11px] font-bold mb-3 min-h-[16px]" style="color:var(--sub)"></div>
-<input id="in-model" class="field mb-2" list="dl-models" placeholder="傾偈模型">
+<input id="in-model" class="field mb-2" list="dl-models2" placeholder="傾偈模型">
 <datalist id="dl-models2"></datalist>
 </div>
 <div id="set-persona" style="display:none">
@@ -727,13 +603,12 @@ const state={settings:Object.assign({},DEFAULTS,LS.get('rg47_settings',{})),
 chats:LS.get('rg51_chats',[]),chatId:null,chat:[],
 novel:Object.assign({title:'',premise:'',chapters:[]},LS.get('rg47_novel',{})),
 dictWords:LS.get('rg47_dict',[]),grades:LS.get('rg47_grades',[]),cities:LS.get('rg47_cities',[]),
-soups:LS.get('rg48_soup',[]),fortunes:LS.get('rg48_fortunes',{}),trains:LS.get('rg48_trains',[]),
-letters:LS.get('rg48_letters',[]),web:LS.get('rg48_web',null),
+web:LS.get('rg48_web',null),
 think:LS.get('rg51_think',false),lang:LS.get('rg51_lang','yue'),
 taste:LS.get('rg48_taste',true),mems:LS.get('rg51_mems',[]),
-autoTTS:LS.get('rg51_tts',false),pomoDone:LS.get('rg51_pomo',0),gameScore:LS.get('rg51_game',{jl:0,cm:0,w:0}),
-att:[],busy:false,ctrl:null,newsLoaded:false,debate:null,lastGrade:null,mouthLevel:2,essayType:0,
-battle:null,wbViewMode:'prev',pomo:{timer:null,left:0,running:false},game:null,cal:{expr:'0',chaos:false},rec:null,_pq:null,_qsel:null,obStep:0};
+autoTTS:LS.get('rg51_tts',false),
+att:[],busy:false,ctrl:null,newsLoaded:false,lastGrade:null,mouthLevel:2,essayType:0,
+wbViewMode:'prev',cal:{expr:'0',chaos:false},rec:null,_pq:null,_qsel:null};
 
 const API={
 norm(u){u=(u||'').trim().replace(/\/+$/,'');if(!u)return'';if(!/^https?:\/\//i.test(u))u='https://'+u;if(!/\/v\d+$/.test(u))u+='/v1';return u},
@@ -758,46 +633,29 @@ aiName(){return App.lang==='en'?'Hugo':'阮峻'},
 aiTag(){return App.lang==='en'?'HG':'RG'},
 langName(){return (App.LANGS.find(l=>l[0]===App.lang)||['','粵','廣東話'])[2]},
 effSys(){const s=state.settings.systemPrompt;
-if(App.lang==='en')return s+'\n【LANGUAGE OVERRIDE】Reply in English only. Your name is Hugo (same savage 14-year-old HK student persona, expressed in English).';
-if(App.lang==='zh-Hant')return s+'\n【語言覆寫】必須用繁體中文（書面語）回覆，人設不變。';
-if(App.lang==='zh-Hans')return s+'\n【语言覆写】必须用简体中文（书面语）回复，人设不变。';
-if(App.lang==='ja')return s+'\n【言語上書き】必ず日本語で返答すること。キャラ設定は変えない。';
-if(App.lang==='ko')return s+'\n【언어 덮어쓰기】반드시 한국어로 답변할 것. 캐릭터 설정 유지.';
-if(App.lang==='es')return s+'\n【IDIOMA】Responde siempre en Español. Mantén el personaje.';
-if(App.lang==='fr')return s+'\n【LANGUE】Réponds toujours en Français. Garde le personnage.';
+if(App.lang==='en')return s+'\n【LANGUAGE OVERRIDE】Reply in English only. Your name is Hugo.';
+if(App.lang==='zh-Hant')return s+'\n【語言覆寫】必須用繁體中文（書面語）回覆。';
+if(App.lang==='zh-Hans')return s+'\n【语言覆写】必须用简体中文（书面语）回复。';
+if(App.lang==='ja')return s+'\n【言語上書き】必ず日本語で返答すること。';
+if(App.lang==='ko')return s+'\n【언어】반드시 한국어로 답변할 것.';
+if(App.lang==='es')return s+'\n【IDIOMA】Responde siempre en Español.';
+if(App.lang==='fr')return s+'\n【LANGUE】Réponds toujours en Français.';
 return s},
-OB:{
-yue:{w:'歡迎嚟到 RG_OS',ws:'揀你鍾意嘅語言',n:'你叫咩名？',ns:'AI 會咁樣稱呼你',c:'連接 AI',cs:'貼你嘅 API Key（可以之後先搞）',skip:'跳過',next:'下一步 →',done:'搞掂，開波！',test:'⟳ 測試連線',ok:'✅ 連到！揀個模型',newchat:'＋ 新對話',hist:'對話歷史',cur:'目前對話',tabs:['亂算器','離譜詞典','真翻譯','成績審判','天氣','新聞銳評','AI網頁工廠','畫圖','Novel','小作文工廠','嘴替','毒雞湯','運勢求籤','鬧交模擬器','為反對而反對','新幹線圖鑑','發夢解析','遊戲中心','深夜食堂','時間慢遞','番茄鐘','記憶','備份'],sec:['工具','創作','搞嘢','生活','系統'],disc:'⚠️ AI 可能會講錯嘢，重要資訊記得自己核實',ph:'傾兩句 / 影相問嘢…（Enter 發送）',hero1:'問阮峻',hero2:'任何嘢',online:'在線',sub:'毒舌 · 識睇相 · 唔明會反問你',nav:['功能','好評','FAQ'],try:'即刻用 →',start:'開始傾偈 →',see:'睇下有咩',cleared:'清空呢個對話？',delchat:'刪除呢個對話？',newok:'開咗新對話',delok:'已刪除',nohist:'仲未有歷史',ideas:[['👋','用一句廣東話介紹下你自己'],['🗡','串下我個名'],['📝','幫我寫封請假紙，話肚痾'],['🚄','E5 定 E6 新幹線型啲？點解'],['💀','我考咗 42/100，你可以點串我'],['🌙','解夢：夢見曾俊偉揸新幹線'],['😤','有人同我講「咁都得」，教我點串返'],['📸','幫我諗 3 個 IG caption 影新幹線'],['🐱','記住我養咗隻貓叫肥波'],['🌌','用廣東話 30 字解釋咩係黑洞'],['🥶','講個冷笑話，唔好笑我當你輸'],['🚃','如果曾俊偉坐我隔籬，我應該點做'],['📊','幫我諗個溫書時間表，得兩日'],['✍️','寫一句毒雞湯關於返學']]},
-'en':{w:'Welcome to RG_OS',ws:'Pick your language',n:"What's your name?",ns:'The AI will call you this',c:'Connect AI',cs:'Paste your API key (you can skip)',skip:'Skip',next:'Next →',done:"All set — let's go!",test:'⟳ Test connection',ok:'✅ Connected! Pick a model',newchat:'＋ New chat',hist:'Chat history',cur:'Current chat',tabs:['Calculator','Mad Dictionary','Translate','Grade Judge','Weather','News Roast','AI Web Forge','Draw','Novel','Essay Forge','Mouthpiece','Toxic Soup','Fortune','Roast Battle','Contrarian','Train Dex','Dream Read','Game Center','Midnight Diner','Time Letter','Pomodoro','Memory','Backup'],sec:['Tools','Create','Fun','Life','System'],disc:'⚠️ AI can make mistakes. Check important info.',ph:'Say something / ask with a photo… (Enter to send)',hero1:'Ask Hugo',hero2:'Anything',online:' online',sub:'Savage · Photo-smart · Asks back',nav:['Features','Reviews','FAQ'],try:'Try now →',start:'Start chatting →',see:'See features',cleared:'Clear this chat?',delchat:'Delete this chat?',newok:'New chat started',delok:'Deleted',nohist:'No history yet',ideas:[['👋','Introduce yourself in one line'],['🗡','Roast my name'],['📝','Write me a sick-note excuse'],['🚄','Shinkansen E5 or E6 — why?'],['💀','I scored 42/100, roast me'],['🌙','Dream: my classmate driving a bullet train'],['😤','Someone sassed me, help me clap back'],['📸','3 IG captions for a train photo'],['🐱','Remember my cat is called Fatty Bo'],['🌌','Explain black holes in 30 words'],['🥶','Tell a cold joke, no laughs = you lose'],['🚃','My rival sits next to me. What do I do'],['📊','Make me a 2-day study plan'],['✍️','Write a toxic-quote about school']]}
-},
-T_(){const base=App.OB[App.lang]||App.OB[App.lang==='zh-Hant'?'en':App.lang==='zh-Hans'?'en':'yue'];
-if(App.OB[App.lang])return App.OB[App.lang];
-/* fallback: derive zh-Hant/zh-Hans/ja/ko/es/fr minimal from en */
-const e=App.OB.en;const m={
-'zh-Hant':{...e,w:'歡迎來到 RG_OS',ws:'揀你嘅語言',n:'你叫咩名？',ns:'AI 會咁樣叫你',c:'連接 AI',cs:'貼你嘅 API Key（可以之後先搞）',skip:'跳過',next:'下一步 →',done:'搞掂，開波！',newchat:'＋ 新對話',hist:'對話歷史',cur:'目前對話',disc:'⚠️ AI 可能會出錯，重要資訊請自行核實',ph:'聊兩句 / 拍照問問題…（Enter 發送）',hero1:'問阮峻',hero2:'任何問題',online:'在線',sub:'毒舌 · 會看圖 · 不清楚會反問你',nav:['功能','好評','常見問題'],try:'立即使用 →',start:'開始聊天 →',see:'看看功能',cleared:'清空這個對話？',delchat:'刪除這個對話？',newok:'已開新對話',delok:'已刪除',nohist:'還沒有歷史'},
-'zh-Hans':{...e,w:'欢迎来到 RG_OS',ws:'选择你的语言',n:'你叫什么名字？',ns:'AI 会这样叫你',c:'连接 AI',cs:'粘贴你的 API Key（可以之后设置）',skip:'跳过',next:'下一步 →',done:'搞定，开始！',newchat:'＋ 新对话',hist:'对话历史',cur:'当前对话',disc:'⚠️ AI 可能会出错，重要信息请自行核实',ph:'聊两句 / 拍照提问…（Enter 发送）',hero1:'问阮峻',hero2:'任何问题',online:'在线',sub:'毒舌 · 会看图 · 不清楚会反问你',nav:['功能','好评','常见问题'],try:'立即使用 →',start:'开始聊天 →',see:'看看功能',cleared:'清空这个对话？',delchat:'删除这个对话？',newok:'已开新对话',delok:'已删除',nohist:'还没有历史'},
-ja:{...e,w:'RG_OS へようこそ',ws:'言語を選択',n:'名前は？',ns:'AI がそう呼びます',c:'AI 接続',cs:'API Key を貼って（スキップ可）',skip:'スキップ',next:'次へ →',done:'完了！',newchat:'＋ 新しいチャット',hist:'チャット履歴',cur:'現在のチャット',disc:'⚠️ AI は間違うことがあります。重要な情報はご確認ください',ph:'何か話しかけて / 写真で質問…（Enterで送信）',hero1:'阮峻に',hero2:'何でも聞いて',online:'オンライン',sub:'毒舌 · 写真OK · 曖昧なら質問する',nav:['機能','レビュー','FAQ'],try:'今すぐ使う →',start:'チャット開始 →',see:'機能を見る',cleared:'このチャットを消す？',delchat:'このチャットを削除？',newok:'新しいチャット開始',delok:'削除した',nohist:'履歴なし'},
-ko:{...e,w:'RG_OS에 오신 것...',ws:'언어 선택',n:'이름이 무엇?',ns:'AI 會咁樣稱呼你',c:'AI 連線',cs:'API Key 貼上（可跳過）',skip:'跳過',next:'下一步 →',done:'完成！',newchat:'＋ 新對話',hist:'對話歷史',cur:'目前對話',disc:'⚠️ AI가 실수할 수 있습니다',ph:'뭔가 말해봐…(Enter)',hero1:'阮峻에게',hero2:'뭐든 물어봐',online:'線上',sub:'毒舌 · 看圖 · 反問',nav:['功能','評論','FAQ'],try:'立即使用 →',start:'開始聊天 →',see:'看功能',cleared:'清空？',delchat:'刪除？',newok:'新對話',delok:'已刪除',nohist:'無歷史'},
-es:{...e,w:'Bienvenido a RG_OS',ws:'Elige tu idioma',n:'¿Tu nombre?',ns:'La IA te llamará así',c:'Conectar IA',cs:'Pega tu API Key (puedes omitir)',skip:'Omitir',next:'Siguiente →',done:'¡Listo!',newchat:'＋ Nuevo chat',hist:'Historial',cur:'Chat actual',disc:'⚠️ La IA puede equivocarse. Verifica la información importante',ph:'Escribe algo / pregunta con foto…(Enter)',hero1:'Pregúntale a Hugo',hero2:'lo que sea',online:' en línea',sub:'Sarcástico · Ve fotos · Pregunta si no entiende',nav:['Funciones','Reseñas','FAQ'],try:'Probar →',start:'Empezar chat →',see:'Ver funciones',cleared:'¿Borrar este chat?',delchat:'¿Eliminar este chat?',newok:'Nuevo chat',delok:'Eliminado',nohist:'Sin historial'},
-fr:{...e,w:'Bienvenue sur RG_OS',ws:'Choisis ta langue',n:'Ton nom ?',ns:"L'IA t'appellera ainsi",c:'Connecter IA',cs:'Colle ta clé API (peut sauter)',skip:'Passer',next:'Suivant →',done:'Prêt !',newchat:'＋ Nouveau chat',hist:'Historique',cur:'Chat actuel',disc:"⚠️ L'IA peut faire des erreurs. Vérifiez les infos importantes",ph:'Écris quelque chose / demande avec photo…(Entrée)',hero1:'Demande à Hugo',hero2:'ce que tu veux',online:' en ligne',sub:'Mordant · Voit les photos · Redemande si flou',nav:['Fonctions','Avis','FAQ'],try:'Essayer →',start:'Commencer →',see:'Voir les fonctions',cleared:'Vider ce chat ?',delchat:'Supprimer ce chat ?',newok:'Nouveau chat',delok:'Supprimé',nohist:"Pas d'historique"}};
-return m[App.lang]||App.OB.yue},
-tabIds:['tt-cal','tt-dict','tt-translate','tt-grade','tt-weather','tt-news','tt-web','tt-draw','tt-novel','tt-essay','tt-mouth','tt-soup','tt-fortune','tt-battle','tt-debate','tt-train','tt-dream','tt-games','tt-food','tt-letter','tt-pomo','tt-mem','tt-backup'],
-secIds:['sl-3','sl-4','sl-5','sl-6','sl-7'],
-T_(){return App.OB[App.lang]||App.OB.yue},
-applyLang(){const T=App.T_();
+applyLang(){const L=App.lang;
+const M={yue:{brand:'香港仔版',try:'即刻用 →',nav:['功能','好評','FAQ'],disc:'⚠️ AI 可能會講錯嘢，重要資訊記得自己核實',ph:'傾兩句 / 影相問嘢…（Enter 發送）',hero1:'問阮峻',hero2:'任何嘢',online:'在線',sub:'毒舌 · 識睇相 · 唔明會反問你',start:'開始傾偈 →',see:'睇下有咩',newchat:'＋ 新對話',hist:'對話歷史'},
+en:{brand:'HK Edition',try:'Try now →',nav:['Features','Reviews','FAQ'],disc:'⚠️ AI can make mistakes. Check important info.',ph:'Say something / ask with a photo… (Enter)',hero1:'Ask Hugo',hero2:'Anything',online:' online',sub:'Savage · Photo-smart · Asks back',start:'Start chatting →',see:'See features',newchat:'＋ New chat',hist:'Chat history'}};
+const t=M[L]||M.yue;
 const set=(id,v)=>{const el=$(id);if(el)el.textContent=v};
-set('sb-brand',T.brand);set('btn-try',T.try);set('btn-newchat',T.newchat);
-set('tt-hist',T.hist);set('tt-cur',T.cur);set('chat-title-label',T.cur);
-set('tt-nav-feat',T.nav[0]);set('tt-nav-talk',T.nav[1]);set('tt-nav-faq',T.nav[2]);
-App.tabIds.forEach((id,i)=>set(id,T.tabs[i]));
-App.secIds.forEach((id,i)=>set(id,T.sec[i]));
-set('hero-l1',T.hero1);set('hero-l2',T.hero2);set('hero-sub',T.sub);
-set('btn-start',T.start);set('btn-see',T.see);
-set('chat-sub',T.sub);
-const on=$('chat-online');if(on)on.innerHTML=App.aiName()+'<span class="grad-text">'+T.online+'</span>';
-const mp=$('minp');if(mp)mp.placeholder=T.ph;
-const dl=$('disc-line');if(dl)dl.textContent=T.disc;
-const short=(App.LANGS.find(l=>l[0]===App.lang)||[])[1]||'粵';
+set('sb-brand',t.brand);set('btn-try',t.try);set('btn-newchat',t.newchat);
+set('tt-nav-feat',t.nav[0]);set('tt-nav-talk',t.nav[1]);set('tt-nav-faq',t.nav[2]);
+set('hero-l1',t.hero1);set('hero-l2',t.hero2);set('hero-sub',t.sub);
+set('chat-sub',t.sub);
+const on=$('chat-online');if(on)on.innerHTML=App.aiName()+'<span class="grad-text">'+t.online+'</span>';
+const mp=$('minp');if(mp)mp.placeholder=t.ph;
+const dl=$('disc-line');if(dl)dl.textContent=t.disc;
+const bs=$('btn-start');if(bs)bs.textContent=t.start;
+const be=$('btn-see');if(be)be.textContent=t.see;
+const short=(App.LANGS.find(l=>l[0]===L)||[])[1]||'粵';
 document.querySelectorAll('.lang-cur').forEach(s=>s.textContent=short)},
 setLang(code){App.lang=code;LS.set('rg51_lang',code);
 document.querySelectorAll('.langmenu').forEach(m=>m.classList.remove('open'));
@@ -809,42 +667,31 @@ if(was)return;
 m.innerHTML=App.LANGS.map(([code,,name])=>`<button class="${code===App.lang?'on':''}" onclick="App.setLang('${code}')">${name}</button>`).join('');
 m.classList.add('open')},
 npPick(id){document.querySelectorAll('.navpill button').forEach(b=>b.classList.remove('np-on'));const b=$(id);if(b)b.classList.add('np-on')},
-/* ---- onboarding ---- */
+/* onboarding */
 obOpen(){if(LS.get('rg51_onboarded',false))return;
- $('ob-modal').classList.add('open');App.obStep=0;App.obShow(0);
-const gl=$('ob-langs');
-gl.innerHTML=App.LANGS.map(([code,short,name])=>`<button class="${code===App.lang?'on':''}" data-l="${code}" onclick="App.obPickLang(this)">${short}<div style="font-size:9px;opacity:.7">${name}</div></button>`).join('');
-App.obApplyLang()},
-obApplyLang(){const t=App.OB[App.lang]||App.OB.en;
- $('ob-t0').textContent=t.w;$('ob-s0').textContent=t.ws;
- $('ob-t1').textContent=t.n;$('ob-s1').textContent=t.ns;
- $('ob-t2').textContent=t.c;$('ob-s2').textContent=t.cs;
- $('ob-skip').textContent=t.skip;$('ob-next').textContent=t.next;
-if(App.lang==='en')$('ob-name').placeholder='Your name';else $('ob-name').placeholder='你個名'},
+ $('ob-modal').style.display='flex';App.obShow(0);
+ $('ob-langs').innerHTML=App.LANGS.map(([code,short,name])=>`<button class="${code===App.lang?'on':''}" data-l="${code}" onclick="App.obPickLang(this)">${short}<div style="font-size:9px;opacity:.7">${name}</div></button>`).join('')},
+obShow(i){state.obStep=i;
+for(let k=0;k<3;k++){$('ob-'+k).classList.toggle('on',k===i);$('obd-'+k).classList.toggle('on',k===i)}
+ $('ob-next').textContent=i===2?'⚡ 開波！':'下一步 →'},
 obPickLang(btn){App.lang=btn.dataset.l;LS.set('rg51_lang',App.lang);
 document.querySelectorAll('#ob-langs button').forEach(b=>b.classList.remove('on'));btn.classList.add('on');
-App.applyLang();App.obApplyLang()},
-obShow(i){App.obStep=i;
-for(let k=0;k<3;k++){$('ob-'+k).classList.toggle('on',k===i);$('obd-'+k).classList.toggle('on',k===i)}
- $('ob-next').textContent=(i===2)?((App.OB[App.lang]||App.OB.en).done||'Done'):(App.OB[App.lang]||App.OB.en).next},
-async obNext(){if(App.obStep<2){App.obStep++;App.obShow(App.obStep);
-if(App.obStep===1&&App.lang==='en')$('ob-name').placeholder='Your name';else if(App.obStep===1)$('ob-name').placeholder='你個名';
-return}
-/* finish */
+App.applyLang()},
+async obNext(){if(state.obStep<2){state.obStep++;App.obShow(state.obStep);return}
 const nm=$('ob-name').value.trim();if(nm)state.settings.userName=nm;
 if($('ob-key').value.trim()){state.settings.apiKey=$('ob-key').value.trim();
 state.settings.baseUrl=$('ob-url').value.trim()||state.settings.baseUrl;
 state.settings.model=$('ob-model').value.trim()||state.settings.model}
 LS.set('rg47_settings',state.settings);LS.set('rg51_onboarded',true);
- $('ob-modal').classList.remove('open');App.updateConn();toast(App.T_().done||'⚡')},
-obSkip(){LS.set('rg51_onboarded',true);$('ob-modal').classList.remove('open');App.applyLang()},
+ $('ob-modal').style.display='none';App.updateConn();toast('⚡ 開波！')},
+obSkip(){LS.set('rg51_onboarded',true);$('ob-modal').style.display='none'},
 async obFetch(){const url=$('ob-url').value.trim(),key=$('ob-key').value.trim(),st=$('ob-status');
 if(!url||!key){st.textContent='❌ URL + Key';st.style.color='#e05252';return}
-st.textContent='⏳ …';st.style.color='var(--sub)';
+st.textContent='⏳ …';
 try{const{ids,ping}=await API.listModels(url,key);state.settings.models=ids.slice(0,500);
 const dl=$('dl-models');if(dl)dl.innerHTML=ids.map(m=>`<option value="${esc(m)}">`).join('');
 st.textContent=`✅ ${ping}ms · ${ids.length} models`;st.style.color='#3f9d63'}catch(e){st.textContent='❌ '+e.message;st.style.color='#e05252'}},
-/* ---- history collapse ---- */
+/* history collapse */
 histToggle(){const t=$('hist-toggle'),l=$('hist-list');
 t.classList.toggle('open');l.classList.toggle('open');
 if(l.classList.contains('open'))App.renderHist()},
@@ -858,7 +705,7 @@ chatsSave(){const cs=App.chatsGet();const cur=cs.find(c=>c.id===state.chatId);
 if(cur){cur.msgs=state.chat;cur.updatedAt=Date.now()}
 else{cs.unshift({id:state.chatId,title:App.chatTitle(state.chat),msgs:state.chat,updatedAt:Date.now()})}
 LS.set('rg51_chats',cs.slice(0,50))},
-chatTitle(msgs){const first=(msgs||[]).find(m=>m.role==='user');if(!first)return'…';return first.content.replace(/\s+/g,' ').slice(0,18)||'…'},
+chatTitle(msgs){const first=(msgs||[]).find(m=>m.role==='user');return first?first.content.replace(/\s+/g,' ').slice(0,18):'…'},
 saveChat(){App.chatsSave()},
 loadLastChat(){const cs=LS.get('rg51_chats',[]);
 if(cs.length){const newest=[...cs].sort((a,b)=>b.updatedAt-a.updatedAt)[0];state.chatId=newest.id;state.chat=newest.msgs||[]}
@@ -868,22 +715,22 @@ newChat(){if(state.chat.length)App.chatsSave();
 const cs=App.chatsGet();const id=Date.now();
 cs.unshift({id,title:'…',msgs:[],updatedAt:Date.now()});
 LS.set('rg51_chats',cs.slice(0,50));
-state.chatId=id;state.chat=[];App.enterApp('chat');App.renderChat();App.renderHist();toast(App.T_().newok||'⚡')},
+state.chatId=id;state.chat=[];App.enterApp('chat');App.renderChat();App.renderHist();toast('⚡')},
 openChat(id){if(state.busy)return toast('...');
 if(state.chat.length)App.chatsSave();
 const cs=App.chatsGet();const c=cs.find(x=>x.id===id);if(!c)return;
 state.chatId=id;state.chat=c.msgs||[];
 App.enterApp('chat');App.renderChat();App.renderHist()},
-delChat(id,ev){ev.stopPropagation();if(!confirm(App.T_().delchat||'Delete?'))return;
+delChat(id,ev){ev.stopPropagation();if(!confirm('刪除？'))return;
 let cs=App.chatsGet().filter(x=>x.id!==id);
 if(!cs.length)cs=[{id:Date.now(),title:'…',msgs:[],updatedAt:Date.now()}];
 LS.set('rg51_chats',cs);
 if(state.chatId===id){const newest=[...cs].sort((a,b)=>b.updatedAt-a.updatedAt)[0];state.chatId=newest.id;state.chat=newest.msgs||[];App.renderChat()}
-App.renderHist();toast(App.T_().delok||'🗑')},
+App.renderHist();toast('🗑')},
 renderHist(){const el=$('hist-list');if(!el)return;
 const cs=[...App.chatsGet()].sort((a,b)=>b.updatedAt-a.updatedAt).filter(c=>(c.msgs||[]).length);
 el.innerHTML=cs.length?cs.slice(0,20).map(c=>`<div class="hist-item ${c.id===state.chatId?'on':''}" onclick="App.openChat(${c.id})"><span>${esc(c.title)}</span><button class="del" onclick="App.delChat(${c.id},event)">🗑</button></div>`).join('')
-:`<div style="padding:6px 22px;font-size:10px;font-weight:800;color:var(--sub)">${App.T_().nohist||'—'}</div>`},
+:'<div style="padding:6px 22px;font-size:10px;font-weight:800;color:var(--sub)">仲未有歷史</div>'},
 layoutChat(){const has=state.chat.length>0,ce=$('chat-empty'),cf=$('chat-full'),wrap=$('grokwrap');
 if(!ce||!cf||!wrap)return;
 ce.style.display=has?'none':'flex';cf.style.display=has?'flex':'none';
@@ -891,17 +738,17 @@ const target=has?$('dock-slot'):$('hero-slot');
 if(target&&wrap.parentElement!==target)target.appendChild(wrap)},
 renderIdeaChips(arr){const el=$('idea-chips');if(!el)return;
 el.innerHTML=arr.map(x=>`<button class="idea" data-q="${esc(x[1])}" onclick="App.quick(this.dataset.q)"><b>${x[0]}</b>${esc(x[1])}</button>`).join('')},
-async renderIdeas(){const pool=App.T_().ideas||[];
+async renderIdeas(){const pool=[['👋','用一句廣東話介紹下你自己'],['🗡','串下我個名'],['📝','幫我寫封請假紙，話肚痾'],['🚄','E5 定 E6 新幹線型啲？點解'],['💀','我考咗 42/100，你可以點串我'],['🌙','解夢：夢見曾俊偉揸新幹線'],['😤','有人陰陽怪氣我，教我點串返'],['📸','幫我諗 3 個 IG caption 影新幹線'],['🐱','記住我養咗隻貓叫肥波'],['🌌','用廣東話 30 字解釋咩係黑洞'],['🥶','講個冷笑話，唔好笑我當你輸'],['🚃','如果曾俊偉坐我隔籬，我應該點做'],['📊','幫我諗個溫書時間表，得兩日'],['✍️','寫一句毒雞湯關於返學']];
 App.renderIdeaChips(pool.slice(0,6));
 if(state.settings.apiKey&&state.settings.model&&App._aiIdeasLang!==App.lang){
 App._aiIdeasLang=App.lang;
 try{const txt=await API.chat({maxTokens:240,temperature:1,
-messages:[{role:'system',content:`You design conversation starters for a savage HK-teen AI named ${App.aiName()}. Generate 6 short chat openers in ${App.langName()} (max 15 words each), varied, funny, useful. One per line, no numbering, no quotes. Output 6 lines only.`},{role:'user',content:'Go'}]});
+messages:[{role:'system',content:`Generate 6 short chat openers in ${App.langName()} for a savage HK-teen AI. Max 15 words each, varied, funny. One per line, no numbering. 6 lines only.`},{role:'user',content:'Go'}]});
 const lines=txt.split('\n').map(s=>s.replace(/^[\d.、\-\s•]+/,'').trim()).filter(s=>s&&s.length<=60).slice(0,6);
 if(lines.length>=3){App._aiIdeas=lines;App.renderIdeaChips(lines.map(s=>['✨',s]))}}catch(e){}}},
 shuffleIdeas(){let src;
-if(App._aiIdeas&&App._aiIdeasLang===App.lang&&state.settings.apiKey){src=App._aiIdeas.map(s=>['✨',s])}
-else{src=[...(App.T_().ideas||[])]}
+if(App._aiIdeas&&state.settings.apiKey){src=App._aiIdeas.map(s=>['✨',s])}
+else{src=[['👋','用一句廣東話介紹下你自己'],['🗡','串下我個名'],['📝','幫我寫封請假紙，話肚痾'],['🚄','E5 定 E6 新幹線型啲？點解'],['💀','我考咗 42/100，你可以點串我'],['🌙','解夢：夢見曾俊偉揸新幹線'],['😤','有人陰陽怪氣我，教我點串返'],['📸','幫我諗 3 個 IG caption 影新幹線'],['🐱','記住我養咗隻貓叫肥波'],['🌌','用廣東話 30 字解釋咩係黑洞'],['🥶','講個冷笑話，唔好笑我當你輸'],['🚃','如果曾俊偉坐我隔籬，我應該點做'],['📊','幫我諗個溫書時間表，得兩日'],['✍️','寫一句毒雞湯關於返學']]}
 for(let i=src.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[src[i],src[j]]=[src[j],src[i]]}
 App.renderIdeaChips(src.slice(0,6))},
 addFiles(files){for(const f of files){
@@ -915,8 +762,8 @@ row.innerHTML=state.att.map((f,i)=>f.kind==='img'
 :`<span class="chip on">📄 ${esc(f.name.slice(0,14))} <b onclick="App.rmAtt(${i})">✕</b></span>`).join('')},
 rmAtt(i){state.att.splice(i,1);App.renderAtt()},
 toggleMic(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-if(!SR)return toast('...');if(App.rec){App.rec.stop();return}
-const r=new SR();r.lang=App.lang==='yue'||App.lang==='zh-Hant'||App.lang==='zh-Hans'?'zh-HK':App.lang;r.interimResults=true;App.rec=r;
+if(!SR)return toast('✕');if(App.rec){App.rec.stop();return}
+const r=new SR();r.lang=App.lang==='yue'?'zh-HK':App.lang;r.interimResults=true;App.rec=r;
 r.onresult=e=>{let s='';for(const res of e.results)s+=res[0].transcript;const i=$('minp');if(i)i.value=s;App.rsz()};
 r.onend=()=>{App.rec=null;const b=$('mic-btn');if(b)b.classList.remove('rec')};
 r.onerror=()=>{App.rec=null;const b=$('mic-btn');if(b)b.classList.remove('rec')};
@@ -949,7 +796,7 @@ preset(u){$('in-url').value=u},toggleKey(){const k=$('in-key');k.type=k.type==='
 renderModelList(){const dl=$('dl-models2');if(dl)dl.innerHTML=(state.settings.models||[]).map(m=>`<option value="${esc(m)}">`).join('')},
 async fetchModels(){const url=$('in-url').value.trim(),key=$('in-key').value.trim(),st=$('set-status');
 if(!url||!key){st.textContent='❌ URL + Key';st.style.color='#e05252';return}
-st.textContent='⏳ …';st.style.color='var(--sub)';
+st.textContent='⏳ …';
 try{const{ids,ping}=await API.listModels(url,key);state.settings.models=ids.slice(0,500);LS.set('rg47_settings',state.settings);App.renderModelList();
 st.textContent=`✅ ${ping}ms · ${ids.length}`;st.style.color='#3f9d63'}catch(e){st.textContent='❌ '+e.message;st.style.color='#e05252'}},
 saveSettings(){const s=state.settings;s.baseUrl=$('in-url').value.trim()||DEFAULTS.baseUrl;s.apiKey=$('in-key').value.trim();s.model=$('in-model').value.trim();s.systemPrompt=$('in-sys').value.trim()||DEFAULTS.systemPrompt;s.userName=$('in-name').value.trim()||'元宝爸爸';s.temperature=+$('in-temp').value;s.maxTokens=+$('in-tok').value;LS.set('rg47_settings',s);App.updateConn();App.closeSettings();toast('✅')},
@@ -962,7 +809,7 @@ const ua=$('u-avatar');if(ua)ua.textContent=s.userName.slice(0,1);
 const sb=$('sbtn');if(sb)sb.disabled=!ok;
 const nv=$('nv-btn');if(nv)nv.disabled=!ok||!state.novel.title;
 const nn=$('nv-new-btn');if(nn)nn.style.display=state.novel.title?'':'none'},
-checkReady(){if(!state.settings.apiKey||!state.settings.model){toast('⚠️');App.openSettings();return false}return true},
+checkReady(){if(!state.settings.apiKey||!state.settings.model){toast('⚠️ 去設定填 Key');App.openSettings();return false}return true},
 async streamInto({messages,el,plain,maxTokens=400,temperature}){el.innerHTML='<span class="dots"><i></i><i></i><i></i></span>';state.ctrl=new AbortController();
 try{const full=await API.chat({messages,maxTokens,temperature,signal:state.ctrl.signal,onDelta:t=>{if(plain)el.textContent=t;else el.innerHTML=marked.parse(t)}});
 if(plain)el.textContent=full;else App.decorateCode(el);return full}catch(e){el.innerHTML=e.name==='AbortError'?'<i>(stop)</i>':App.errHtml(e.message);return null}},
@@ -972,20 +819,18 @@ stepsHtml(t,live){return App.splitSteps(t).map((s,i)=>{const check=s.startsWith(
 const body=check?`<span class="rck">✓</span>${esc(s.replace(/^✓\s*/,''))}`:esc(s);
 return `<div class="rstep ${live&&i===App.splitSteps(t).length-1?'live':''}"><span class="rdot"></span><span>${body}</span></div>`}).join('')},
 rsnHtml(t,live){const steps=App.splitSteps(t||'');
-const items=steps.length?App.stepsHtml(t,live)
-:`<div class="rstep live"><span class="rdot"></span><span>…</span></div>`;
+const items=steps.length?App.stepsHtml(t,live):'<div class="rstep live"><span class="rdot"></span><span>…</span></div>';
 return `<div class="rsn open ${live?'':'done'}"><div class="rsn-head" onclick="this.parentElement.classList.toggle('open')"><span class="rsn-title">${live?'Reasoning…':'Reasoning · '+steps.length}</span><span class="rsn-chev">⌃</span></div><div class="rsn-body">${items}</div></div>`},
 parseQ(t){const q=t.match(/【問題】\s*([\s\S]+?)(?=【A】|$)/);if(!q)return null;
 const a=t.match(/【A】\s*([\s\S]+?)(?=【B】|$)/),b=t.match(/【B】\s*([\s\S]+?)(?:$)/);
 return {question:q[1].trim(),a:a?a[1].trim():'',b:b?b[1].trim():'',ans:null}},
-qHtml(q){return `<div class="qcard"><div class="qhead">❓<span class="qc">1/1</span></div><div class="qbody"><div class="qq">${esc(q.question)}</div>
+qHtml(q){return `<div class="qcard"><div class="qhead">❓</div><div class="qbody"><div class="qq">${esc(q.question)}</div>
  ${q.a?`<button class="qopt ${q.ans===q.a?'sel':''}" data-v="${esc(q.a)}" onclick="App.qPick(this)"><span class="qbadge">A</span>${esc(q.a)}</button>`:''}
  ${q.b?`<button class="qopt ${q.ans===q.b?'sel':''}" data-v="${esc(q.b)}" onclick="App.qPick(this)"><span class="qbadge">B</span>${esc(q.b)}</button>`:''}
- ${q.ans?'':`<div class="qfree"><span class="qbadge">C</span><input id="q-free" placeholder="..." onkeydown="if(event.key==='Enter')App.qAnswer()"></div>
-<div class="qfoot"><button class="qskip" onclick="App.qSubmit('(skip)')">Skip</button><button class="qsend" onclick="App.qAnswer()">→</button></div>`}
+ ${q.ans?'':`<div class="qfoot"><button class="qskip" onclick="App.qSubmit('(skip)')">Skip</button><button class="qsend" onclick="App.qAnswer()">→</button></div>`}
  ${q.ans?`<div class="qdone">✅ ${esc(q.ans)}</div>`:''}</div></div>`},
 qPick(btn){App._qsel=btn.dataset.v;document.querySelectorAll('#chat-view .qopt').forEach(b=>b.classList.remove('sel'));btn.classList.add('sel')},
-qAnswer(){const free=$('q-free')?.value.trim()||'';const ans=App._qsel||free;if(!ans)return toast('...');App.qSubmit(ans)},
+qAnswer(){const free=($('q-free')||{}).value?.trim()||'';const ans=App._qsel||free;if(!ans)return toast('...');App.qSubmit(ans)},
 qSubmit(ans){const pq=App._pq;if(!pq)return;App._pq=null;App._qsel=null;
 if(state.chat[pq.i])state.chat[pq.i].q.ans=ans;
 App.saveChat();App.renderChat();
@@ -1014,7 +859,7 @@ decorateCode(el){el.querySelectorAll('pre').forEach(pre=>{if(pre.querySelector('
 if(c&&window.hljs){c.classList.add('hljs');try{hljs.highlightElement(c)}catch{}}
 const btn=document.createElement('button');btn.className='code-copy';btn.textContent='⧉';
 btn.onclick=()=>navigator.clipboard.writeText(pre.innerText).then(()=>{btn.textContent='✓';setTimeout(()=>btn.textContent='⧉',1200)});pre.appendChild(btn)})},
-errHtml(m){return `<div class="rounded-xl px-4 py-3 text-xs font-bold" style="background:rgba(224,82,82,.08);color:#e05252;border:1px solid rgba(224,82,82,.2);border-left:3px solid #e05252">⚠️ ${esc(m)}</div>`},
+errHtml(m){return `<div class="rounded-xl px-4 py-3 text-xs font-bold" style="background:rgba(224,82,82,.08);color:#e05252;border-left:3px solid #e05252">⚠️ ${esc(m)}</div>`},
 setStopBtn(b){const btn=$('sbtn');if(!btn)return;btn.innerHTML=b?'■':'↑';btn.classList.toggle('stop',b)},
 quick(t){App.enterApp('chat');$('minp').value=t;App.send()},
 sendRaw(text){state.chat.push({role:'user',content:text});App.saveChat();App.renderChat();App.runCompletion()},
@@ -1022,7 +867,7 @@ send(){const inp=$('minp'),val=inp?inp.value.trim():'';
 if(!val&&!state.att.length)return;
 if(state.busy){state.ctrl?.abort();return}
 if(!App.checkReady())return;
-const mm=val.match(/^(記住|記低|remember|记住|覚え)[:：,，]?\s*(.+)/i);
+const mm=val.match(/^(記住|記低|remember|记住)[:：,，]?\s*(.+)/i);
 if(mm&&mm[2]){state.mems.unshift(mm[2].trim());state.mems=state.mems.slice(0,30);LS.set('rg51_mems',state.mems);App.renderMems();toast('🧠')}
 let txt=val;
 for(const f of state.att.filter(f=>f.kind==='txt'))txt+=`\n\n【附件 ${f.name}】\n${f.text.slice(0,6000)}`;
@@ -1058,29 +903,26 @@ if(last){const sp=document.createElement('div');sp.className='text-[9px] font-bl
 sp.textContent=`⏱ ${secs}s`;last.appendChild(sp)}
 if(state.autoTTS&&txt&&!state.chat.at(-1)?.q)App.speak(txt)},
 regenerate(){if(state.busy)return;while(state.chat.length&&state.chat.at(-1).role==='assistant')state.chat.pop();App.saveChat();App.renderChat();if(state.chat.length)App.runCompletion()},
-clearChat(){if(!state.chat.length||!confirm(App.T_().cleared||'Clear?'))return;state.chat=[];
+clearChat(){if(!state.chat.length||!confirm('清空？'))return;state.chat=[];
 const cs=App.chatsGet();const cur=cs.find(c=>c.id===state.chatId);if(cur)cur.msgs=state.chat;
 LS.set('rg51_chats',cs);App.renderChat();App.renderHist()},
 copyMsg(i){App.copyText(state.chat[i].content)},
 copyText(t){navigator.clipboard.writeText(t).then(()=>toast('⧉'),()=>toast('✕'))},
 rsz(){const i=$('minp');if(!i)return;i.style.height='auto';i.style.height=Math.min(i.scrollHeight,160)+'px'},
-homeTools:[['chat','💬','Chat'],['mem','🧠','Memory'],['news','📰','News'],['web','⚡','Web'],['draw','🖼️','Draw'],['games','🎮','Games'],['translate','🌐','Translate'],['cal','🧮','Calc'],['dict','📖','Dict'],['grade','📊','Grade'],['weather','🌤️','Weather'],['pomo','⏱️','Pomo'],['novel','✍️','Novel'],['essay','📝','Essay'],['mouth','🎤','Mouth'],['soup','🍜','Soup'],['fortune','🎋','Fortune'],['battle','🛡️','Battle'],['debate','🔪','Debate'],['train','🚄','Train'],['dream','🔮','Dream'],['food','🍳','Food'],['letter','✉️','Letter'],['backup','💾','Backup']],
+homeTools:[['chat','💬','阮峻對話'],['mem','🧠','記憶'],['news','📰','新聞銳評'],['web','⚡','AI網頁工廠'],['draw','🖼️','畫圖'],['translate','🌐','真翻譯'],['cal','🧮','亂算器'],['dict','📖','離譜詞典'],['grade','📊','成績審判'],['weather','🌤️','天氣'],['novel','✍️','Novel'],['essay','📝','小作文工廠'],['mouth','🎤','嘴替']],
 renderHome(){const h=new Date().getHours();const g=App.lang==='en'?(h<5?'Late night':h<11?'Morning':h<14?'Noon':h<18?'Afternoon':'Evening'):(h<5?'夜麻麻':h<11?'早晨':h<14?'食飯未':h<18?'下晝好':'晚上好');
  $('hm-greet').textContent=g+'，'+state.settings.userName;
  $('hm-date').textContent=new Date().toLocaleDateString(App.lang==='yue'?'zh-HK':App.lang,{year:'numeric',month:'long',day:'numeric',weekday:'long'});
 App.tickClock();
-const tf=state.fortunes[new Date().toISOString().slice(0,10)+'|'+state.settings.userName];
-if(tf){$('hm-today').classList.remove('hidden');$('hm-today').textContent=`🎋 ${tf.lv} · ${tf.advice}`}else $('hm-today').classList.add('hidden');
-const stats=[['🧠',state.mems.length],['📚',state.novel.chapters.length],['🚄',state.trains.length],['🍅',state.pomoDone]];
- $('hm-stats').innerHTML=stats.map(s=>`<div class="hstat"><div class="hico">${s[0]}</div><div><div class="n">${s[1]}</div></div></div>`).join('');
+const stats=[['🧠',state.mems.length,'記憶'],['📚',state.novel.chapters.length,'章節'],['💬',state.chat.length,'訊息'],['📷',state.att.length,'附件']];
+ $('hm-stats').innerHTML=stats.map(s=>`<div class="hstat"><div class="hico">${s[0]}</div><div><div class="n">${s[1]}</div><div class="l">${s[2]}</div></div></div>`).join('');
  $('hm-count').textContent=App.homeTools.length;
  $('hm-grid').innerHTML=App.homeTools.map(t=>`<button class="launch" onclick="App.openTool('${t[0]}')"><div class="t">${t[1]} ${t[2]}</div></button>`).join('');
 const feed=[];
-if(state.chat.length)feed.push('💬 '+state.chat.length);
-if(state.mems.length)feed.push('🧠 '+state.mems.length);
+if(state.chat.length)feed.push('💬 已傾 '+state.chat.length+' 句');
+if(state.mems.length)feed.push('🧠 記得 '+state.mems.length+' 件事');
 if(state.novel.title)feed.push('✍️ 《'+state.novel.title+'》');
-if(state.trains.length)feed.push('🚄 '+state.trains[0].name);
- $('hm-feed').innerHTML=feed.length?feed.map(f=>`<div class="card !py-3 text-xs font-bold">${esc(f)}</div>`).join(''):'<div class="empty"><div class="e">🚄</div></div>'},
+ $('hm-feed').innerHTML=feed.length?feed.map(f=>`<div class="card !py-3 text-xs font-bold">${esc(f)}</div>`).join(''):'<div class="empty"><div class="e">🚄</div><div class="t">一切由零開始</div></div>'},
 tickClock(){const el=$('hm-clock');if(el)el.textContent=new Date().toTimeString().slice(0,5)},
 renderMems(){$('mem-count').textContent=state.mems.length;
  $('mem-list').innerHTML=state.mems.length?state.mems.map((m,i)=>`<div class="card !py-3 flex items-center justify-between gap-2 text-xs font-bold" style="border-left:3px solid var(--acc)"><span class="break-words">${esc(m)}</span><button class="chip shrink-0" onclick="App.memDel(${i})">🗑</button></div>`).join(''):'<div class="empty"><div class="e">🧠</div></div>'},
@@ -1116,7 +958,7 @@ calRender(){const c=state.cal;$('cal-expr').textContent=c.expr.replace(/\*/g,'×
 const p=$('cal-prev');if(/[+\-*/%]/.test(c.expr.slice(1))){const r=App.evalExpr(c.expr);p.textContent=r===null?'…':'= '+App.fmtNum(r)}else p.textContent='\u00A0'},
 async lookup(){const w=$('dict-in').value.trim();if(!w||state.busy||!App.checkReady())return;state.busy=true;
 const out=$('dict-out');out.innerHTML='';const box=document.createElement('div');box.className='rounded-3xl p-6 text-sm leading-relaxed';box.style.cssText='background:rgba(30,28,26,.85);backdrop-filter:blur(16px);color:#f0ede6;border:1px solid rgba(255,255,255,.12)';out.appendChild(box);
-const full=await App.streamInto({messages:[{role:'system',content:'你係'+App.aiName()+'。俾個完全錯而且損人嘅解釋。用'+App.langName()+'。格式：【定義】【例句】。'},{role:'user',content:w}],el:box,maxTokens:250});
+const full=await App.streamInto({messages:[{role:'system',content:'你係'+App.aiName()+'。俾個完全錯損人嘅解釋，用'+App.langName()+'。格式：【定義】【例句】。'},{role:'user',content:w}],el:box,maxTokens:250});
 if(full&&!state.dictWords.includes(w)){state.dictWords.unshift(w);state.dictWords=state.dictWords.slice(0,12);LS.set('rg47_dict',state.dictWords);App.renderDictHistory()}state.busy=false},
 renderDictHistory(){$('dict-hist-wrap').classList.toggle('hidden',!state.dictWords.length);
  $('dict-hist').innerHTML=state.dictWords.map(w=>`<button class="chip" data-w="${esc(w)}">${esc(w)}</button>`).join('')},
@@ -1166,14 +1008,14 @@ const link=it.url||`https://news.ycombinator.com/item?id=${it.id}`;
 return `<div class="card mb-3"><div class="flex gap-3 items-start"><div class="text-center shrink-0 w-10"><div class="font-black text-lg" style="color:var(--acc)">${it.score}</div><div class="text-[9px] font-black" style="color:var(--sub)">PTS</div></div><div class="min-w-0 flex-1"><a href="${esc(link)}" target="_blank" class="font-black text-sm hover:underline break-words">${esc(it.title)}</a><div class="text-[10px] font-bold mt-1" style="color:var(--sub)">${esc(host)}</div><div class="mt-2 text-sm font-bold italic" id="nwr-${it.id}" style="display:none"></div><button class="chip mt-2" onclick="App.newsReview(${it.id})">🗣</button></div></div></div>`}).join('')},
 async newsReview(id){const cached=LS.get('rg48_news',null),item=cached?.items?.find(x=>x.id===id);
 if(!item||state.busy||!App.checkReady())return;state.busy=true;const el=$('nwr-'+id);el.style.display='block';
-await App.streamInto({messages:[{role:'system',content:'用'+App.langName()+'一句講清楚呢條新聞，再毒舌銳評一句。50字內。'},{role:'user',content:item.title}],el,plain:true,maxTokens:140});state.busy=false},
+await App.streamInto({messages:[{role:'system',content:'用'+App.langName()+'一句講清楚呢條新聞，再毒舌銳評。50字內。'},{role:'user',content:item.title}],el,plain:true,maxTokens:140});state.busy=false},
 webPresets:[['Landing','阮峻官方宣傳頁：大標題、bento功能格、跑馬燈、FAQ，香港潮牌風，米白底暖橙主色'],['SaaS','記帳App「慳啲」落地頁：超大標題、滾動淡入、深色模式、定價、FAQ'],['App','手機App發佈頁：CSS手機mockup、打字機標題、下載按鈕'],['Countdown','新幹線發車風格翻牌倒數頁：輸入日期，翻牌動畫，藍白JR配色']],
 renderWebPresets(){$('wb-presets').innerHTML=App.webPresets.map((p,i)=>`<button class="chip" onclick="App.wbPreset(${i})">✨ ${p[0]}</button>`).join('')},
 wbPreset(i){$('wb-prompt').value=App.webPresets[i][1]},
 renderTaste(){$('wb-taste').textContent=state.taste?'🎨 ON':'🎨 OFF';$('wb-taste').classList.toggle('on',state.taste)},
 toggleTaste(){state.taste=!state.taste;LS.set('rg48_taste',state.taste);App.renderTaste()},
 WB_SYS:'你是頂級前端工程師。生成完整單文件HTML網頁：CSS/JS內聯，視覺驚豔、響應式、有真實交互。輸出係完整HTML文檔，由<!DOCTYPE html>到</html>，直接輸出純代碼，絕對唔准用```圍欄。',
-LAND_SYS:`你是頂級網頁設計師。嚴守：1 clamp()流式字級，標題900粗負字距 2 區塊間距96-128px 3 一主色+中性色，支援深色 4 真hover微互動 5 Nav→Hero→數據帶→Bento→見證→FAQ→CTA→Footer 6 滾動淡入，尊重prefers-reduced-motion 7 禁：emoji濫用、紫漸變卡、Lorem ipsum、#3B82F6。輸出完整HTML文檔，純代碼，禁\`\`\`圍欄。`,
+LAND_SYS:`你是頂級網頁設計師。嚴守：1 clamp()流式字級，標題900粗負字距 2 區塊間距96-128px 3 一主色+中性色，支援深色 4 真hover微互動 5 Nav→Hero→數據帶→Bento→見證→FAQ→CTA→Footer 6 滾動淡入 7 禁：紫漸變卡、Lorem ipsum、#3B82F6。輸出完整HTML文檔，純代碼，禁\`\`\`圍欄。`,
 wbSys(){return state.taste?App.LAND_SYS:App.WB_SYS},
 cleanCode(t){let s=t.trim();
 if(s.startsWith('```')){s=s.replace(/^```(?:html)?\s*\n?/i,'').replace(/```?\s*$/,'')}
@@ -1218,7 +1060,7 @@ headers:{'Content-Type':'application/json','Authorization':'Bearer '+state.setti
 body:JSON.stringify({model,prompt:p,n:1,size:'1024x1024'})});
 if(!r.ok){let m='HTTP '+r.status;try{const j=await r.json();m+=' — '+(j.error?.message||'')}catch{}throw new Error(m)}
 const d=await r.json();const it=d.data?.[0];const src=it?.b64_json?'data:image/png;base64,'+it.b64_json:it?.url;
-if(!src)throw new Error('no image');
+if(!src)throw new Error('no img');
 state.settings.imgModel=model;LS.set('rg47_settings',state.settings);App._lastImg=src;
  $('im-out').innerHTML=`<div class="card !p-3"><img src="${src}" class="w-full rounded-2xl"><div class="flex gap-2 mt-3 justify-center"><button class="chip" onclick="App.imDownload()">⬇</button></div></div>`;
 toast('🖼️')}catch(e){$('im-out').innerHTML=App.errHtml(e.message)}
@@ -1228,13 +1070,13 @@ a.href=App._lastImg;a.download='rg_art.png';a.click();toast('⬇')},
 saveNovel(){LS.set('rg47_novel',state.novel)},
 renderNovel(){const n=state.novel,v=$('nv-view');$('nv-new-btn').style.display=n.title?'':'none';
 if(!n.title){$('nv-btn').disabled=true;
-v.innerHTML=`<div class="max-w-xl mx-auto card"><div class="font-black text-lg mb-4">✍️</div><input id="nv-title" class="field mb-3" placeholder="Title"><textarea id="nv-premise" rows="3" class="field mb-4" placeholder="Premise"></textarea><button onclick="App.createBook()" class="w-full btn-p">Go</button></div>`;return}
+v.innerHTML=`<div class="max-w-xl mx-auto card"><div class="font-black text-lg mb-4">✍️ 開新書</div><input id="nv-title" class="field mb-3" placeholder="書名"><textarea id="nv-premise" rows="3" class="field mb-4" placeholder="一句設定（可選）"></textarea><button onclick="App.createBook()" class="w-full btn-p">開寫</button></div>`;return}
  $('nv-btn').disabled=!state.settings.apiKey||!state.settings.model;
-v.innerHTML=`<div class="max-w-3xl mx-auto"><div class="card mb-8 flex items-start justify-between gap-3" style="border-left:3px solid var(--acc)"><div class="min-w-0"><h1 class="text-2xl font-black break-words">${esc(n.title)}</h1>${n.premise?`<div class="text-xs mt-2 font-bold" style="color:var(--sub)">${esc(n.premise)}</div>`:''}</div><button class="chip shrink-0" onclick="App.exportNovel()">TXT</button></div><div class="space-y-6">${n.chapters.map((c,i)=>`<div class="card"><div class="flex items-center justify-between mb-3"><div class="font-black text-sm">#${i+1}</div><div class="flex gap-2"><span class="text-[10px] font-bold" style="color:var(--sub)">${c.content.length}</span><button class="chip" data-act="copy" data-idx="${i}">⧉</button><button class="chip" data-act="regen" data-idx="${i}">↻</button></div></div><div class="text-sm leading-relaxed whitespace-pre-wrap">${esc(c.content)}</div></div>`).join('')}</div></div>`;
+v.innerHTML=`<div class="max-w-3xl mx-auto"><div class="card mb-8 flex items-start justify-between gap-3" style="border-left:3px solid var(--acc)"><div class="min-w-0"><h1 class="text-2xl font-black break-words">${esc(n.title)}</h1>${n.premise?`<div class="text-xs mt-2 font-bold" style="color:var(--sub)">${esc(n.premise)}</div>`:''}</div><button class="chip shrink-0" onclick="App.exportNovel()">TXT</button></div><div class="space-y-6">${n.chapters.map((c,i)=>`<div class="card"><div class="flex items-center justify-between mb-3"><div class="font-black text-sm">#${i+1}</div><div class="flex gap-2"><span class="text-[10px] font-bold" style="color:var(--sub)">${c.content.length}字</span><button class="chip" data-act="copy" data-idx="${i}">⧉</button><button class="chip" data-act="regen" data-idx="${i}">↻</button></div></div><div class="text-sm leading-relaxed whitespace-pre-wrap">${esc(c.content)}</div></div>`).join('')}</div></div>`;
 v.scrollTop=v.scrollHeight},
 createBook(){const t=$('nv-title').value.trim();if(!t)return toast('...');
 state.novel={title:t,premise:$('nv-premise').value.trim(),chapters:[]};App.saveNovel();App.renderNovel();App.genChapter(0)},
-deleteNovel(){if(!state.novel.title)return;if(!confirm('DELETE?'))return;
+deleteNovel(){if(!state.novel.title)return;if(!confirm('刪書？'))return;
 state.novel={title:'',premise:'',chapters:[]};App.saveNovel();App.renderNovel();App.updateConn();toast('🗑')},
 writeChapter(){if(state.busy)return toast('...');App.genChapter(state.novel.chapters.length)},
 async genChapter(idx,isRewrite){const n=state.novel;if(!n.title||state.busy||!App.checkReady())return;
@@ -1265,185 +1107,27 @@ setMouthLevel(l){state.mouthLevel=l;App.renderMouthLevels()},
 async mouthSay(){if(state.busy||!App.checkReady())return;const t=$('mo-in').value.trim();if(!t)return toast('...');
 state.busy=true;$('mo-out').classList.remove('hidden');
 const lv={1:'陰陽怪氣綿裡藏針',2:'毒舌暴擊句句帶刺',3:'傷害溢出浮誇到荒誕'}[state.mouthLevel];
-await App.streamInto({messages:[{role:'system',content:`你係阮峻，用戶嘅嘴替。將嗰句代佢講，用${App.langName()}，風格：${lv}。20~60字，只輸出嗰句。`},{role:'user',content:t}],el:$('mo-body'),plain:true,maxTokens:160});state.busy=false},
-async soup(){if(state.busy||!App.checkReady())return;state.busy=true;
-const feed=$('soup-feed');feed.querySelector('.empty')?.remove();
-const el=document.createElement('div');el.className='card text-sm font-black italic';el.style.borderLeft='3px solid var(--acc)';feed.prepend(el);
-const full=await App.streamInto({messages:[{role:'system',content:'寫一句'+App.langName()+'毒雞湯：前半似勵志名言後半背刺。35字內只輸出一句。'},{role:'user',content:'嚟一碗。'}],el,plain:true,maxTokens:80,temperature:1.1});
-if(full){state.soups.unshift(full.trim());state.soups=state.soups.slice(0,15);LS.set('rg48_soup',state.soups);App.renderSoup()}else el.remove();state.busy=false},
-renderSoup(){const f=$('soup-feed');
-if(!state.soups.length){f.innerHTML='<div class="empty"><div class="e">🍜</div></div>';return}
-f.innerHTML=state.soups.map((s,i)=>`<div class="card text-sm font-black italic" style="border-left:3px solid var(--acc)">${esc(s)}<div class="mt-3"><button class="chip" onclick="App.copyText(state.soups[${i}])">⧉</button></div></div>`).join('')},
-foColor(lv){const m={'大吉':'#d98e2b','中吉':'#4f9d63','吉':'#4f9d63','小吉':'#5a8fc7','中平':'#8d887d','末吉':'#8b6db5','凶':'#e05252','大凶':'#e05252'};return m[lv]||'#e05252'},
-async drawFortune(){if(state.busy||!App.checkReady())return;
-const name=$('fo-name').value.trim()||state.settings.userName,day=new Date().toISOString().slice(0,10),key=day+'|'+name;
-if(state.fortunes[key]){App.renderFortune(state.fortunes[key],name);return toast('🎋')}
-state.busy=true;const out=$('fo-out');out.innerHTML='<div class="text-xs font-black py-8" style="color:var(--sub)">…</div>';
-const box=document.createElement('div');box.className='card text-left text-sm';out.innerHTML='';out.appendChild(box);
-const full=await App.streamInto({messages:[{role:'system',content:'用'+App.langName()+'解籤。格式：【運勢】大吉/中吉/小吉/末吉/凶/大凶【幸運物】【幸運色】【建議】30字內毒舌建議'},{role:'user',content:`為「${name}」抽${day}嘅籤。`}],el:box,plain:true,maxTokens:200});
-if(full){const m=full.match(/【運勢】\s*(大吉|中吉|小吉|末吉|凶|大凶)[\s\S]*?【幸運物】\s*(.+?)[\s\S]*?【幸運色】\s*(.+?)[\s\S]*?【建議】\s*([\s\S]+)/);
-if(m){const f={lv:m[1],item:m[2].trim(),color:m[3].trim(),advice:m[4].trim()};
-state.fortunes[key]=f;const ks=Object.keys(state.fortunes);if(ks.length>20)delete state.fortunes[ks[0]];
-LS.set('rg48_fortunes',state.fortunes);App.renderFortune(f,name)}else box.textContent=full}
-state.busy=false},
-renderFortune(f,name){$('fo-out').innerHTML=`<div class="card"><div class="text-[10px] font-black tracking-widest" style="color:var(--sub)">${esc(name)}</div><div class="text-5xl font-black my-3" style="color:${App.foColor(f.lv)}">${f.lv}</div><div class="grid grid-cols-2 gap-2 mb-3"><div class="glass !rounded-2xl p-3"><div class="text-[10px] font-black" style="color:var(--sub)">ITEM</div><div class="font-black text-sm mt-1">${esc(f.item)}</div></div><div class="glass !rounded-2xl p-3"><div class="text-[10px] font-black" style="color:var(--sub)">COLOR</div><div class="font-black text-sm mt-1">${esc(f.color)}</div></div></div><div class="text-sm font-black italic">💡 ${esc(f.advice)}</div></div>`},
-battleStart(){const opp=$('bt-opp').value.trim()||'曾俊偉';state.battle={opp,turns:0,over:false,log:[]};
- $('bt-setup').classList.add('hidden');$('bt-arena').classList.remove('hidden');$('bt-log').innerHTML='';
- $('bt-judge-btn').classList.add('hidden');$('bt-in').disabled=false;$('bt-btn').disabled=false;App.battleTurn(null,true)},
-battleReset(){if(state.busy)return toast('...');state.battle=null;$('bt-arena').classList.add('hidden');$('bt-setup').classList.remove('hidden')},
-async battleAttack(){const b=state.battle;if(!b||state.busy||b.over||b.turns>=3)return;
-const line=$('bt-in').value.trim();if(!line)return toast('...');if(!App.checkReady())return;
- $('bt-in').value='';b.log.push({role:'me',text:line});App.btRender();App.battleTurn(line,false)},
-async battleTurn(userLine,opening){const b=state.battle;if(!b)return;state.busy=true;$('bt-btn').disabled=true;
-const el=document.createElement('div');el.className='card text-sm font-bold max-w-[80%] !py-3';$('bt-log').appendChild(el);
-const tr=b.log.map(l=>(l.role==='me'?'USER':b.opp)+'：'+l.text).join('\n');
-const full=await App.streamInto({messages:[{role:'system',content:`你叫${b.opp}，同用戶友好嘴上切磋。用${App.langName()}，每句25字內，兇狠好笑，禁粗口。直接輸出嗰句。`},{role:'user',content:opening?'開場挑釁一句。':`記錄：\n${tr}\n\n回應最新嗰句。`}],el,plain:true,maxTokens:80});
-if(full){b.log.push({role:'opp',text:full.trim()});b.turns++;
-if(b.turns>=3){$('bt-judge-btn').classList.remove('hidden');$('bt-in').disabled=true;$('bt-btn').disabled=true;toast('3/3')}}
-App.btRender();state.busy=false;if(b.turns<3)$('bt-btn').disabled=false},
-async battleJudge(){const b=state.battle;if(!b||state.busy||b.over||!App.checkReady())return;state.busy=true;
-const el=document.createElement('div');el.className='rounded-2xl p-4 text-sm font-bold border w-full';el.style.borderColor='rgba(232,118,58,.5)';el.style.background='var(--acc-soft)';$('bt-log').appendChild(el);
-const tr=b.log.map(l=>(l.role==='me'?'USER':b.opp)+'：'+l.text).join('\n');
-const full=await App.streamInto({messages:[{role:'system',content:'毒舌裁判。第一行宣布勝方（USER/XX獲勝），雙方各打分0-100，最後毒舌點評。用'+App.langName()+'。'},{role:'user',content:`USER VS ${b.opp}。記錄：\n${tr}`}],el,plain:true,maxTokens:200});
-if(full)b.over=true;else el.remove();state.busy=false},
-btRender(){const b=state.battle;if(!b)return;
- $('bt-log').innerHTML=b.log.map(l=>l.role==='me'
-?`<div class="flex justify-end"><div class="inline-block btn-p !rounded-2xl !rounded-tr-sm !text-sm !px-4 !py-2.5 max-w-[80%] text-left break-words">${esc(l.text)}</div></div>`
-:`<div class="flex gap-2 items-start"><div class="w-7 h-7 rounded-lg border flex items-center justify-center text-[9px] font-black shrink-0" style="border-color:var(--gborder2);background:var(--glass2)">${esc(b.opp.slice(0,2))}</div><div class="card text-sm font-bold max-w-[80%] !py-3">${esc(l.text)}</div></div>`).join('');
-const log=$('bt-log');log.parentElement.scrollTop=999999},
-debateStart(){const t=$('db-in').value.trim();if(!t)return toast('...');if(!App.checkReady())return;
-state.debate={topic:t,log:[],over:false};$('db-setup').classList.add('hidden');$('db-arena').classList.remove('hidden');
- $('db-topic').textContent=t;$('db-log').innerHTML='';$('db-reply').disabled=false;$('db-btn').disabled=false;App.dbTurn(true)},
-dbSend(){const d=state.debate;if(!d||state.busy||d.over)return;const v=$('db-reply').value.trim();
-if(!v)return toast('...');if(!App.checkReady())return;$('db-reply').value='';d.log.push({role:'me',text:v});App.dbRender();App.dbTurn(false)},
-async dbTurn(opening){const d=state.debate;if(!d)return;state.busy=true;$('db-btn').disabled=true;
-const el=document.createElement('div');el.className='card text-sm font-bold max-w-[85%] !py-3';$('db-log').appendChild(el);
-const tr=d.log.map(l=>(l.role==='me'?'USER':'槓精')+'：'+l.text).join('\n');
-const full=await App.streamInto({messages:[{role:'system',content:`你是職業槓精。用戶觀點：「${d.topic}」。你絕對不能同意，必須企反面，用歪理極端類比反駁。用${App.langName()}，50字內，好笑毒舌，禁粗口。直接輸出。`},{role:'user',content:opening?'用戶啱啱亮觀點，開始表演。':`記錄：\n${tr}\n\n繼續反駁。`}],el,plain:true,maxTokens:160});
-if(full)d.log.push({role:'opp',text:full.trim()});App.dbRender();state.busy=false;if(!d.over)$('db-btn').disabled=false},
-async dbConcede(){const d=state.debate;if(!d||state.busy||d.over||!App.checkReady())return;state.busy=true;
-const el=document.createElement('div');el.className='rounded-2xl p-4 text-sm font-bold border w-full';el.style.borderColor='rgba(232,118,58,.5)';el.style.background='var(--acc-soft)';
-const full=await App.streamInto({messages:[{role:'system',content:'你是槓精，用戶認輸咗。30字內勝利感言，用'+App.langName()+'，得意好笑，最後損佢一句。'},{role:'user',content:`辯題「${d.topic}」，用戶認輸。`}],el,plain:true,maxTokens:100});
-if(full){d.over=true;$('db-log').appendChild(el);$('db-reply').disabled=true;$('db-btn').disabled=true}state.busy=false},
-dbReset(){if(state.busy)return toast('...');state.debate=null;$('db-arena').classList.add('hidden');$('db-setup').classList.remove('hidden')},
-dbRender(){const d=state.debate;if(!d)return;
- $('db-log').innerHTML=d.log.map(l=>l.role==='me'
-?`<div class="flex justify-end"><div class="inline-block btn-p !rounded-2xl !rounded-tr-sm !text-sm !px-4 !py-2.5 max-w-[85%] text-left break-words">${esc(l.text)}</div></div>`
-:`<div class="flex gap-2 items-start"><div class="w-7 h-7 rounded-lg border flex items-center justify-center text-[9px] font-black shrink-0" style="border-color:var(--gborder2);background:var(--glass2)">槓</div><div class="card text-sm font-bold max-w-[85%] !py-3">${esc(l.text)}</div></div>`).join('');
- $('db-log').parentElement.scrollTop=999999},
-async drawTrain(){if(state.busy||!App.checkReady())return;state.busy=true;
-const owned=state.trains.map(t=>t.name),out=$('tr-out');out.innerHTML='';
-const card=document.createElement('div');card.className='card text-left text-sm';out.appendChild(card);
-const sys=`你是新幹線百科+毒舌阮峻。揀一架日本新幹線或特急${owned.length?'，避開：'+owned.join('、'):''}。用${App.langName()}。格式：【車名】【最高時速】【運行區間】【銳評】25字內毒舌`;
-const full=await App.streamInto({messages:[{role:'system',content:sys},{role:'user',content:'抽一架。'}],el:card,plain:true,maxTokens:200});
-if(full){const m=full.match(/【車名】\s*(.+?)[\s\S]*?【最高時速】\s*(.+?)[\s\S]*?【運行區間】\s*(.+?)[\s\S]*?【銳評】\s*([\s\S]+)/);
-if(m){const t={name:m[1].trim(),speed:m[2].trim(),route:m[3].trim(),comment:m[4].trim()};
-if(!state.trains.some(x=>x.name===t.name)){state.trains.unshift(t);state.trains=state.trains.slice(0,60);LS.set('rg48_trains',state.trains);App.renderCollection();toast('🚄 '+t.name)}
-App.renderTrainCard(t)}else card.textContent=full}
-state.busy=false},
-renderTrainCard(t){$('tr-out').innerHTML=`<div class="card text-left" style="border-left:3px solid var(--acc)"><div class="flex items-center justify-between gap-2"><div class="text-2xl font-black">🚄 ${esc(t.name)}</div><span class="chip on shrink-0">${esc(t.speed)}</span></div><div class="text-xs font-bold mt-1" style="color:var(--sub)">${esc(t.route)}</div><div class="text-sm font-black italic mt-3">「${esc(t.comment)}」</div></div>`},
-renderCollection(){$('tr-count').textContent=state.trains.length;
- $('tr-collection').innerHTML=state.trains.map((t,i)=>`<button class="chip" onclick="App.renderTrainCard(state.trains[${i}])">${esc(t.name)}</button>`).join('')},
-async dreamGo(){const t=$('dm-in').value.trim();if(!t||state.busy||!App.checkReady())return;state.busy=true;
-const out=$('dm-out');out.innerHTML='';const box=document.createElement('div');box.className='card text-left text-sm';out.appendChild(box);
-const full=await App.streamInto({messages:[{role:'system',content:'用'+App.langName()+'玄學解夢。格式：【吉凶】大吉/吉/中平/凶/大凶【真相】30字內胡說八道【今日宜】【今日忌】【銳評】20字內毒舌'},{role:'user',content:'夢境：'+t}],el:box,plain:true,maxTokens:200});
-if(full){const m=full.match(/【吉凶】\s*(大吉|吉|中平|凶|大凶)[\s\S]*?【真相】\s*(.+?)[\s\S]*?【今日宜】\s*(.+?)[\s\S]*?【今日忌】\s*(.+?)[\s\S]*?【銳評】\s*([\s\S]+)/);
-if(m)out.innerHTML=`<div class="card text-left"><div class="text-4xl font-black mb-3" style="color:${App.foColor(m[1])}">${m[1]}</div><div class="text-sm font-bold mb-3">${esc(m[2].trim())}</div><div class="grid grid-cols-2 gap-2 mb-3"><div class="glass !rounded-2xl p-3"><div class="text-[10px] font-black" style="color:var(--sub)">DO</div><div class="font-black text-xs mt-1">${esc(m[3].trim())}</div></div><div class="glass !rounded-2xl p-3"><div class="text-[10px] font-black" style="color:var(--sub)">DON'T</div><div class="font-black text-xs mt-1">${esc(m[4].trim())}</div></div></div><div class="text-sm font-black italic">🔮 ${esc(m[5].trim())}</div></div>`;
-else box.textContent=full}
-state.busy=false},
-gmStart(mode){if(!App.checkReady())return;state.game={mode,lives:3,turns:0,over:false,log:[]};
- $('gm-menu').classList.add('hidden');$('gm-arena').classList.remove('hidden');$('gm-log').innerHTML='';$('gm-btn').disabled=true;
-const hint={jl:'🐉 成語接龍：3條命',cm:'🧩 猜謎',w:'❓ 20Q'}[mode];
-state.game.log.push({role:'sys',text:hint});
-App.gmRender();App.gmTurn(mode==='jl'?'開場，出第一個成語。':mode==='cm'?'出第一條謎語。':'開始問第一條問題。')},
-gmQuit(){state.game=null;$('gm-arena').classList.add('hidden');$('gm-menu').classList.remove('hidden')},
-gmRender(){const g=state.game;if(!g)return;
- $('gm-log').innerHTML=g.log.map(l=>{
-if(l.role==='sys')return `<div class="text-center text-[10px] font-black py-1" style="color:var(--sub)">${esc(l.text)}</div>`;
-if(l.role==='me')return `<div class="flex justify-end"><div class="inline-block btn-p !rounded-2xl !rounded-tr-sm !text-sm !px-4 !py-2.5 max-w-[80%] text-left break-words">${esc(l.text)}</div></div>`;
-return `<div class="flex gap-2 items-start"><div class="w-7 h-7 rounded-lg user-av flex items-center justify-center text-[9px] font-black shrink-0">${App.aiTag()}</div><div class="card text-sm font-bold max-w-[80%] !py-3">${esc(l.text)}</div></div>`}).join('');
- $('gm-log').parentElement.scrollTop=999999;
- $('gm-score').textContent=state.gameScore.jl+state.gameScore.cm+state.gameScore.w},
-async gmSend(){const g=state.game;if(!g||state.busy||g.over)return;const v=$('gm-in').value.trim();if(!v)return toast('...');
-if(!App.checkReady())return;$('gm-in').value='';g.log.push({role:'me',text:v});App.gmRender();App.gmTurn()},
-async gmTurn(opening){const g=state.game;if(!g)return;state.busy=true;$('gm-btn').disabled=true;
-const el=document.createElement('div');el.className='card text-sm font-bold max-w-[80%] !py-3';$('gm-log').appendChild(el);
-const tr=g.log.filter(l=>l.role!=='sys').map(l=>(l.role==='me'?'USER':'HOST')+'：'+l.text).join('\n');
-const sysMap={
-jl:'你係成語接龍主持。用'+App.langName()+'。用戶要接一個成語，首字=你上一個成語尾字（同音字可接受）。回應格式：【判定】合格/唔合格·10字內理由【我的成語】XXXX（接用戶嗰個尾字；接唔到就寫【投降】）',
-cm:'你係猜謎主持。用'+App.langName()+'。回應格式：【判定】估中/估錯【答案】真實答案（估中先寫）【下一題】新謎語（估中先出）。用戶答「唔玩」就寫【結束】',
-w:'你係二十條問題主持。用'+App.langName()+'。每次問一條係/唔係問題，25字內。有八成把握就寫【我估】xxx。第20條都估唔中就寫【投降】。'};
-const full=await App.streamInto({messages:[{role:'system',content:sysMap[g.mode]},{role:'user',content:opening||tr}],el,plain:true,maxTokens:250});
-if(full){const t=full.trim();g.log.push({role:'opp',text:t});
-if(/投降|【結束】/.test(t)){state.gameScore[g.mode]++;LS.set('rg51_game',state.gameScore);App.gmRender();toast('🎉');g.over=true;$('gm-btn').disabled=true;$('gm-in').disabled=true}
-else if(g.mode==='jl'&&/唔合格/.test(t)){g.lives--;
-if(g.lives<=0){toast('💀');g.over=true;$('gm-btn').disabled=true;$('gm-in').disabled=true}
-else toast('💔 '+g.lives)}
-g.turns++}
-App.gmRender();state.busy=false;if(!g.over)$('gm-btn').disabled=false},
-async foodGo(random){if(state.busy||!App.checkReady())return;const ing=random?'':$('fd-in').value.trim();
-if(!random&&!ing)return toast('...');state.busy=true;
-const out=$('fd-out');out.innerHTML='';const box=document.createElement('div');box.className='card text-left text-sm';out.appendChild(box);
-const full=await App.streamInto({messages:[{role:'system',content:'用'+App.langName()+'係深夜食堂主廚。格式：【今晚食】菜名【點解】一句【靈魂做法】2-3步每步一行【熱量警告】一句扎心'},{role:'user',content:random?'直接決定我今晚食咩，要離譜但食得落肚。':'雪櫃有：'+ing}],el:box,plain:true,maxTokens:250});
-if(full){const m=full.match(/【今晚食】\s*(.+?)[\s\S]*?【點解】\s*(.+?)[\s\S]*?【靈魂做法】\s*([\s\S]*?)【熱量警告】\s*([\s\S]+)/);
-if(m){const steps=m[3].split('\n').map(s=>s.replace(/^[\s\d.、①②③-]+/,'')).filter(s=>s.trim());
-out.innerHTML=`<div class="card text-left" style="border-left:3px solid var(--acc)"><div class="text-2xl font-black mb-1">🍳 ${esc(m[1].trim())}</div><div class="text-xs font-bold mb-3" style="color:var(--sub)">${esc(m[2].trim())}</div><div class="space-y-1.5 mb-3">${steps.map(s=>`<div class="text-sm font-bold flex gap-2"><span style="color:var(--acc)">▸</span><span>${esc(s.trim())}</span></div>`).join('')}</div><div class="text-xs font-black italic" style="color:#e05252">⚠️ ${esc(m[4].trim())}</div></div>`}
-else box.textContent=full}
-state.busy=false},
-ltSeal(){const title=$('lt-title').value.trim(),body=$('lt-body').value.trim(),date=$('lt-date').value;
-if(!title||!body)return toast('...');if(!date)return toast('...');
-state.letters.unshift({id:Date.now(),title,body,date});LS.set('rg48_letters',state.letters);
- $('lt-title').value='';$('lt-body').value='';App.renderLetters();toast('🔒 '+date)},
-async ltPreface(){if(state.busy||!App.checkReady())return;state.busy=true;
-const full=await App.streamInto({messages:[{role:'system',content:'用'+App.langName()+'代筆毒舌序言，30~50字，嘴硬心軟。只輸出序言。'},{role:'user',content:'主題：'+($('lt-title').value.trim()||'未來')}],el:$('lt-body'),plain:true,maxTokens:100});
-if(full){const ta=$('lt-body');ta.value=full.trim()+(ta.value?'\n\n'+ta.value:'')}
-state.busy=false},
-renderLetters(){const list=$('lt-list');
-if(!state.letters.length){list.innerHTML='<div class="empty"><div class="e">✉️</div></div>';return}
-const now=Date.now();
-list.innerHTML=state.letters.map(l=>{const unlock=new Date(l.date+'T00:00:00').getTime(),open=now>=unlock,days=Math.max(0,Math.ceil((unlock-now)/86400000));
-return `<div class="card" data-lid="${l.id}"><div class="flex items-center justify-between gap-2"><div class="font-black text-sm break-words">${open?'📬':'🔒'} ${esc(l.title)}</div><span class="chip shrink-0" ${open?'style="color:var(--acc)"':''}>${open?'OPEN':l.date+' · '+days+'d'}</span></div>
- ${open?`<div class="lt-body text-sm leading-relaxed whitespace-pre-wrap mt-3 border-t pt-3" style="border-color:var(--gborder2);display:none">${esc(l.body)}</div><div class="flex gap-2 mt-3"><button class="chip" onclick="App.ltToggle(${l.id})">📖</button><button class="chip" onclick="App.ltDel(${l.id})">🗑</button></div>`
-:`<div class="text-[10px] font-bold mt-2" style="color:var(--sub)">🔒</div>`}</div>`}).join('')},
-ltToggle(id){const b=document.querySelector(`[data-lid="${id}"]`)?.querySelector('.lt-body');if(!b)return;
-b.style.display=b.style.display==='none'?'block':'none'},
-ltDel(id){if(!confirm('DELETE?'))return;state.letters=state.letters.filter(l=>l.id!==id);
-LS.set('rg48_letters',state.letters);App.renderLetters();toast('🗑')},
-renderPomoPresets(){const ps=[['25',25],['45',45],['60',60]];
- $('pm-presets').innerHTML=ps.map((p,i)=>`<button class="chip ${i===0?'on':''}" onclick="App.pomoPreset(${p[1]},this)">${p[0]}′</button>`).join('');
-App.pomoPreset(25,$('pm-presets').firstElementChild)},
-pomoPreset(min,btn){[...$('pm-presets').children].forEach(b=>b.classList.remove('on'));btn?.classList.add('on');
-if(!state.pomo.running){state.pomo.left=min*60;App.updatePomoUI()}},
-pomoToggle(){const p=state.pomo;
-if(p.running){clearInterval(p.timer);p.running=false;$('pm-btn').textContent='▶';$('pm-status').textContent='...';$('pm-num').classList.remove('run');return}
-if(p.left<=0)return toast('...');
-p.running=true;$('pm-btn').textContent='⏸';$('pm-num').classList.add('run');
- $('pm-status').textContent='FOCUS!';
-p.timer=setInterval(()=>{p.left--;App.updatePomoUI();
-if(p.left<=0){clearInterval(p.timer);p.running=false;$('pm-btn').textContent='▶';$('pm-num').classList.remove('run');
-state.pomoDone++;LS.set('rg51_pomo',state.pomoDone);App.updatePomoUI();
- $('pm-status').textContent='🍅';
-const lines=['搞掂？我睇錯你。','今次俾你過。','曾俊偉都做唔到。','快啲抖。'];
- $('pm-ai').classList.remove('hidden');$('pm-ai').textContent='阮峻：'+lines[Math.floor(Math.random()*lines.length)];
-try{App.speak($('pm-ai').textContent)}catch{}}
-},1000)},
-pomoReset(){const p=state.pomo;clearInterval(p.timer);p.running=false;p.left=25*60;$('pm-btn').textContent='▶';$('pm-status').textContent='...';$('pm-num').classList.remove('run');App.updatePomoUI()},
-updatePomoUI(){const m=Math.floor(state.pomo.left/60),s=state.pomo.left%60;
- $('pm-num').textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
- $('pm-done').textContent=state.pomoDone},
+await App.streamInto({messages:[{role:'system',content:`你係${App.aiName()}，用戶嘅嘴替。將嗰句代佢講，用${App.langName()}，風格：${lv}。20~60字，只輸出嗰句。`},{role:'user',content:t}],el:$('mo-body'),plain:true,maxTokens:160});state.busy=false},
+init(){marked.setOptions({breaks:true,gfm:true});
+const safe=(n,f)=>{try{f()}catch(e){console.warn('[init:'+n+']',e)}};
+safe('lang',()=>App.applyLang());
+safe('theme',()=>App.loadTheme());safe('conn',()=>App.updateConn());safe('ideas',()=>App.renderIdeas());
+safe('chat',()=>App.loadLastChat());
+safe('novel',()=>App.renderNovel());safe('dict',()=>App.renderDictHistory());safe('grades',()=>App.renderGrades());safe('cities',()=>App.renderCities());
+safe('web',()=>{App.renderWebPresets();App.renderTaste()});safe('mem',()=>App.renderMems());safe('home',()=>App.renderHome());
+safe('site',()=>App.initSite());safe('tl',()=>App.renderTlTargets());safe('toggles',()=>App.syncToggles());
+safe('nav',()=>App.openTool('site'));
+const d=new Date();d.setFullYear(d.getFullYear()+1);const ld=$('lt-date');
+if(state.web?.code){$('wb-prompt').value=state.web.prompt||'';App.wbShow(state.web.code)}
+safe('keys',()=>App.bindKeys());safe('voices',()=>App.initVoices());
+document.addEventListener('click',()=>document.querySelectorAll('.langmenu').forEach(m=>m.classList.remove('open')));
+safe('ob',()=>App.obOpen())},
 bindKeys(){$('minp')?.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){e.preventDefault();App.send()}});
  $('file-in')?.addEventListener('change',e=>{App.addFiles([...e.target.files]);e.target.value=''});
  $('dict-in')?.addEventListener('keydown',e=>{if(e.key==='Enter')App.lookup()});
  $('tl-in')?.addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey))App.tlGo()});
  $('we-city')?.addEventListener('keydown',e=>{if(e.key==='Enter')App.getWeather()});
- $('fo-name')?.addEventListener('keydown',e=>{if(e.key==='Enter')App.drawFortune()});
- $('bt-in')?.addEventListener('keydown',e=>{if(e.key==='Enter')App.battleAttack()});
- $('db-reply')?.addEventListener('keydown',e=>{if(e.key==='Enter')App.dbSend()});
- $('gm-in')?.addEventListener('keydown',e=>{if(e.key==='Enter')App.gmSend()});
- $('dm-in')?.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.isComposing)App.dreamGo()});
- $('fd-in')?.addEventListener('keydown',e=>{if(e.key==='Enter')App.foodGo()});
- $('mem-in')?.addEventListener('keydown',e=>{if(e.key==='Enter')App.memAdd()});
- $('wb-prompt')?.addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey))App.webBuild()});
+ $('fo-name');
  $('in-temp')?.addEventListener('input',e=>$('in-temp-val').textContent=e.target.value);
  $('in-tok')?.addEventListener('input',e=>$('in-tok-val').textContent=e.target.value);
  $('dict-hist')?.addEventListener('click',e=>{const b=e.target.closest('[data-w]');if(b){$('dict-in').value=b.dataset.w;App.lookup()}});
